@@ -48,7 +48,11 @@ export default function removeEdge({
     <>
       <path
         id={id}
-        style={style}
+        style={{
+          ...style,
+          stroke: "#00d4aa",
+          strokeWidth: 3,
+        }}
         className="react-flow__edge-path"
         d={edgePath}
         markerEnd={markerEnd}
@@ -62,12 +66,32 @@ export default function removeEdge({
         requiredExtensions="http://www.w3.org/1999/xhtml"
       >
         <body>
-          {/* <button
+          <button
             className="edgebutton"
             onClick={event => onEdgeClick(event, id)}
+            style={{
+              background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)",
+              border: "1px solid #333333",
+              borderRadius: "50%",
+              width: "24px",
+              height: "24px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = "linear-gradient(135deg, #ff4757 0%, #ff3742 100%)";
+              e.target.style.transform = "scale(1.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)";
+              e.target.style.transform = "scale(1)";
+            }}
           >
-            <Delete sx={{ width: "12px", height: "12px", color: "#0000FF" }} />
-          </button> */}
+            <Delete sx={{ width: "14px", height: "14px", color: "#ffffff" }} />
+          </button>
         </body>
       </foreignObject>
     </>

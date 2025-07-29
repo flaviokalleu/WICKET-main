@@ -20,12 +20,24 @@ export default memo(({ data, isConnectable, id }) => {
 
   return (
     <div
-      style={{ backgroundColor: "#555", padding: "8px", borderRadius: "8px" }}
+      style={{ 
+        background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)", 
+        padding: "16px", 
+        borderRadius: "12px",
+        border: "1px solid #333333",
+        boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3)",
+        minWidth: "200px",
+      }}
     >
       <Handle
         type="target"
         position="left"
-        style={{ background: "#0000FF" }}
+        style={{ 
+          background: "linear-gradient(135deg, #00d4aa 0%, #4facfe 100%)",
+          width: "12px",
+          height: "12px",
+          border: "2px solid #ffffff",
+        }}
         onConnect={params => console.log("handle onConnect", params)}
         isConnectable={isConnectable}
       />
@@ -33,10 +45,10 @@ export default memo(({ data, isConnectable, id }) => {
         style={{
           display: "flex",
           position: "absolute",
-          right: 5,
-          top: 5,
+          right: 8,
+          top: 8,
           cursor: "pointer",
-          gap: 6
+          gap: 8
         }}
       >
         <ContentCopy
@@ -44,7 +56,13 @@ export default memo(({ data, isConnectable, id }) => {
             storageItems.setNodesStorage(id);
             storageItems.setAct("duplicate");
           }}
-          sx={{ width: "12px", height: "12px", color: "#ffff" }}
+          sx={{ 
+            width: "16px", 
+            height: "16px", 
+            color: "#a0a0a0",
+            '&:hover': { color: "#00d4aa" },
+            transition: "color 0.3s ease",
+          }}
         />
 
         <Delete
@@ -52,32 +70,52 @@ export default memo(({ data, isConnectable, id }) => {
             storageItems.setNodesStorage(id);
             storageItems.setAct("delete");
           }}
-          sx={{ width: "12px", height: "12px", color: "#ffff" }}
+          sx={{ 
+            width: "16px", 
+            height: "16px", 
+            color: "#a0a0a0",
+            '&:hover': { color: "#ff4757" },
+            transition: "color 0.3s ease",
+          }}
         />
       </div>
-      {/* <div style={{position: 'absolute', right: 5, top: 5, cursor: 'pointer'}}>
-        <Delete sx={{width: '12px', height: '12px', color: '#ffff'}}/>
-      </div> */}
       <div
         style={{
-          color: "#ededed",
+          color: "#ffffff",
           fontSize: "16px",
           flexDirection: "row",
-          display: "flex"
+          display: "flex",
+          alignItems: "center",
+          marginBottom: "12px",
         }}
       >
         <Videocam
           sx={{
-            width: "16px",
-            height: "16px",
-            marginRight: "4px",
-            marginTop: "4px"
+            width: "20px",
+            height: "20px",
+            marginRight: "8px",
+            color: "#00d4aa"
           }}
         />
-        <div style={{ color: "#ededed", fontSize: "16px" }}>Video</div>
+        <div style={{ color: "#ffffff", fontSize: "16px", fontWeight: 600 }}>Vídeo</div>
       </div>
-      <div style={{ color: "#ededed", fontSize: "12px", width: 180 }}>
-        <video controls="controls" width="180px">
+      <div style={{ 
+        color: "#a0a0a0", 
+        fontSize: "12px", 
+        width: 180,
+        backgroundColor: "#0f0f0f",
+        borderRadius: "8px",
+        padding: "8px",
+        border: "1px solid #333333",
+      }}>
+        <video 
+          controls="controls" 
+          width="180px"
+          style={{
+            borderRadius: "6px",
+            backgroundColor: "#000000",
+          }}
+        >
           <source src={`${link}/public/${data.url}`} type="video/mp4" />
           seu navegador não suporta HTML5
         </video>
@@ -86,7 +124,12 @@ export default memo(({ data, isConnectable, id }) => {
         type="source"
         position="right"
         id="a"
-        style={{ background: "#0000FF" }}
+        style={{ 
+          background: "linear-gradient(135deg, #00d4aa 0%, #4facfe 100%)",
+          width: "12px",
+          height: "12px",
+          border: "2px solid #ffffff",
+        }}
         isConnectable={isConnectable}
       />
     </div>

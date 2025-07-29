@@ -17,24 +17,26 @@ export default memo(({ data, isConnectable, id }) => {
   return (
     <div
       style={{
-        backgroundColor: "#ffffff",
+        background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)",
         padding: "16px",
         borderRadius: "12px",
-        border: "1px solid #e2e8f0",
+        border: "1px solid #333333",
         minWidth: "220px",
         maxWidth: "220px",
         position: "relative",
         fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
-        transition: "all 0.2s ease",
+        boxShadow: "0 8px 25px rgba(0, 0, 0, 0.3)",
+        transition: "all 0.3s ease",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
-        e.currentTarget.style.borderColor = "#cbd5e1";
+        e.currentTarget.style.boxShadow = "0 12px 35px rgba(139, 92, 246, 0.2)";
+        e.currentTarget.style.borderColor = "#8b5cf6";
+        e.currentTarget.style.transform = "translateY(-2px)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)";
-        e.currentTarget.style.borderColor = "#e2e8f0";
+        e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.3)";
+        e.currentTarget.style.borderColor = "#333333";
+        e.currentTarget.style.transform = "translateY(0px)";
       }}
     >
       {/* Handle de entrada */}
@@ -43,14 +45,14 @@ export default memo(({ data, isConnectable, id }) => {
         position="left"
         style={{
           background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
-          width: "12px",
-          height: "12px",
+          width: "14px",
+          height: "14px",
           top: "24px",
-          left: "-6px",
+          left: "-7px",
           cursor: "pointer",
-          border: "2px solid #ffffff",
+          border: "3px solid #ffffff",
           borderRadius: "50%",
-          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+          boxShadow: "0 4px 15px rgba(139, 92, 246, 0.3)",
         }}
         onConnect={(params) => console.log("handle onConnect", params)}
         isConnectable={isConnectable}

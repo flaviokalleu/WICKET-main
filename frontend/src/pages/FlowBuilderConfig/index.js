@@ -102,42 +102,61 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     padding: theme.spacing(1),
     position: "relative",
-    backgroundColor: "#F8F9FA",
+    backgroundColor: "#0f0f0f",
     overflowY: "scroll",
     ...theme.scrollbarStyles,
   },
   sidebar: {
-    width: "200px",
-    backgroundColor: "#2c3e50",
+    width: "240px",
+    background: "linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%)",
     height: "100%",
     position: "absolute",
     left: 0,
     top: 0,
     zIndex: 1111,
-    padding: "16px",
+    padding: "20px",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
+    borderRight: "1px solid #333333",
+    boxShadow: "4px 0 20px rgba(0, 0, 0, 0.3)",
+  },
+  sidebarTitle: {
+    color: "#ffffff",
+    fontSize: "18px",
+    fontWeight: 600,
+    marginBottom: "20px",
+    background: "linear-gradient(135deg, #00d4aa 0%, #4facfe 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
   },
   button: {
-    backgroundColor: "#34495e",
+    background: "linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)",
     color: "#ffffff",
-    marginBottom: "8px",
+    marginBottom: "12px",
     width: "100%",
-    height: "40px",
+    height: "48px",
     minWidth: "auto",
-    borderRadius: "5px",
+    borderRadius: "12px",
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    padding: "8px 16px",
-    fontSize: "12px",
+    padding: "12px 16px",
+    fontSize: "13px",
+    fontWeight: 500,
+    border: "1px solid #333333",
+    transition: "all 0.3s ease",
     "&:hover": {
-      backgroundColor: "#233445",
+      background: "linear-gradient(135deg, #00d4aa 0%, #4facfe 100%)",
+      transform: "translateY(-2px)",
+      boxShadow: "0 8px 25px rgba(0, 212, 170, 0.3)",
+      borderColor: "#00d4aa",
     },
   },
   buttonIcon: {
-    marginRight: "8px",
+    marginRight: "12px",
+    fontSize: "18px",
   },
   animatedEdge: {
     animation: "$fadeEdge 1.2s ease-in-out infinite alternate",
@@ -1030,6 +1049,9 @@ export const FlowBuilderConfig = () => {
           onScroll={handleScroll}
         >
           <Stack className={classes.sidebar}>
+            <Typography className={classes.sidebarTitle}>
+              Componentes
+            </Typography>
             {actions.map((action) => (
               <Button
                 key={action.name}
@@ -1047,26 +1069,45 @@ export const FlowBuilderConfig = () => {
               justifyContent: "center",
               flexDirection: "row",
               width: "100%",
+              top: "10px",
             }}
           >
-            <Typography style={{ color: "#010101" }}>
-              Não esqueça de salvar seu fluxo!
+            <Typography 
+              sx={{ 
+                color: "#a0a0a0",
+                backgroundColor: "#1a1a1a",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                border: "1px solid #333333",
+                fontSize: "14px",
+                fontWeight: 500,
+              }}
+            >
+              💡 Não esqueça de salvar seu fluxo!
             </Typography>
           </Stack>
-          <Stack direction={"row"} justifyContent={"end"} spacing={1}>
+          <Stack direction={"row"} justifyContent={"end"} spacing={1} sx={{ mb: 2 }}>
             <Button
-              sx={{ textTransform: "none" }}
+              sx={{ 
+                textTransform: "none",
+                background: "linear-gradient(135deg, #00d4aa 0%, #4facfe 100%)",
+                color: "white",
+                borderRadius: "12px",
+                padding: "10px 24px",
+                fontWeight: 600,
+                boxShadow: "0 4px 15px rgba(0, 212, 170, 0.3)",
+                '&:hover': {
+                  background: "linear-gradient(135deg, #4facfe 0%, #00d4aa 100%)",
+                  boxShadow: "0 6px 20px rgba(0, 212, 170, 0.4)",
+                  transform: "translateY(-2px)",
+                },
+                transition: "all 0.3s ease",
+              }}
               startIcon={<SaveIcon />}
               variant="contained"
-              style={{
-                color: "white",
-                backgroundColor: "#437db5",
-                boxShadow: "none",
-                borderRadius: "5px",
-              }}
               onClick={() => saveFlow()}
             >
-              Salvar
+              Salvar Fluxo
             </Button>
           </Stack>
 
@@ -1091,21 +1132,53 @@ export const FlowBuilderConfig = () => {
               onConnect={onConnect}
               nodeTypes={nodeTypes}
               fitView
-              connectionLineStyle={connectionLineStyle}
+              connectionLineStyle={{
+                strokeWidth: 3,
+                stroke: '#00d4aa',
+              }}
               style={{
-                backgroundColor: "#F8F9FA",
+                backgroundColor: "#0f0f0f",
               }}
               edgeTypes={edgeTypes}
-              variant={"cross"}
               defaultEdgeOptions={{
-                style: { color: "#ff0000", strokeWidth: "6px" },
-                animated: true, // Animação ativada
-                className: classes.animatedEdge, // Aplicar animação personalizada
+                style: { 
+                  strokeWidth: 3,
+                  stroke: '#00d4aa',
+                },
+                animated: true,
+                className: classes.animatedEdge,
               }}
             >
-              <Controls />
-              <MiniMap />
-              <Background variant="dots" gap={12} size={-1} />
+              <Controls 
+                style={{
+                  button: {
+                    backgroundColor: '#1a1a1a',
+                    color: '#ffffff',
+                    border: '1px solid #333333',
+                  },
+                }}
+              />
+              <MiniMap 
+                nodeColor={(node) => {
+                  switch (node.type) {
+                    case 'start': return '#00d4aa';
+                    case 'message': return '#4facfe';
+                    case 'menu': return '#fa709a';
+                    default: return '#ffffff';
+                  }
+                }}
+                maskColor="rgba(15, 15, 15, 0.8)"
+                style={{
+                  backgroundColor: '#1a1a1a',
+                  border: '1px solid #333333',
+                }}
+              />
+              <Background 
+                variant="dots" 
+                gap={20} 
+                size={1} 
+                color="#333333"
+              />
             </ReactFlow>
 
             <Stack

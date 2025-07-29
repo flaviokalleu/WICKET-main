@@ -14,31 +14,41 @@ export default memo(({ data, isConnectable, id }) => {
   return (
     <div
       style={{
-        backgroundColor: "#ffffff",
+        background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)",
         padding: "16px",
         borderRadius: "12px",
-        border: "1px solid #e2e8f0",
+        border: "1px solid #333333",
         minWidth: "220px",
         maxWidth: "220px",
         position: "relative",
         fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
-        transition: "all 0.2s ease",
+        boxShadow: "0 8px 25px rgba(0, 0, 0, 0.3)",
+        transition: "all 0.3s ease",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = "0 12px 35px rgba(79, 172, 254, 0.2)";
+        e.currentTarget.style.borderColor = "#4facfe";
+        e.currentTarget.style.transform = "translateY(-2px)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.3)";
+        e.currentTarget.style.borderColor = "#333333";
+        e.currentTarget.style.transform = "translateY(0px)";
       }}
     >
       <Handle
         type="target"
         position="left"
         style={{
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-          width: "12px",
-          height: "12px",
+          background: "linear-gradient(135deg, #4facfe 0%, #00d4aa 100%)",
+          width: "14px",
+          height: "14px",
           top: "24px",
-          left: "-6px",
+          left: "-7px",
           cursor: "pointer",
-          border: "2px solid #ffffff",
+          border: "3px solid #ffffff",
           borderRadius: "50%",
-          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+          boxShadow: "0 4px 15px rgba(79, 172, 254, 0.3)",
         }}
         onConnect={params => console.log("handle onConnect", params)}
         isConnectable={isConnectable}
@@ -49,7 +59,7 @@ export default memo(({ data, isConnectable, id }) => {
           position: "absolute",
           right: "12px",
           top: "12px",
-          gap: "6px",
+          gap: "8px",
           zIndex: 10,
         }}
       >
@@ -59,23 +69,31 @@ export default memo(({ data, isConnectable, id }) => {
             storageItems.setAct("duplicate");
           }}
           style={{
-            padding: "4px",
-            borderRadius: "4px",
+            padding: "6px",
+            borderRadius: "6px",
             cursor: "pointer",
-            backgroundColor: "#f8fafc",
-            border: "1px solid #e2e8f0",
+            background: "linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)",
+            border: "1px solid #333333",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            transition: "all 0.2s ease",
+            transition: "all 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #4facfe 0%, #00d4aa 100%)";
+            e.target.style.transform = "scale(1.1)";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)";
+            e.target.style.transform = "scale(1)";
           }}
         >
           <ContentCopy
             sx={{
-              width: "12px",
-              height: "12px",
-              color: "#6b7280",
-              transition: "color 0.2s ease",
+              width: "14px",
+              height: "14px",
+              color: "#a0a0a0",
+              transition: "color 0.3s ease",
             }}
           />
         </div>
@@ -85,23 +103,31 @@ export default memo(({ data, isConnectable, id }) => {
             storageItems.setAct("delete");
           }}
           style={{
-            padding: "4px",
-            borderRadius: "4px",
+            padding: "6px",
+            borderRadius: "6px",
             cursor: "pointer",
-            backgroundColor: "#f8fafc",
-            border: "1px solid #e2e8f0",
+            background: "linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)",
+            border: "1px solid #333333",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            transition: "all 0.2s ease",
+            transition: "all 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #ff4757 0%, #ff3742 100%)";
+            e.target.style.transform = "scale(1.1)";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)";
+            e.target.style.transform = "scale(1)";
           }}
         >
           <Delete
             sx={{
-              width: "12px",
-              height: "12px",
-              color: "#6b7280",
-              transition: "color 0.2s ease",
+              width: "14px",
+              height: "14px",
+              color: "#a0a0a0",
+              transition: "color 0.3s ease",
             }}
           />
         </div>
@@ -111,33 +137,34 @@ export default memo(({ data, isConnectable, id }) => {
           display: "flex",
           alignItems: "center",
           marginBottom: "16px",
-          paddingRight: "60px",
+          paddingRight: "80px",
         }}
       >
         <div
           style={{
-            backgroundColor: "#f0f4ff",
-            padding: "6px",
-            borderRadius: "6px",
-            marginRight: "10px",
+            background: "linear-gradient(135deg, #4facfe 0%, #00d4aa 100%)",
+            padding: "8px",
+            borderRadius: "8px",
+            marginRight: "12px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            boxShadow: "0 4px 15px rgba(79, 172, 254, 0.3)",
           }}
         >
           <Message
             sx={{
-              width: "16px",
-              height: "16px",
-              color: "#6366f1",
+              width: "18px",
+              height: "18px",
+              color: "#ffffff",
             }}
           />
         </div>
         <div
           style={{
-            color: "#1e293b",
-            fontSize: "14px",
-            fontWeight: "600",
+            color: "#ffffff",
+            fontSize: "16px",
+            fontWeight: "700",
             letterSpacing: "-0.025em",
           }}
         >
@@ -146,28 +173,32 @@ export default memo(({ data, isConnectable, id }) => {
       </div>
       <div
         style={{
-          color: "#232323",
-          fontSize: "12px",
+          color: "#a0a0a0",
+          fontSize: "13px",
           marginBottom: "12px",
           lineHeight: "1.4",
+          backgroundColor: "#0f0f0f",
+          padding: "12px",
+          borderRadius: "8px",
+          border: "1px solid #333333",
         }}
       >
-        {data.label}
+        💬 {data.label}
       </div>
       <Handle
         type="source"
         position="right"
         id="a"
         style={{
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-          width: "12px",
-          height: "12px",
+          background: "linear-gradient(135deg, #4facfe 0%, #00d4aa 100%)",
+          width: "14px",
+          height: "14px",
           top: "50%",
-          right: "-6px",
+          right: "-7px",
           cursor: "pointer",
-          border: "2px solid #ffffff",
+          border: "3px solid #ffffff",
           borderRadius: "50%",
-          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+          boxShadow: "0 4px 15px rgba(79, 172, 254, 0.3)",
         }}
         isConnectable={isConnectable}
       />
