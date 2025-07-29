@@ -1,0 +1,7 @@
+Aguardando conexão para iniciar a importação de mensagens:
+  Whatsapp nome: Atendimento
+  Whatsapp Id: 1
+  Criação do arquivo de logs: 25/07/2025 18:35:19
+  Selecionado Data de inicio de importação: 01/07/2025 00:07:00 
+  Selecionado Data final da importação: 25/07/2025 16:06:00 
+   

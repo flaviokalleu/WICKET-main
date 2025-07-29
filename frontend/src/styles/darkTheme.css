@@ -1,0 +1,343 @@
+/* Dark Theme Global Styles */
+body {
+  background-color: #0f0f0f !important;
+  color: #ffffff !important;
+}
+
+#root {
+  background-color: #0f0f0f !important;
+}
+
+/* Scrollbar styles for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Chat specific overrides */
+.messageContent {
+  color: inherit !important;
+}
+
+.messageContent p {
+  margin: 0;
+  color: inherit !important;
+}
+
+/* Material-UI overrides for dark theme */
+.MuiPaper-root {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.MuiAppBar-root {
+  background-color: #1e1e1e !important;
+}
+
+.MuiDrawer-paper {
+  background-color: #1a1a1a !important;
+  border-right: 1px solid #333333 !important;
+}
+
+.MuiListItem-root {
+  color: #ffffff !important;
+}
+
+.MuiListItem-root:hover {
+  background-color: #2a2a2a !important;
+}
+
+.MuiListItem-root.Mui-selected {
+  background-color: #00d4aa !important;
+}
+
+.MuiListItem-root.Mui-selected:hover {
+  background-color: #00b894 !important;
+}
+
+.MuiListItemText-primary {
+  color: #ffffff !important;
+}
+
+.MuiListItemText-secondary {
+  color: #a0a0a0 !important;
+}
+
+/* Input overrides */
+.MuiInputBase-root {
+  color: #ffffff !important;
+  background-color: #2a2a2a !important;
+}
+
+.MuiInputLabel-root {
+  color: #a0a0a0 !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: #333333 !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #00d4aa !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #00d4aa !important;
+}
+
+/* Table overrides */
+.MuiTableHead-root {
+  background-color: #1e1e1e !important;
+}
+
+.MuiTableCell-root {
+  color: #ffffff !important;
+  border-bottom: 1px solid #333333 !important;
+}
+
+.MuiTableRow-root:hover {
+  background-color: #2a2a2a !important;
+}
+
+/* Button overrides */
+.MuiButton-containedPrimary {
+  background-color: #00d4aa !important;
+  color: #ffffff !important;
+}
+
+.MuiButton-containedPrimary:hover {
+  background-color: #00b894 !important;
+}
+
+.MuiButton-root {
+  color: #ffffff !important;
+}
+
+.MuiIconButton-root {
+  color: #ffffff !important;
+}
+
+/* Chip overrides */
+.MuiChip-colorSecondary {
+  background-color: #00d4aa !important;
+  color: #ffffff !important;
+}
+
+.MuiChip-root {
+  background-color: #333333 !important;
+  color: #ffffff !important;
+}
+
+/* Dialog overrides */
+.MuiDialog-paper {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.MuiDialogTitle-root {
+  color: #ffffff !important;
+}
+
+.MuiDialogContent-root {
+  color: #ffffff !important;
+}
+
+/* Typography overrides */
+.MuiTypography-root {
+  color: inherit !important;
+}
+
+.MuiTypography-h1,
+.MuiTypography-h2,
+.MuiTypography-h3,
+.MuiTypography-h4,
+.MuiTypography-h5,
+.MuiTypography-h6 {
+  color: #ffffff !important;
+}
+
+/* Tab overrides */
+.MuiTabs-root {
+  background-color: #1e1e1e !important;
+}
+
+.MuiTab-root {
+  color: #a0a0a0 !important;
+}
+
+.MuiTab-root.Mui-selected {
+  color: #00d4aa !important;
+}
+
+.MuiTabs-indicator {
+  background-color: #00d4aa !important;
+}
+
+/* Badge overrides */
+.MuiBadge-badge {
+  background-color: #00d4aa !important;
+  color: #ffffff !important;
+}
+
+/* Toolbar overrides */
+.MuiToolbar-root {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+}
+
+/* Specific ticket components */
+.ticket-item {
+  background-color: #1a1a1a !important;
+  border: 1px solid #333333 !important;
+  color: #ffffff !important;
+}
+
+.ticket-item:hover {
+  background-color: #2a2a2a !important;
+}
+
+.ticket-item.selected {
+  background-color: #00d4aa !important;
+  color: #ffffff !important;
+}
+
+/* Menu overrides */
+.MuiMenu-paper {
+  background-color: #1a1a1a !important;
+  border: 1px solid #333333 !important;
+}
+
+.MuiMenuItem-root {
+  color: #ffffff !important;
+}
+
+.MuiMenuItem-root:hover {
+  background-color: #2a2a2a !important;
+}
+
+/* Form Control overrides */
+.MuiFormControl-root {
+  color: #ffffff !important;
+}
+
+.MuiFormLabel-root {
+  color: #a0a0a0 !important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: #00d4aa !important;
+}
+
+/* Select overrides */
+.MuiSelect-root {
+  color: #ffffff !important;
+}
+
+.MuiSelect-icon {
+  color: #ffffff !important;
+}
+
+/* Autocomplete overrides */
+.MuiAutocomplete-root .MuiOutlinedInput-root {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+}
+
+.MuiAutocomplete-popupIndicator {
+  color: #a0a0a0 !important;
+}
+
+.MuiAutocomplete-clearIndicator {
+  color: #a0a0a0 !important;
+}
+
+.MuiAutocomplete-paper {
+  background-color: #2a2a2a !important;
+  border: 1px solid #333333 !important;
+  border-radius: 8px !important;
+}
+
+.MuiAutocomplete-option {
+  color: #ffffff !important;
+  background-color: #2a2a2a !important;
+}
+
+.MuiAutocomplete-option:hover {
+  background-color: #333333 !important;
+}
+
+.MuiAutocomplete-option[aria-selected="true"] {
+  background-color: #00d4aa !important;
+  color: #ffffff !important;
+}
+
+.MuiAutocomplete-noOptions {
+  color: #a0a0a0 !important;
+}
+
+.MuiAutocomplete-loading {
+  color: #a0a0a0 !important;
+}
+
+/* Checkbox and Radio overrides */
+.MuiCheckbox-root {
+  color: #a0a0a0 !important;
+}
+
+.MuiCheckbox-root.Mui-checked {
+  color: #00d4aa !important;
+}
+
+.MuiRadio-root {
+  color: #a0a0a0 !important;
+}
+
+.MuiRadio-root.Mui-checked {
+  color: #00d4aa !important;
+}
+
+/* Switch overrides */
+.MuiSwitch-track {
+  background-color: #333333 !important;
+}
+
+.MuiSwitch-thumb {
+  background-color: #ffffff !important;
+}
+
+.MuiSwitch-colorPrimary.Mui-checked .MuiSwitch-thumb {
+  background-color: #00d4aa !important;
+}
+
+.MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
+  background-color: #00b894 !important;
+}
+
+/* Divider overrides */
+.MuiDivider-root {
+  background-color: #333333 !important;
+}
+
+/* Specific chat components */
+.chat-message-user {
+  background-color: #00d4aa !important;
+  color: #ffffff !important;
+}
+
+.chat-message-other {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+}
