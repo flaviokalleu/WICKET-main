@@ -44,6 +44,7 @@ import CheckContactNumber from "../services/WbotServices/CheckNumber";
 import TranscribeAudioMessageToText from "../services/MessageServices/TranscribeAudioMessageService";
 import { generateWAMessageFromContent, generateWAMessageContent } from "@whiskeysockets/baileys";
 import os from "os";
+import AudioProcessor from "../helpers/AudioProcessor";
 
 type IndexQuery = {
   pageNumber: string;
@@ -571,6 +572,34 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     if (medias) {
       await Promise.all(
         medias.map(async (media: Express.Multer.File, index) => {
+          // Processar áudio se for arquivo de áudio
+          if (media.mimetype.startsWith('audio/')) {
+            try {
+              const audioBuffer = fs.readFileSync(media.path);
+              const optimizedAudio = await AudioProcessor.convertToWhatsAppFormat(audioBuffer);
+              
+              // Sobrescrever arquivo original com versão otimizada
+              fs.writeFileSync(media.path, optimizedAudio);
+              
+              // Atualizar informações do arquivo
+              media.mimetype = 'audio/mpeg';
+              const stats = fs.statSync(media.path);
+              media.size = stats.size;
+              
+              // Atualizar nome do arquivo para .mp3 se necessário
+              if (!media.filename.endsWith('.mp3')) {
+                const newFilename = media.filename.replace(/\.[^/.]+$/, '.mp3');
+                const newPath = media.path.replace(media.filename, newFilename);
+                fs.renameSync(media.path, newPath);
+                media.filename = newFilename;
+                media.path = newPath;
+              }
+            } catch (error) {
+              console.log('Erro ao processar áudio:', error);
+              // Continua com o arquivo original em caso de erro
+            }
+          }
+
           if (ticket.channel === "whatsapp") {
             await SendWhatsAppMedia({ media, ticket, body: Array.isArray(body) ? body[index] : body, isPrivate: isPrivate === "true", isForwarded: false });
           }

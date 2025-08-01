@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import * as serviceworker from './serviceWorker'
+import * as serviceworker from './serviceWorker';
+import "./styles/modalFix.css";
 
 import App from "./App";
 

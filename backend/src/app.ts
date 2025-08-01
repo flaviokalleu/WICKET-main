@@ -86,6 +86,10 @@ app.use(express.json());
 app.use(Sentry.Handlers.requestHandler());
 app.use("/public", express.static(uploadConfig.directory));
 
+// Importar rotas de áudio
+const audioRoutes = require("./routes/audioRoutes");
+app.use("/api/audio", audioRoutes);
+
 // Rotas
 app.use(routes);
 

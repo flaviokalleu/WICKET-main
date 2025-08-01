@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo } from "react";
 import api from "./services/api";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles/darkTheme.css";
+import "./styles/modalFix.css";
+import "./styles/modernDesign.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ptBR } from "@material-ui/core/locale";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -111,6 +113,47 @@ const App = () => {
               return appLogoDark;
             }
             return appLogoLight;
+          },
+          overrides: {
+            MuiDialog: {
+              root: {
+                zIndex: 1500,
+              },
+              paper: {
+                backgroundColor: "#1a1a1a",
+                color: "#ffffff",
+                maxHeight: "90vh",
+                margin: "32px",
+                borderRadius: "8px",
+              },
+            },
+            MuiDialogTitle: {
+              root: {
+                backgroundColor: "#333333",
+                color: "#ffffff",
+                padding: "16px 24px",
+              },
+            },
+            MuiDialogContent: {
+              root: {
+                backgroundColor: "#1a1a1a",
+                color: "#ffffff",
+                padding: "20px 24px",
+              },
+            },
+            MuiDialogActions: {
+              root: {
+                backgroundColor: "#1a1a1a",
+                borderTop: "1px solid rgba(255, 255, 255, 0.12)",
+                padding: "8px",
+              },
+            },
+            MuiBackdrop: {
+              root: {
+                zIndex: 1400,
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+              },
+            },
           },
         },
         locale

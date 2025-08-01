@@ -43,7 +43,6 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import BoltIcon from '@mui/icons-material/FlashOn';
 import { CameraAlt } from "@material-ui/icons";
-import MicRecorder from "mic-recorder-to-mp3";
 import clsx from "clsx";
 import { ReplyMessageContext } from "../../context/ReplyingMessage/ReplyingMessageContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
@@ -51,6 +50,7 @@ import { i18n } from "../../translate/i18n";
 import toastError from "../../errors/toastError";
 import api from "../../services/api";
 import RecordingTimer from "./RecordingTimer";
+import AudioRecorder from "../AudioRecorder";
 
 import useQuickMessages from "../../hooks/useQuickMessages";
 import { isString, isEmpty } from "lodash";
@@ -65,9 +65,6 @@ import MessageUploadMedias from "../MessageUploadMedias";
 import { EditMessageContext } from "../../context/EditingMessage/EditingMessageContext";
 import ScheduleModal from "../ScheduleModal";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-
-
-const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
 const useStyles = makeStyles((theme) => ({
   mainWrapper: {
@@ -692,13 +689,31 @@ const MessageInput = ({ ticketId, ticketStatus, droppedFiles, contactId, ticketC
   const handleStartRecording = async () => {
     setLoading(true);
     try {
-      await navigator.mediaDevices.getUserMedia({ audio: true });
-      await Mp3Recorder.start();
       setRecording(true);
       setLoading(false);
     } catch (err) {
       toastError(err);
       setLoading(false);
+    }
+  };
+
+  const handleSendAudio = async (audioBlob, fileName) => {
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("medias", audioBlob, fileName);
+      formData.append("body", fileName);
+      formData.append("fromMe", true);
+
+      if (isMounted.current) {
+        await api.post(`/messages/${ticketId}`, formData);
+      }
+    } catch (err) {
+      toastError(err);
+    } finally {
+      if (isMounted.current) {
+        setLoading(false);
+      }
     }
   };
 
@@ -799,46 +814,8 @@ const MessageInput = ({ ticketId, ticketStatus, droppedFiles, contactId, ticketC
   };
 
 
-  const handleUploadAudio = async () => {
-
-    setLoading(true);
-    try {
-      const [, blob] = await Mp3Recorder.stop().getMp3();
-      if (blob.size < 10000) {
-        setLoading(false);
-        setRecording(false);
-        return;
-      }
-
-      const formData = new FormData();
-      const filename = ticketChannel === "whatsapp" ? `${new Date().getTime()}.mp3` : `${new Date().getTime()}.m4a`;
-      formData.append("medias", blob, filename);
-      formData.append("body", filename);
-      formData.append("fromMe", true);
-
-      if (isMounted.current) {
-        await api.post(`/messages/${ticketId}`, formData);
-      }
-    } catch (err) {
-      toastError(err);
-    } finally {
-      if (isMounted.current) {
-        setLoading(false);
-        setRecording(false);
-      }
-    }
-  };
-
   const handleCloseModalMedias = () => {
     setShowModalMedias(false);
-  };
-  const handleCancelAudio = async () => {
-    try {
-      await Mp3Recorder.stop().getMp3();
-      setRecording(false);
-    } catch (err) {
-      toastError(err);
-    }
   };
 
   const handleOpenMenuClick = (event) => {
@@ -1320,43 +1297,12 @@ const MessageInput = ({ ticketId, ticketStatus, droppedFiles, contactId, ticketC
                         <Reply className={classes.ForwardMessageIcons} /> : <Send className={classes.sendMessageIcons} />}
                     </IconButton>
                   </>
-                ) : recording ? (
-                  <div className={classes.recorderWrapper}>
-                    <IconButton
-                      aria-label="cancelRecording"
-                      component="span"
-                      fontSize="large"
-                      disabled={loading}
-                      onClick={handleCancelAudio}
-                    >
-                      <HighlightOff className={classes.cancelAudioIcon} />
-                    </IconButton>
-                    {loading ? (
-                      <div>
-                        <CircularProgress className={classes.audioLoading} />
-                      </div>
-                    ) : (
-                      <RecordingTimer />
-                    )}
-
-                    <IconButton
-                      aria-label="sendRecordedAudio"
-                      component="span"
-                      onClick={handleUploadAudio}
-                      disabled={loading}
-                    >
-                      <CheckCircleOutline className={classes.sendAudioIcon} />
-                    </IconButton>
-                  </div>
                 ) : (
-                  <IconButton
-                    aria-label="showRecorder"
-                    component="span"
+                  <AudioRecorder 
+                    onSendAudio={handleSendAudio}
                     disabled={disableOption()}
-                    onClick={handleStartRecording}
-                  >
-                    <Mic className={classes.sendMessageIcons} />
-                  </IconButton>
+                    maxDuration={300000}
+                  />
                 )}
               </>
             )}
