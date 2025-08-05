@@ -157,18 +157,50 @@ const handleUpdateTicketStatus = async (queueId) => {
 
 return (
 	<>
-		<Dialog open={modalOpen} onClose={handleClose}>
-			<DialogTitle id="form-dialog-title">
+		<Dialog 
+			open={modalOpen} 
+			onClose={handleClose}
+			hideBackdrop={true}
+			PaperProps={{
+				style: {
+					backgroundColor: "#1a1a1a",
+					color: "#ffffff",
+					border: "1px solid #333333",
+					borderRadius: "12px",
+					boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+				}
+			}}
+		>
+			<DialogTitle 
+				id="form-dialog-title"
+				style={{
+					backgroundColor: "#000000",
+					color: "#ffffff",
+					padding: "16px 24px",
+					borderBottom: "1px solid #333333",
+				}}
+			>
 				{i18n.t("ticketsList.acceptModal.title")}
 			</DialogTitle>
-			<DialogContent dividers>
+			<DialogContent 
+				dividers
+				style={{
+					backgroundColor: "#1a1a1a",
+					color: "#ffffff",
+					borderColor: "#333333",
+				}}
+			>
 				<FormControl variant="outlined" className={classes.maxWidth}>
-					<InputLabel>{i18n.t("ticketsList.acceptModal.queue")}</InputLabel>
+					<InputLabel style={{ color: "#ffffff" }}>{i18n.t("ticketsList.acceptModal.queue")}</InputLabel>
 					<Select
 						value={selectedQueue}
 						className={classes.autoComplete}
 						onChange={(e) => setSelectedQueue(e.target.value)}
 						label={i18n.t("ticketsList.acceptModal.queue")}
+						style={{
+							color: "#ffffff",
+							backgroundColor: "#2a2a2a",
+						}}
 					>
 						<MenuItem value={''}>&nbsp;</MenuItem>
 						{user.queues.map((queue) => (
@@ -177,7 +209,13 @@ return (
 					</Select>
 				</FormControl>
 			</DialogContent>
-			<DialogActions>
+			<DialogActions
+				style={{
+					backgroundColor: "#1a1a1a",
+					borderTop: "1px solid #333333",
+					padding: "16px 24px",
+				}}
+			>
 				<Button
                                         startIcon={<CancelIcon />}
 					style={{

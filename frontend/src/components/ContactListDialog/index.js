@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
   },
   dialogTitle: {
-    backgroundColor: "#3f51b5",
-    color: "white",
+    backgroundColor: "#000000",
+    color: "#ffffff",
     padding: "16px 24px",
     textAlign: "left",
     fontSize: "1.2rem",
@@ -55,12 +55,13 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogContent: {
     padding: "28px",
-    background: "#f9fafc",
+    background: "#1a1a1a",
+    color: "#ffffff",
   },
   dialogActions: {
     padding: "16px 28px",
-    borderTop: "1px solid rgba(0, 0, 0, 0.05)",
-    background: "#ffffff",
+    borderTop: "1px solid #555555",
+    background: "#1a1a1a",
     display: "flex",
     justifyContent: "space-between",
   },
@@ -83,54 +84,56 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: -12,
   },
   cancelButton: {
-    background: `linear-gradient(45deg, ${red[500]} 0%, ${red[700]} 100%)`,
-    color: "white",
+    background: "#db6565",
+    color: "#ffffff",
     borderRadius: "8px",
     padding: "8px 20px",
     fontWeight: "600",
     textTransform: "none",
     letterSpacing: "0.5px",
-    boxShadow: "0 2px 10px rgba(219, 101, 101, 0.3)",
+    boxShadow: "none",
     "&:hover": {
-      boxShadow: "0 4px 12px rgba(219, 101, 101, 0.4)",
+      background: "#c55555",
     },
   },
   saveButton: {
-    background: `linear-gradient(45deg, ${blue[500]} 0%, ${blue[700]} 100%)`,
-    color: "white",
+    background: "#437db5",
+    color: "#ffffff",
     borderRadius: "8px",
     padding: "8px 24px",
     fontWeight: "600",
     textTransform: "none",
     letterSpacing: "0.5px",
-    boxShadow: "0 2px 10px rgba(67, 125, 181, 0.3)",
+    boxShadow: "none",
     "&:hover": {
-      boxShadow: "0 4px 12px rgba(67, 125, 181, 0.4)",
+      background: "#3a6ba5",
     },
   },
   inputIcon: {
-    color: "#667eea",
+    color: "#437db5",
     marginRight: theme.spacing(1),
   },
   inputField: {
     "& .MuiOutlinedInput-root": {
       borderRadius: "8px",
+      backgroundColor: "#2a2a2a",
+      color: "#ffffff",
       "& fieldset": {
-        borderColor: "rgba(0, 0, 0, 0.1)",
+        borderColor: "#555555",
       },
       "&:hover fieldset": {
-        borderColor: "#667eea",
+        borderColor: "#437db5",
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#667eea",
-        boxShadow: "0 0 0 2px rgba(102, 126, 234, 0.2)",
+        borderColor: "#437db5",
+        boxShadow: "0 0 0 2px rgba(67, 125, 181, 0.2)",
       },
     },
     "& .MuiInputLabel-outlined": {
-      color: "#6b7280",
+      color: "#cccccc",
     },
     "& .MuiInputLabel-outlined.Mui-focused": {
-      color: "#667eea",
+      color: "#437db5",
     },
   },
   titleContent: {
@@ -223,6 +226,15 @@ const ContactListModal = ({ open, onClose, contactListId }) => {
         PaperComponent={DraggablePaper}
         disableBackdropClick
         disableEscapeKeyDown
+        hideBackdrop={true}
+        PaperProps={{
+          style: {
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+            background: "#1a1a1a",
+            color: "#ffffff",
+          }
+        }}
       >
         <DialogTitle id="draggable-dialog-title" className={classes.dialogTitle}>
           <Zoom in={true} style={{ transitionDelay: open ? '100ms' : '0ms' }}>

@@ -330,11 +330,37 @@ const NewTicketModal = ({ modalOpen, onClose, initialContact }) => {
       onClose={handleClose} 
       TransitionComponent={Transition}
       classes={{ paper: classes.dialog }}
+      hideBackdrop={true}
+      PaperProps={{
+        style: {
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+          border: "1px solid #333333",
+          borderRadius: "12px",
+          boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+        }
+      }}
     >
-      <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
+      <DialogTitle 
+        id="form-dialog-title" 
+        className={classes.dialogTitle}
+        style={{
+          backgroundColor: "#000000",
+          color: "#ffffff",
+          borderBottom: "1px solid #333333",
+        }}
+      >
         {i18n.t("newTicketModal.title")}
       </DialogTitle>
-      <DialogContent dividers className={classes.dialogContent}>
+      <DialogContent 
+        dividers 
+        className={classes.dialogContent}
+        style={{
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+          borderColor: "#333333",
+        }}
+      >
         <Grid container spacing={2}>
           {renderContactAutocomplete()}
           <Grid xs={12} item>
@@ -418,7 +444,14 @@ const NewTicketModal = ({ modalOpen, onClose, initialContact }) => {
           </Grid>
         </Grid>
       </DialogContent>
-      <DialogActions className={classes.dialogActions}>
+      <DialogActions 
+        className={classes.dialogActions}
+        style={{
+          backgroundColor: "#1a1a1a",
+          borderTop: "1px solid #333333",
+          padding: "16px 24px",
+        }}
+      >
         <Button
           onClick={handleClose}
             style={{

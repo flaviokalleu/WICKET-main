@@ -95,8 +95,12 @@ const reducer = (state, action) => {
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
     flex: 1,
-    // padding: theme.spacing(1),
-    padding: theme.padding,
+    padding: theme.spacing(3),
+    backgroundColor: '#1a1a1a',
+    color: '#ffffff',
+    borderRadius: '12px',
+    border: '1px solid #333333',
+    minHeight: '80vh',
     overflowY: "scroll",
     ...theme.scrollbarStyles,
   },
@@ -278,12 +282,23 @@ const Announcements = () => {
                   type="search"
                   value={searchParam}
                   onChange={handleSearch}
+                  style={{
+                    backgroundColor: '#2a2a2a',
+                    borderRadius: '8px',
+                  }}
                   InputProps={{
+                    style: {
+                      color: '#ffffff',
+                      fontSize: '16px',
+                    },
                     startAdornment: (
                       <InputAdornment position="start">
-                        <SearchIcon style={{ color: "#FFA500" }} />
+                        <SearchIcon style={{ color: "#437db5" }} />
                       </InputAdornment>
                     ),
+                  }}
+                  InputLabelProps={{
+                    style: { color: '#a0a0a0' },
                   }}
                 />
               </Grid>
@@ -294,10 +309,17 @@ const Announcements = () => {
                   variant="contained"
                   onClick={handleOpenAnnouncementModal}
                   style={{
-                  color: "white",
-                  backgroundColor: "#FFA500",
-                  boxShadow: "none",
-                  borderRadius: "5px",
+                    color: "#ffffff",
+                    backgroundColor: "#437db5",
+                    boxShadow: "none",
+                    borderRadius: "8px",
+                    padding: '12px 24px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    textTransform: 'none',
+                    '&:hover': {
+                      backgroundColor: '#3a6da3',
+                    },
                   }}
                   >
                   {i18n.t("announcements.buttons.add")}
@@ -318,46 +340,76 @@ const Announcements = () => {
       <Card 
        variant="outlined"
        style={{
-       backgroundColor: "#d7e0e4",
-       boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-       borderRadius: "10px",
+       backgroundColor: "#2a2a2a",
+       boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",
+       borderRadius: "12px",
        padding: "20px",
        margin: "10px",
-       transition: "transform 0.2s ease-in-out",
+       border: "1px solid #444444",
+       transition: "all 0.3s ease-in-out",
        cursor: "pointer",
         }}
-       onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
+       onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
        >
         <CardHeader
           title={announcement.title}
           subheader={translatePriority(announcement.priority)}
-          titleTypographyProps={{ align: "center" }}
-          subheaderTypographyProps={{ align: "center" }}
+          titleTypographyProps={{ 
+            align: "center",
+            style: { color: '#ffffff', fontSize: '18px', fontWeight: '600' }
+          }}
+          subheaderTypographyProps={{ 
+            align: "center",
+            style: { color: '#a0a0a0', fontSize: '14px' }
+          }}
+          style={{ 
+            backgroundColor: '#1a1a1a',
+            borderRadius: '8px 8px 0 0',
+            padding: '16px'
+          }}
         />
-        <CardContent>
-          <Typography variant="body2" align="center">
+        <CardContent style={{ padding: '20px', backgroundColor: '#2a2a2a' }}>
+          <Typography variant="body2" align="center" style={{ color: '#ffffff', marginBottom: '8px' }}>
             {i18n.t("announcements.table.mediaName")}:{" "}
-            {announcement.mediaName ?? i18n.t("quickMessages.noAttachment")}
+            <span style={{ color: '#437db5', fontWeight: '500' }}>
+              {announcement.mediaName ?? i18n.t("quickMessages.noAttachment")}
+            </span>
           </Typography>
-          <Typography variant="body2" align="center">
+          <Typography variant="body2" align="center" style={{ color: '#ffffff' }}>
             {i18n.t("announcements.table.status")}:{" "}
-            {announcement.status
-              ? i18n.t("announcements.active")
-              : i18n.t("announcements.inactive")}
+            <span style={{ 
+              color: announcement.status ? '#4caf50' : '#f44336',
+              fontWeight: '600'
+            }}>
+              {announcement.status
+                ? i18n.t("announcements.active")
+                : i18n.t("announcements.inactive")}
+            </span>
           </Typography>
         </CardContent>
-<CardActions style={{ justifyContent: "center", gap: "10px" }}>
+<CardActions style={{ 
+  justifyContent: "center", 
+  gap: "12px",
+  backgroundColor: '#1a1a1a',
+  borderRadius: '0 0 8px 8px',
+  padding: '16px'
+}}>
   <IconButton
     size="small"
     onClick={() => handleEditAnnouncement(announcement)}
     style={{
-      backgroundColor: "#42bfff", // Azul claro
-      borderRadius: "10px",
-      padding: "10px",
+      backgroundColor: "#437db5",
+      borderRadius: "8px",
+      padding: "12px",
+      transition: 'all 0.3s ease',
+      '&:hover': {
+        backgroundColor: '#3a6da3',
+        transform: 'scale(1.05)'
+      }
     }}
   >
-    <EditIcon style={{ color: "#fff" }} />
+    <EditIcon style={{ color: "#ffffff", fontSize: '20px' }} />
   </IconButton>
 
   <IconButton
@@ -367,12 +419,17 @@ const Announcements = () => {
       setDeletingAnnouncement(announcement);
     }}
     style={{
-      backgroundColor: "#ff6b6b", // Vermelho claro
-      borderRadius: "10px",
-      padding: "10px",
+      backgroundColor: "#d32f2f",
+      borderRadius: "8px",
+      padding: "12px",
+      transition: 'all 0.3s ease',
+      '&:hover': {
+        backgroundColor: '#b71c1c',
+        transform: 'scale(1.05)'
+      }
     }}
   >
-    <DeleteOutlineIcon style={{ color: "#fff" }} />
+    <DeleteOutlineIcon style={{ color: "#ffffff", fontSize: '20px' }} />
   </IconButton>
 </CardActions>
 
@@ -381,7 +438,16 @@ const Announcements = () => {
   ))}
   {loading && (
     <Grid item xs={12}>
-      <Typography align="center">{i18n.t("announcements.loading")}</Typography>
+      <Typography 
+        align="center" 
+        style={{ 
+          color: '#ffffff',
+          padding: '20px',
+          fontSize: '16px'
+        }}
+      >
+        {i18n.t("announcements.loading")}
+      </Typography>
     </Grid>
   )}
 </Grid>

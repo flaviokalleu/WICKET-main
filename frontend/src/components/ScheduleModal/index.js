@@ -54,25 +54,73 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
   },
   dialogTitle: {
-    backgroundColor: "#3f51b5",
-    color: "white",
+    backgroundColor: "#000000",
+    color: "#ffffff",
     padding: "16px 24px",
     fontSize: "1.25rem",
-    fontWeight: 500,
+    fontWeight: 600,
     cursor: 'move',
     display: 'flex',
     alignItems: 'center',
+    borderTopLeftRadius: "8px",
+    borderTopRightRadius: "8px",
     '& svg': {
       marginRight: theme.spacing(1),
+      color: "#ffffff",
     }
   },
   dialogContent: {
-    backgroundColor: "#fafafa",
+    backgroundColor: "#1a1a1a",
     padding: theme.spacing(3),
+    color: "#ffffff",
   },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "10px",
+      background: '#2a2a2a',
+      color: '#ffffff',
+      "&.Mui-focused fieldset": {
+        borderColor: '#437db5',
+      },
+    },
+    "& .MuiInputLabel-outlined": {
+      color: '#cccccc',
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: '#437db5',
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: '#555555',
+    },
+    "& .MuiMenuItem-root": {
+      backgroundColor: "#2a2a2a",
+      color: "#ffffff",
+      "&:hover": {
+        backgroundColor: "#333333",
+      },
+    },
+  },
+  textField: {
+    marginBottom: theme.spacing(2),
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "10px",
+      background: '#2a2a2a',
+      color: '#ffffff',
+      "&.Mui-focused fieldset": {
+        borderColor: '#437db5',
+      },
+    },
+    "& .MuiInputLabel-outlined": {
+      color: '#cccccc',
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: '#437db5',
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: '#555555',
+    },
   },
   gridContainer: {
     marginTop: theme.spacing(2),
@@ -90,14 +138,19 @@ const useStyles = makeStyles((theme) => ({
   },
   attachmentButton: {
     marginRight: theme.spacing(2),
+    backgroundColor: "#437db5",
+    color: "#ffffff",
+    borderRadius: "8px",
+    "&:hover": {
+      backgroundColor: "#3a6ba5",
+    },
   },
   recurrenceSection: {
     marginTop: theme.spacing(3),
     padding: theme.spacing(2),
-    backgroundColor: "white",
+    backgroundColor: "#2a2a2a",
     borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[1],
-    borderLeft: `4px solid ${blue[500]}`,
+    borderLeft: `4px solid #437db5`,
   },
   emojiPickerContainer: {
     position: 'relative',
@@ -110,23 +163,27 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1000,
   },
   dialogActions: {
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#1a1a1a",
     padding: theme.spacing(2),
-    borderTop: `1px solid ${theme.palette.divider}`,
+    borderTop: `1px solid #555555`,
     display: 'flex',
     justifyContent: 'space-between',
+    borderBottomLeftRadius: "8px",
+    borderBottomRightRadius: "8px",
   },
   fieldIcon: {
-    color: theme.palette.text.secondary,
+    color: "#cccccc",
     marginRight: theme.spacing(1),
   },
   sectionTitle: {
     display: 'flex',
     alignItems: 'center',
     marginBottom: theme.spacing(2),
-    color: theme.palette.primary.main,
+    color: "#ffffff",
+    fontWeight: 600,
     '& svg': {
       marginRight: theme.spacing(1),
+      color: "#437db5",
     }
   },
   inputWithIcon: {
@@ -134,15 +191,28 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   customButton: {
-    borderRadius: '4px',
-    fontWeight: 'bold',
+    borderRadius: '8px',
+    fontWeight: 600,
     textTransform: 'none',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    padding: '10px 20px',
     transition: 'all 0.3s ease',
     '&:hover': {
       transform: 'translateY(-2px)',
-      boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
     }
+  },
+  saveButton: {
+    backgroundColor: "#437db5",
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#3a6ba5",
+    },
+  },
+  cancelButton: {
+    backgroundColor: "#db6565",
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#c55555",
+    },
   },
   attachmentPreview: {
     display: 'flex',
@@ -483,18 +553,15 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
         maxWidth="md"
         fullWidth
         scroll="paper"
-        disableBackdropClick
-        disableEscapeKeyDown
+        hideBackdrop={true}
         PaperProps={{
           style: {
             borderRadius: 12,
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
           },
         }}
-        PaperComponent={(props) => (
-          <Draggable handle=".drag-handle" cancel={'[class*="MuiDialogContent-root"]'}>
-            <div {...props} />
-          </Draggable>
-        )}
       >
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div className="drag-handle" style={{ display: 'flex', alignItems: 'center' }}>
@@ -556,6 +623,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                                   variant="outlined" 
                                   placeholder="Selecione um contato" 
                                   label="Contato"
+                                  className={classes.textField}
                                 />
                               )}
                             />
@@ -577,6 +645,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                             helperText={touched.body && errors.body}
                             variant="outlined"
                             margin="dense"
+                            className={classes.textField}
                             fullWidth
                             InputProps={{
                               endAdornment: (
@@ -624,7 +693,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                       <Grid item xs={12} md={6}>
                         <div className={classes.inputWithIcon}>
                           <SmartphoneIcon className={classes.fieldIcon} />
-                          <FormControl variant="outlined" margin="dense" fullWidth>
+                          <FormControl variant="outlined" margin="dense" fullWidth className={classes.formControl}>
                             <InputLabel id="whatsapp-selection-label">
                               Conexão
                             </InputLabel>
@@ -653,7 +722,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                       <Grid item xs={12} md={6}>
                         <div className={classes.inputWithIcon}>
                           <TicketIcon className={classes.fieldIcon} />
-                          <FormControl variant="outlined" margin="dense" fullWidth>
+                          <FormControl variant="outlined" margin="dense" fullWidth className={classes.formControl}>
                             <InputLabel id="openTicket-selection-label">
                               Criar Ticket
                             </InputLabel>
@@ -741,7 +810,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                         <Grid item xs={12} md={6}>
                           <div className={classes.inputWithIcon}>
                             <GroupIcon className={classes.fieldIcon} />
-                            <FormControl variant="outlined" margin="dense" fullWidth>
+                            <FormControl variant="outlined" margin="dense" fullWidth className={classes.formControl}>
                               <InputLabel>Fila</InputLabel>
                               <Select
                                 value={selectedQueue}
@@ -761,7 +830,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                         <Grid item xs={12} md={6}>
                           <div className={classes.inputWithIcon}>
                             <TicketIcon className={classes.fieldIcon} />
-                            <FormControl variant="outlined" margin="dense" fullWidth>
+                            <FormControl variant="outlined" margin="dense" fullWidth className={classes.formControl}>
                               <InputLabel id="statusTicket-selection-label">
                                 Status do Ticket
                               </InputLabel>
@@ -880,7 +949,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                       <Grid item xs={12}>
                         <div className={classes.inputWithIcon}>
                           <CalendarTodayIcon className={classes.fieldIcon} />
-                          <FormControl size="small" fullWidth variant="outlined">
+                          <FormControl size="small" fullWidth variant="outlined" className={classes.formControl}>
                             <InputLabel>Comportamento em Dias Não Úteis</InputLabel>
                             <Select
                               value={tipoDias}
@@ -900,15 +969,15 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                   {/* Anexos */}
                   {(schedule.mediaPath || attachment) && (
                     <Grid item xs={12}>
-                      <div className={classes.attachmentPreview}>
-                        <AttachFile style={{ marginRight: '8px' }} />
-                        <Typography variant="body2" style={{ flexGrow: 1 }}>
+                      <div className={classes.attachmentPreview} style={{ backgroundColor: "#2a2a2a", borderRadius: "8px", padding: "12px" }}>
+                        <AttachFile style={{ marginRight: '8px', color: "#cccccc" }} />
+                        <Typography variant="body2" style={{ flexGrow: 1, color: "#ffffff" }}>
                           {attachment ? attachment.name : schedule.mediaName}
                         </Typography>
                         <IconButton
                           onClick={() => setConfirmationOpen(true)}
                           size="small"
-                          style={{ color: red[500] }}
+                          style={{ color: "#db6565" }}
                         >
                           <DeleteOutline />
                         </IconButton>
@@ -925,6 +994,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                       startIcon={<AttachFileIcon />}
                       onClick={() => attachmentFile.current.click()}
                       disabled={isSubmitting}
+                      className={`${classes.customButton} ${classes.attachmentButton}`}
                       variant="contained"
                       style={{
                         color: "white",
@@ -945,13 +1015,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                     startIcon={<CancelIcon />}
                     disabled={isSubmitting}
                     variant="contained"
-                    style={{
-                      color: "white",
-                      backgroundColor: "#db6565",
-                      boxShadow: "none",
-                      borderRadius: "5px",
-                      fontSize: "12px",
-                    }}
+                    className={`${classes.customButton} ${classes.cancelButton}`}
                   >
                     {i18n.t("scheduleModal.buttons.cancel")}
                   </Button>
@@ -962,13 +1026,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
                       startIcon={<SaveIcon />}
                       disabled={isSubmitting}
                       variant="contained"
-                      style={{
-                        color: "white",
-                        backgroundColor: "#437db5",
-                        boxShadow: "none",
-                        borderRadius: "5px",
-                        fontSize: "12px",
-                      }}
+                      className={`${classes.customButton} ${classes.saveButton}`}
                     >
                       {scheduleId
                         ? `${i18n.t("scheduleModal.buttons.okEdit")}`

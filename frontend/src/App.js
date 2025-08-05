@@ -151,7 +151,7 @@ const App = () => {
             MuiBackdrop: {
               root: {
                 zIndex: 1400,
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
+               
               },
             },
           },

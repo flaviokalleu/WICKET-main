@@ -14,7 +14,19 @@ const FlowBuilderConditionIfElseModal = ({ open, onSave, data, onUpdate, close }
   };
 
   return (
-    <Dialog open={open} onClose={close}>
+    <Dialog 
+			open={open} 
+			onClose={close}
+			hideBackdrop={true}
+			PaperProps={{
+				style: {
+					borderRadius: "12px",
+					boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+					background: "#1a1a1a",
+					color: "#ffffff",
+				}
+			}}
+		>
       <DialogTitle>Condição IF/Else</DialogTitle>
       <DialogContent>
         <TextField

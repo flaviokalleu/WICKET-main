@@ -142,6 +142,15 @@ const FlowBuilderTypebotModal = ({ open, onSave, data, onUpdate, close }) => {
         fullWidth
         maxWidth="md"
         scroll="paper"
+				hideBackdrop={true}
+				PaperProps={{
+					style: {
+						borderRadius: "12px",
+						boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+						background: "#1a1a1a",
+						color: "#ffffff",
+					}
+				}}
       >
         <DialogTitle id="form-dialog-title">
           {open === "create" ? `Adicionar Typebot ao fluxo` : `Editar Typebot`}

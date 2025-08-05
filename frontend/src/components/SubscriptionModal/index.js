@@ -52,8 +52,29 @@ const ContactModal = ({ open, onClose, Invoice, contactId, initialValues, onSave
 
   return (
     <div className={classes.root}>
-      <Dialog open={open} onClose={handleClose} maxWidth="md" scroll="paper">
-        <DialogContent dividers>
+      <Dialog 
+        open={open} 
+        onClose={handleClose} 
+        maxWidth="md" 
+        scroll="paper"
+        hideBackdrop={true}
+        PaperProps={{
+          style: {
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            border: "1px solid #333333",
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          }
+        }}
+      >
+        <DialogContent 
+          dividers
+          style={{ 
+            backgroundColor: "#1a1a1a", 
+            color: "#ffffff" 
+          }}
+        >
           <CheckoutPage
             Invoice={Invoice}
           />

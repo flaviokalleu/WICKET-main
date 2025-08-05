@@ -70,9 +70,10 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
   },
   dialogPaper: {
-    borderRadius: "8px",
-    boxShadow: "0px 8px 30px rgba(0, 0, 0, 0.25)",
-    background: "linear-gradient(145deg, #ffffff, #f8f8f8)",
+    borderRadius: "12px",
+    boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+    background: "#1a1a1a",
+    color: "#ffffff",
     minWidth: "500px",
     maxWidth: "800px",
     overflow: "hidden",
@@ -84,10 +85,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   dialogTitle: {
-    background: "#3f51b5",
-    color: "white",
+    background: "#000000",
+    color: "#ffffff",
     padding: "16px 20px",
-    borderRadius: "8px 8px 0 0",
+    borderRadius: "12px 12px 0 0",
     textAlign: "center",
     fontSize: "1.25rem",
     fontWeight: 600,
@@ -105,16 +106,17 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px",
     position: "relative",
     zIndex: 1,
-    background: "rgba(255,255,255,0.9)",
+    background: "#1a1a1a",
+    color: "#ffffff",
     [theme.breakpoints.down('sm')]: {
       padding: "16px",
     },
   },
   dialogActions: {
     padding: "12px 20px",
-    borderTop: "1px solid rgba(0,0,0,0.05)",
-    background: "linear-gradient(to right, #f5f7fa, #e4e8f0)",
-    borderRadius: "0 0 8px 8px",
+    borderTop: "1px solid #555555",
+    background: "#1a1a1a",
+    borderRadius: "0 0 12px 12px",
     display: "flex",
     justifyContent: "space-between",
     position: "relative",
@@ -152,10 +154,28 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1, 0),
     minWidth: 120,
-    background: "rgba(255,255,255,0.8)",
+    background: "#2a2a2a",
     borderRadius: "8px",
+    color: "#ffffff",
     [theme.breakpoints.down('sm')]: {
       width: '100%',
+    },
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "10px",
+      background: '#2a2a2a',
+      color: '#ffffff',
+      "&.Mui-focused fieldset": {
+        borderColor: '#437db5',
+      },
+    },
+    "& .MuiInputLabel-outlined": {
+      color: '#cccccc',
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: '#437db5',
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: '#555555',
     },
   },
   colorAdorment: {
@@ -165,36 +185,38 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
   },
   cancelButton: {
-    background: "linear-gradient(45deg, #ff5e62 0%, #ff9966 100%)",
-    color: "white",
-    boxShadow: "0 3px 5px rgba(0,0,0,0.1)",
+    background: "#db6565",
+    color: "#ffffff",
+    boxShadow: "0 3px 5px rgba(0,0,0,0.3)",
     borderRadius: "8px",
     padding: "8px 20px",
     fontWeight: 600,
-    textTransform: "uppercase",
+    textTransform: "none",
     letterSpacing: "0.5px",
     transition: "all 0.3s ease",
     "&:hover": {
+      backgroundColor: "#c55555",
       transform: "translateY(-2px)",
-      boxShadow: "0 5px 10px rgba(0,0,0,0.2)",
+      boxShadow: "0 5px 10px rgba(0,0,0,0.4)",
     },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
   },
   saveButton: {
-    background: "linear-gradient(45deg, #2196F3 0%, #21CBF3 100%)",
-    color: "white",
-    boxShadow: "0 3px 5px rgba(0,0,0,0.1)",
+    background: "#437db5",
+    color: "#ffffff",
+    boxShadow: "0 3px 5px rgba(0,0,0,0.3)",
     borderRadius: "8px",
     padding: "8px 20px",
     fontWeight: 600,
-    textTransform: "uppercase",
+    textTransform: "none",
     letterSpacing: "0.5px",
     transition: "all 0.3s ease",
     "&:hover": {
+      backgroundColor: "#3a6ba5",
       transform: "translateY(-2px)",
-      boxShadow: "0 5px 10px rgba(0,0,0,0.2)",
+      boxShadow: "0 5px 10px rgba(0,0,0,0.4)",
     },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
@@ -203,20 +225,24 @@ const useStyles = makeStyles((theme) => ({
   inputField: {
     "& .MuiOutlinedInput-root": {
       borderRadius: "8px",
-      backgroundColor: "rgba(255,255,255,0.9)",
+      backgroundColor: "#2a2a2a",
+      color: "#ffffff",
       "&:hover fieldset": {
-        borderColor: deepPurple[300],
+        borderColor: "#437db5",
       },
       "&.Mui-focused fieldset": {
-        borderColor: deepPurple[500],
-        boxShadow: `0 0 0 2px ${deepPurple[100]}`,
+        borderColor: "#437db5",
+        boxShadow: "0 0 0 2px rgba(67, 125, 181, 0.2)",
       },
     },
     "& .MuiInputLabel-outlined": {
-      color: deepPurple[800],
+      color: "#cccccc",
     },
     "& .MuiInputLabel-outlined.Mui-focused": {
-      color: deepPurple[600],
+      color: "#437db5",
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#555555",
     },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
@@ -225,8 +251,8 @@ const useStyles = makeStyles((theme) => ({
   colorPickerPopover: {
     marginTop: theme.spacing(1),
     borderRadius: "12px",
-    boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
-    border: `1px solid ${deepPurple[100]}`,
+    boxShadow: "0 5px 15px rgba(0,0,0,0.6)",
+    border: "1px solid #555555",
     overflow: 'hidden',
     [theme.breakpoints.down('sm')]: {
       width: '90%',
@@ -235,16 +261,18 @@ const useStyles = makeStyles((theme) => ({
   },
   colorPickerContainer: {
     padding: theme.spacing(2),
-    backgroundColor: "rgba(255,255,255,0.95)",
+    backgroundColor: "#2a2a2a",
+    color: "#ffffff",
   },
   sectionTitle: {
-    color: deepPurple[700],
+    color: "#ffffff",
     fontWeight: 600,
     margin: "16px 0 8px 0",
     display: "flex",
     alignItems: "center",
     "& svg": {
       marginRight: "8px",
+      color: "#437db5",
     },
     [theme.breakpoints.down('sm')]: {
       fontSize: '1rem',
@@ -438,6 +466,7 @@ const TagModal = ({ open, onClose, tagId, kanban }) => {
           scroll="paper"
           disableBackdropClick
           disableEscapeKeyDown
+          hideBackdrop={true}
           classes={{ paper: classes.dialogPaper }}
           PaperComponent={isMobile ? Paper : DraggablePaper}
           TransitionComponent={Transition}

@@ -543,8 +543,18 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
         fullWidth
         scroll="paper"
         TransitionComponent={Transition}
+        hideBackdrop={true}
+        PaperProps={{
+          style: {
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            border: "1px solid #333333",
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          }
+        }}
       >
-        <DialogTitle className={classes.dialogTitle}>
+        <DialogTitle className={classes.dialogTitle} style={{ backgroundColor: "#000000", color: "#ffffff", borderBottom: "1px solid #333333" }}>
           {whatsAppId
             ? i18n.t("whatsappModal.title.edit")
             : i18n.t("whatsappModal.title.add")}
@@ -562,13 +572,13 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
         >
           {({ values, touched, errors, isSubmitting }) => (
             <Form>
-              <Paper className={classes.mainPaper} elevation={1}>
+              <Paper className={classes.mainPaper} elevation={1} style={{ backgroundColor: "#1a1a1a", border: "1px solid #333333" }}>
                 <Tabs
                   value={tab}
                   indicatorColor="primary"
                   style={{
                     color: "white",
-                    backgroundColor: "#444394",
+                    backgroundColor: "#000000",
                     boxShadow: "none",
                     borderRadius: 0,
                   }}
@@ -576,81 +586,121 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                   variant="scrollable"
                   onChange={handleTabChange}
                   className={classes.tab}
+                  TabIndicatorProps={{
+                    style: {
+                      backgroundColor: "#437db5",
+                    }
+                  }}
                 >
                   <Tab
                     label={
-                      <div className={classes.fieldWithIcon}>
-                        <SettingsIcon fontSize="small" />
+                      <div className={classes.fieldWithIcon} style={{ color: "#ffffff", fontSize: "12px", fontWeight: "500" }}>
+                        <SettingsIcon fontSize="small" style={{ color: "#437db5" }} />
                         {i18n.t("whatsappModal.tabs.general")}
                       </div>
                     }
                     value={"general"}
+                    style={{ 
+                      color: "#ffffff",
+                      textTransform: "none",
+                      minWidth: "120px"
+                    }}
                   />
                   <Tab
                     label={
-                      <div className={classes.fieldWithIcon}>
-                        <IntegrationIcon fontSize="small" />
+                      <div className={classes.fieldWithIcon} style={{ color: "#ffffff", fontSize: "12px", fontWeight: "500" }}>
+                        <IntegrationIcon fontSize="small" style={{ color: "#437db5" }} />
                         {i18n.t("whatsappModal.tabs.integrations")}
                       </div>
                     }
                     value={"integrations"}
+                    style={{ 
+                      color: "#ffffff",
+                      textTransform: "none",
+                      minWidth: "120px"
+                    }}
                   />
                   <Tab
                     label={
-                      <div className={classes.fieldWithIcon}>
-                        <MessageIcon fontSize="small" />
+                      <div className={classes.fieldWithIcon} style={{ color: "#ffffff", fontSize: "12px", fontWeight: "500" }}>
+                        <MessageIcon fontSize="small" style={{ color: "#437db5" }} />
                         {i18n.t("whatsappModal.tabs.messages")}
                       </div>
                     }
                     value={"messages"}
+                    style={{ 
+                      color: "#ffffff",
+                      textTransform: "none",
+                      minWidth: "120px"
+                    }}
                   />
                   <Tab
                     label={
-                      <div className={classes.fieldWithIcon}>
-                        <ChatIcon fontSize="small" />
+                      <div className={classes.fieldWithIcon} style={{ color: "#ffffff", fontSize: "12px", fontWeight: "500" }}>
+                        <ChatIcon fontSize="small" style={{ color: "#437db5" }} />
                         Chatbot
                       </div>
                     }
                     value={"chatbot"}
+                    style={{ 
+                      color: "#ffffff",
+                      textTransform: "none",
+                      minWidth: "120px"
+                    }}
                   />
                   <Tab
                     label={
-                      <div className={classes.fieldWithIcon}>
-                        <AssessmentIcon fontSize="small" />
+                      <div className={classes.fieldWithIcon} style={{ color: "#ffffff", fontSize: "12px", fontWeight: "500" }}>
+                        <AssessmentIcon fontSize="small" style={{ color: "#437db5" }} />
                         {i18n.t("whatsappModal.tabs.assessments")}
                       </div>
                     }
                     value={"nps"}
+                    style={{ 
+                      color: "#ffffff",
+                      textTransform: "none",
+                      minWidth: "120px"
+                    }}
                   />
                   <Tab
                     label={
-                      <div className={classes.fieldWithIcon}>
-                        <FlowIcon fontSize="small" />
+                      <div className={classes.fieldWithIcon} style={{ color: "#ffffff", fontSize: "12px", fontWeight: "500" }}>
+                        <FlowIcon fontSize="small" style={{ color: "#437db5" }} />
                         Fluxo Padrão
                       </div>
                     }
                     value={"flowbuilder"}
+                    style={{ 
+                      color: "#ffffff",
+                      textTransform: "none",
+                      minWidth: "120px"
+                    }}
                   />
                   {schedulesEnabled && (
                     <Tab
                       label={
-                        <div className={classes.fieldWithIcon}>
-                          <ScheduleIcon fontSize="small" />
+                        <div className={classes.fieldWithIcon} style={{ color: "#ffffff", fontSize: "12px", fontWeight: "500" }}>
+                          <ScheduleIcon fontSize="small" style={{ color: "#437db5" }} />
                           {i18n.t("whatsappModal.tabs.schedules")}
                         </div>
                       }
                       value={"schedules"}
+                      style={{ 
+                        color: "#ffffff",
+                        textTransform: "none",
+                        minWidth: "120px"
+                      }}
                     />
                   )}
                 </Tabs>
               </Paper>
-              <Paper className={classes.paper} elevation={0}>
+              <Paper className={classes.paper} elevation={0} style={{ backgroundColor: "#1a1a1a", border: "none" }}>
                 <TabPanel
                   className={classes.container}
                   value={tab}
                   name={"general"}
                 >
-                  <DialogContent dividers className={classes.dialogContent}>
+                  <DialogContent dividers className={classes.dialogContent} style={{ backgroundColor: "#1a1a1a", color: "#ffffff", borderColor: "#333333" }}>
                     {attachmentName && (
                       <div
                         style={{ display: 'flex', flexDirection: 'row-reverse' }}
@@ -1051,24 +1101,44 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                   value={tab}
                   name={"integrations"}
                 >
-                  <DialogContent dividers className={classes.dialogContent}>
+                  <DialogContent dividers className={classes.dialogContent} style={{ backgroundColor: "#1a1a1a", color: "#ffffff", borderColor: "#333333" }}>
                     <div className={classes.fieldWithIcon}>
-                      <QueueIcon className={classes.icon} />
+                      <QueueIcon className={classes.icon} style={{ color: "#437db5" }} />
                       <QueueSelect
                         selectedQueueIds={selectedQueueIds}
                         onChange={(selectedIds) => handleChangeQueue(selectedIds)}
+                        style={{ 
+                          color: "#ffffff",
+                          "& .MuiInputLabel-root": { color: "#ffffff" },
+                          "& .MuiOutlinedInput-root": { 
+                            color: "#ffffff",
+                            "& fieldset": { borderColor: "#333333" },
+                            "&:hover fieldset": { borderColor: "#437db5" },
+                            "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                          }
+                        }}
                       />
                     </div>
                     {showIntegrations && (
                       <div className={classes.fieldWithIcon}>
-                        <IntegrationIcon className={classes.icon} />
+                        <IntegrationIcon className={classes.icon} style={{ color: "#437db5" }} />
                         <FormControl
                           variant="outlined"
                           margin="dense"
                           className={classes.FormControl}
                           fullWidth
+                          style={{
+                            "& .MuiInputLabel-root": { color: "#ffffff" },
+                            "& .MuiOutlinedInput-root": { 
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" },
+                              "&:hover fieldset": { borderColor: "#437db5" },
+                              "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                            },
+                            "& .MuiSelect-icon": { color: "#ffffff" }
+                          }}
                         >
-                          <InputLabel id="integrationId-selection-label">
+                          <InputLabel id="integrationId-selection-label" style={{ color: "#ffffff" }}>
                             {i18n.t("queueModal.form.integrationId")}
                           </InputLabel>
                           <Select
@@ -1080,10 +1150,21 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             variant="outlined"
                             margin="dense"
                             placeholder={i18n.t("queueModal.form.integrationId")}
-                            labelId="integrationId-selection-label">
-                            <MenuItem value={null} >{"Desabilitado"}</MenuItem>
+                            labelId="integrationId-selection-label"
+                            style={{ color: "#ffffff" }}
+                            MenuProps={{
+                              PaperProps: {
+                                style: {
+                                  backgroundColor: "#1a1a1a",
+                                  color: "#ffffff",
+                                  border: "1px solid #333333"
+                                }
+                              }
+                            }}
+                          >
+                            <MenuItem value={null} style={{ color: "#ffffff" }}>{"Desabilitado"}</MenuItem>
                             {integrations.map((integration) => (
-                              <MenuItem key={integration.id} value={integration.id}>
+                              <MenuItem key={integration.id} value={integration.id} style={{ color: "#ffffff" }}>
                                 {integration.name}
                               </MenuItem>
                             ))}
@@ -1093,13 +1174,23 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                     )}
                     {showOpenAi && (
                       <div className={classes.fieldWithIcon}>
-                        <AutoAwesomeIcon className={classes.icon} />
+                        <AutoAwesomeIcon className={classes.icon} style={{ color: "#437db5" }} />
                         <FormControl
                           margin="dense"
                           variant="outlined"
                           fullWidth
+                          style={{
+                            "& .MuiInputLabel-root": { color: "#ffffff" },
+                            "& .MuiOutlinedInput-root": { 
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" },
+                              "&:hover fieldset": { borderColor: "#437db5" },
+                              "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                            },
+                            "& .MuiSelect-icon": { color: "#ffffff" }
+                          }}
                         >
-                          <InputLabel>
+                          <InputLabel style={{ color: "#ffffff" }}>
                             {i18n.t("whatsappModal.form.prompt")}
                           </InputLabel>
                           <Select
@@ -1110,6 +1201,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             onChange={handleChangePrompt}
                             label={i18n.t("whatsappModal.form.prompt")}
                             fullWidth
+                            style={{ color: "#ffffff" }}
                             MenuProps={{
                               anchorOrigin: {
                                 vertical: "bottom",
@@ -1120,12 +1212,20 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                                 horizontal: "left",
                               },
                               getContentAnchorEl: null,
+                              PaperProps: {
+                                style: {
+                                  backgroundColor: "#1a1a1a",
+                                  color: "#ffffff",
+                                  border: "1px solid #333333"
+                                }
+                              }
                             }}
                           >
                             {prompts.map((prompt) => (
                               <MenuItem
                                 key={prompt.id}
                                 value={prompt.id}
+                                style={{ color: "#ffffff" }}
                               >
                                 {prompt.name}
                               </MenuItem>
@@ -1141,11 +1241,11 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                   value={tab}
                   name={"messages"}
                 >
-                  <DialogContent dividers className={classes.dialogContent}>
+                  <DialogContent dividers className={classes.dialogContent} style={{ backgroundColor: "#1a1a1a", color: "#ffffff", borderColor: "#333333" }}>
                     <Grid container spacing={1}>
                       <Grid item xs={12} md={12} xl={12}>
                         <div className={classes.fieldWithIcon}>
-                          <MessageIcon className={classes.icon} />
+                          <MessageIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             as={TextField}
                             label={i18n.t("whatsappModal.form.greetingMessage")}
@@ -1162,13 +1262,28 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             }
                             variant="outlined"
                             margin="dense"
+                            InputLabelProps={{ style: { color: "#ffffff" } }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
+                            }}
                           />
                         </div>
                       </Grid>
 
                       <Grid item xs={12} md={12} xl={12}>
                         <div className={classes.fieldWithIcon}>
-                          <MessageIcon className={classes.icon} />
+                          <MessageIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             as={TextField}
                             label={i18n.t("whatsappModal.form.complationMessage")}
@@ -1185,13 +1300,28 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             }
                             variant="outlined"
                             margin="dense"
+                            InputLabelProps={{ style: { color: "#ffffff" } }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
+                            }}
                           />
                         </div>
                       </Grid>
 
                       <Grid item xs={12} md={12} xl={12}>
                         <div className={classes.fieldWithIcon}>
-                          <MessageIcon className={classes.icon} />
+                          <MessageIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             as={TextField}
                             label={i18n.t("whatsappModal.form.outOfHoursMessage")}
@@ -1203,12 +1333,27 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             helperText={touched.outOfHoursMessage && errors.outOfHoursMessage}
                             variant="outlined"
                             margin="dense"
+                            InputLabelProps={{ style: { color: "#ffffff" } }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
+                            }}
                           />
                         </div>
                       </Grid>
                       <Grid item xs={12} md={12} xl={12}>
                         <div className={classes.fieldWithIcon}>
-                          <MessageIcon className={classes.icon} />
+                          <MessageIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             as={TextField}
                             label={i18n.t("whatsappModal.form.collectiveVacationMessage")}
@@ -1220,12 +1365,27 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             helperText={touched.collectiveVacationMessage && errors.collectiveVacationMessage}
                             variant="outlined"
                             margin="dense"
+                            InputLabelProps={{ style: { color: "#ffffff" } }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
+                            }}
                           />
                         </div>
                       </Grid>
                       <Grid item xs={6}>
                         <div className={classes.fieldWithIcon}>
-                          <ScheduleIcon className={classes.icon} />
+                          <ScheduleIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             fullWidth
                             as={TextField}
@@ -1240,6 +1400,21 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             }}
                             InputLabelProps={{
                               shrink: true,
+                              style: { color: "#ffffff" }
+                            }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
                             }}
                             error={
                               touched.collectiveVacationStart &&
@@ -1254,7 +1429,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                       </Grid>
                       <Grid item xs={6}>
                         <div className={classes.fieldWithIcon}>
-                          <ScheduleIcon className={classes.icon} />
+                          <ScheduleIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             fullWidth
                             as={TextField}
@@ -1269,6 +1444,21 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             }}
                             InputLabelProps={{
                               shrink: true,
+                              style: { color: "#ffffff" }
+                            }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
                             }}
                             error={
                               touched.collectiveVacationEnd &&
@@ -1290,11 +1480,11 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                   value={tab}
                   name={"chatbot"}
                 >
-                  <DialogContent dividers className={classes.dialogContent}>
+                  <DialogContent dividers className={classes.dialogContent} style={{ backgroundColor: "#1a1a1a", color: "#ffffff", borderColor: "#333333" }}>
                     <Grid spacing={2} container>
                       <Grid xs={6} md={4} item>
                         <div className={classes.fieldWithIcon}>
-                          <TimerIcon className={classes.icon} />
+                          <TimerIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             as={TextField}
                             label={i18n.t("whatsappModal.form.timeCreateNewTicket")}
@@ -1304,13 +1494,28 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             margin="dense"
                             error={touched.timeCreateNewTicket && Boolean(errors.timeCreateNewTicket)}
                             helperText={touched.timeCreateNewTicket && errors.timeCreateNewTicket}
+                            InputLabelProps={{ style: { color: "#ffffff" } }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
+                            }}
                           />
                         </div>
                       </Grid>
 
                       <Grid xs={6} md={4} item>
                         <div className={classes.fieldWithIcon}>
-                          <ChatIcon className={classes.icon} />
+                          <ChatIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             as={TextField}
                             label={i18n.t("whatsappModal.form.maxUseBotQueues")}
@@ -1320,12 +1525,27 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             margin="dense"
                             error={touched.maxUseBotQueues && Boolean(errors.maxUseBotQueues)}
                             helperText={touched.maxUseBotQueues && errors.maxUseBotQueues}
+                            InputLabelProps={{ style: { color: "#ffffff" } }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
+                            }}
                           />
                         </div>
                       </Grid>
                       <Grid xs={6} md={4} item>
                         <div className={classes.fieldWithIcon}>
-                          <TimerIcon className={classes.icon} />
+                          <TimerIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             as={TextField}
                             label={i18n.t("whatsappModal.form.timeUseBotQueues")}
@@ -1335,6 +1555,21 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             margin="dense"
                             error={touched.timeUseBotQueues && Boolean(errors.timeUseBotQueues)}
                             helperText={touched.timeUseBotQueues && errors.timeUseBotQueues}
+                            InputLabelProps={{ style: { color: "#ffffff" } }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
+                            }}
                           />
                         </div>
                       </Grid>
@@ -1342,7 +1577,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                     <Grid spacing={2} container>
                       <Grid xs={6} md={6} item>
                         <div className={classes.fieldWithIcon}>
-                          <TimerIcon className={classes.icon} />
+                          <TimerIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <Field
                             as={TextField}
                             label={i18n.t("whatsappModal.form.expiresTicket")}
@@ -1353,19 +1588,44 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             margin="dense"
                             error={touched.expiresTicket && Boolean(errors.expiresTicket)}
                             helperText={touched.expiresTicket && errors.expiresTicket}
+                            InputLabelProps={{ style: { color: "#ffffff" } }}
+                            InputProps={{
+                              style: { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" }
+                              }
+                            }}
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              }
+                            }}
                           />
                         </div>
                       </Grid>
                       <Grid xs={6} md={6} item>
                         <div className={classes.fieldWithIcon}>
-                          <SettingsIcon className={classes.icon} />
+                          <SettingsIcon className={classes.icon} style={{ color: "#437db5" }} />
                           <FormControl
                             variant="outlined"
                             margin="dense"
                             fullWidth
                             className={classes.formControl}
+                            style={{
+                              "& .MuiInputLabel-root": { color: "#ffffff" },
+                              "& .MuiOutlinedInput-root": { 
+                                color: "#ffffff",
+                                "& fieldset": { borderColor: "#333333" },
+                                "&:hover fieldset": { borderColor: "#437db5" },
+                                "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                              },
+                              "& .MuiSelect-icon": { color: "#ffffff" }
+                            }}
                           >
-                            <InputLabel id="whenExpiresTicket-selection-label">
+                            <InputLabel id="whenExpiresTicket-selection-label" style={{ color: "#ffffff" }}>
                               {i18n.t("whatsappModal.form.whenExpiresTicket")}
                             </InputLabel>
                             <Field
@@ -1377,9 +1637,19 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                               labelId="whenExpiresTicket-selection-label"
                               id="whenExpiresTicket"
                               name="whenExpiresTicket"
+                              style={{ color: "#ffffff" }}
+                              MenuProps={{
+                                PaperProps: {
+                                  style: {
+                                    backgroundColor: "#1a1a1a",
+                                    color: "#ffffff",
+                                    border: "1px solid #333333"
+                                  }
+                                }
+                              }}
                             >
-                              <MenuItem value={"0"}>{i18n.t("whatsappModal.form.closeLastMessageOptions1")}</MenuItem>
-                              <MenuItem value={"1"}>{i18n.t("whatsappModal.form.closeLastMessageOptions2")}</MenuItem>
+                              <MenuItem value={"0"} style={{ color: "#ffffff" }}>{i18n.t("whatsappModal.form.closeLastMessageOptions1")}</MenuItem>
+                              <MenuItem value={"1"} style={{ color: "#ffffff" }}>{i18n.t("whatsappModal.form.closeLastMessageOptions2")}</MenuItem>
                             </Field>
                           </FormControl>
                         </div>
@@ -1387,7 +1657,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                     </Grid>
                     <div>
                       <div className={classes.fieldWithIcon}>
-                        <MessageIcon className={classes.icon} />
+                        <MessageIcon className={classes.icon} style={{ color: "#437db5" }} />
                         <Field
                           as={TextField}
                           label={i18n.t("whatsappModal.form.expiresInactiveMessage")}
@@ -1399,12 +1669,27 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                           helperText={touched.expiresInactiveMessage && errors.expiresInactiveMessage}
                           variant="outlined"
                           margin="dense"
+                          InputLabelProps={{ style: { color: "#ffffff" } }}
+                          InputProps={{
+                            style: { 
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" }
+                            }
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" },
+                              "&:hover fieldset": { borderColor: "#437db5" },
+                              "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                            }
+                          }}
                         />
                       </div>
                     </div>
 
                     <div className={classes.fieldWithIcon}>
-                      <TimerIcon className={classes.icon} />
+                      <TimerIcon className={classes.icon} style={{ color: "#437db5" }} />
                       <Field
                         as={TextField}
                         label={i18n.t("whatsappModal.form.timeInactiveMessage")}
@@ -1414,11 +1699,26 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                         margin="dense"
                         error={touched.timeInactiveMessage && Boolean(errors.timeInactiveMessage)}
                         helperText={touched.timeInactiveMessage && errors.timeInactiveMessage}
+                        InputLabelProps={{ style: { color: "#ffffff" } }}
+                        InputProps={{
+                          style: { 
+                            color: "#ffffff",
+                            "& fieldset": { borderColor: "#333333" }
+                          }
+                        }}
+                        sx={{
+                          "& .MuiOutlinedInput-root": {
+                            color: "#ffffff",
+                            "& fieldset": { borderColor: "#333333" },
+                            "&:hover fieldset": { borderColor: "#437db5" },
+                            "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                          }
+                        }}
                       />
                     </div>
                     <div>
                       <div className={classes.fieldWithIcon}>
-                        <MessageIcon className={classes.icon} />
+                        <MessageIcon className={classes.icon} style={{ color: "#437db5" }} />
                         <Field
                           as={TextField}
                           label={i18n.t("whatsappModal.form.inactiveMessage")}
@@ -1430,6 +1730,21 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                           helperText={touched.inactiveMessage && errors.inactiveMessage}
                           variant="outlined"
                           margin="dense"
+                          InputLabelProps={{ style: { color: "#ffffff" } }}
+                          InputProps={{
+                            style: { 
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" }
+                            }
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" },
+                              "&:hover fieldset": { borderColor: "#437db5" },
+                              "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                            }
+                          }}
                         />
                       </div>
                     </div>
@@ -1440,10 +1755,10 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                   value={tab}
                   name={"nps"}
                 >
-                  <DialogContent dividers className={classes.dialogContent}>
+                  <DialogContent dividers className={classes.dialogContent} style={{ backgroundColor: "#1a1a1a", color: "#ffffff", borderColor: "#333333" }}>
                     <div>
                       <div className={classes.fieldWithIcon}>
-                        <MessageIcon className={classes.icon} />
+                        <MessageIcon className={classes.icon} style={{ color: "#437db5" }} />
                         <Field
                           as={TextField}
                           label={i18n.t("whatsappModal.form.ratingMessage")}
@@ -1455,12 +1770,27 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                           helperText={touched.ratingMessage && errors.ratingMessage}
                           variant="outlined"
                           margin="dense"
+                          InputLabelProps={{ style: { color: "#ffffff" } }}
+                          InputProps={{
+                            style: { 
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" }
+                            }
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" },
+                              "&:hover fieldset": { borderColor: "#437db5" },
+                              "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                            }
+                          }}
                         />
                       </div>
                     </div>
                     <div>
                       <div className={classes.fieldWithIcon}>
-                        <AssessmentIcon className={classes.icon} />
+                        <AssessmentIcon className={classes.icon} style={{ color: "#437db5" }} />
                         <Field
                           as={TextField}
                           label={i18n.t("whatsappModal.form.maxUseBotQueuesNPS")}
@@ -1470,12 +1800,27 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                           margin="dense"
                           error={touched.maxUseBotQueuesNPS && Boolean(errors.maxUseBotQueuesNPS)}
                           helperText={touched.maxUseBotQueuesNPS && errors.maxUseBotQueuesNPS}
+                          InputLabelProps={{ style: { color: "#ffffff" } }}
+                          InputProps={{
+                            style: { 
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" }
+                            }
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" },
+                              "&:hover fieldset": { borderColor: "#437db5" },
+                              "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                            }
+                          }}
                         />
                       </div>
                     </div>
                     <div>
                       <div className={classes.fieldWithIcon}>
-                        <TimerIcon className={classes.icon} />
+                        <TimerIcon className={classes.icon} style={{ color: "#437db5" }} />
                         <Field
                           as={TextField}
                           label={i18n.t("whatsappModal.form.expiresTicketNPS")}
@@ -1485,6 +1830,21 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                           margin="dense"
                           error={touched.expiresTicketNPS && Boolean(errors.expiresTicketNPS)}
                           helperText={touched.expiresTicketNPS && errors.expiresTicketNPS}
+                          InputLabelProps={{ style: { color: "#ffffff" } }}
+                          InputProps={{
+                            style: { 
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" }
+                            }
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" },
+                              "&:hover fieldset": { borderColor: "#437db5" },
+                              "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                            }
+                          }}
                         />
                       </div>
                     </div>
@@ -1497,20 +1857,30 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                       value={tab}
                       name={"flowbuilder"}
                     >
-                      <DialogContent className={classes.dialogContent}>
-                        <h3>
+                      <DialogContent className={classes.dialogContent} style={{ backgroundColor: "#1a1a1a", color: "#ffffff", borderColor: "#333333" }}>
+                        <h3 style={{ color: "#ffffff", marginBottom: "16px" }}>
                           <div className={classes.fieldWithIcon}>
-                            <FlowIcon className={classes.icon} />
+                            <FlowIcon className={classes.icon} style={{ color: "#437db5" }} />
                             Fluxo de boas vindas
                           </div>
                         </h3>
-                        <p>Este fluxo é disparado apenas para novos contatos, pessoas que voce não possui em sua lista de contatos e que mandaram uma mensagem
+                        <p style={{ color: "#cccccc", marginBottom: "16px" }}>Este fluxo é disparado apenas para novos contatos, pessoas que voce não possui em sua lista de contatos e que mandaram uma mensagem
                         </p>
                         <FormControl
                           variant="outlined"
                           margin="dense"
                           className={classes.FormControl}
                           fullWidth
+                          style={{
+                            "& .MuiInputLabel-root": { color: "#ffffff" },
+                            "& .MuiOutlinedInput-root": { 
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" },
+                              "&:hover fieldset": { borderColor: "#437db5" },
+                              "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                            },
+                            "& .MuiSelect-icon": { color: "#ffffff" }
+                          }}
                         >
                           <Select
                             name="flowIdWelcome"
@@ -1519,30 +1889,51 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             id="flowIdWelcome"
                             variant="outlined"
                             margin="dense"
-                            labelId="flowIdWelcome-selection-label">
-                            <MenuItem value={null} >{"Desabilitado"}</MenuItem>
+                            labelId="flowIdWelcome-selection-label"
+                            style={{ color: "#ffffff" }}
+                            MenuProps={{
+                              PaperProps: {
+                                style: {
+                                  backgroundColor: "#1a1a1a",
+                                  color: "#ffffff",
+                                  border: "1px solid #333333"
+                                }
+                              }
+                            }}
+                          >
+                            <MenuItem value={null} style={{ color: "#ffffff" }}>{"Desabilitado"}</MenuItem>
                             {webhooks.map(webhook => (
-                              <MenuItem key={webhook.id} value={webhook.id}>
+                              <MenuItem key={webhook.id} value={webhook.id} style={{ color: "#ffffff" }}>
                                 {webhook.name}
                               </MenuItem>
                             ))}
                           </Select>
                         </FormControl>
                       </DialogContent>
-                      <DialogContent className={classes.dialogContent}>
-                        <h3>
+                      <DialogContent className={classes.dialogContent} style={{ backgroundColor: "#1a1a1a", color: "#ffffff", borderColor: "#333333" }}>
+                        <h3 style={{ color: "#ffffff", marginBottom: "16px" }}>
                           <div className={classes.fieldWithIcon}>
-                            <FlowIcon className={classes.icon} />
+                            <FlowIcon className={classes.icon} style={{ color: "#437db5" }} />
                             Fluxo de resposta padrão
                           </div>
                         </h3>
-                        <p>Resposta Padrão é enviada com qualquer caractere diferente de uma palavra chave. ATENÇÃO! Será disparada se o atendimento ja estiver fechado.
+                        <p style={{ color: "#cccccc", marginBottom: "16px" }}>Resposta Padrão é enviada com qualquer caractere diferente de uma palavra chave. ATENÇÃO! Será disparada se o atendimento ja estiver fechado.
                         </p>
                         <FormControl
                           variant="outlined"
                           margin="dense"
                           className={classes.FormControl}
                           fullWidth
+                          style={{
+                            "& .MuiInputLabel-root": { color: "#ffffff" },
+                            "& .MuiOutlinedInput-root": { 
+                              color: "#ffffff",
+                              "& fieldset": { borderColor: "#333333" },
+                              "&:hover fieldset": { borderColor: "#437db5" },
+                              "&.Mui-focused fieldset": { borderColor: "#437db5" }
+                            },
+                            "& .MuiSelect-icon": { color: "#ffffff" }
+                          }}
                         >
                           <Select
                             name="flowNotIdPhrase"
@@ -1551,10 +1942,21 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                             id="flowNotIdPhrase"
                             variant="outlined"
                             margin="dense"
-                            labelId="flowNotIdPhrase-selection-label">
-                            <MenuItem value={null} >{"Desabilitado"}</MenuItem>
+                            labelId="flowNotIdPhrase-selection-label"
+                            style={{ color: "#ffffff" }}
+                            MenuProps={{
+                              PaperProps: {
+                                style: {
+                                  backgroundColor: "#1a1a1a",
+                                  color: "#ffffff",
+                                  border: "1px solid #333333"
+                                }
+                              }
+                            }}
+                          >
+                            <MenuItem value={null} style={{ color: "#ffffff" }}>{"Desabilitado"}</MenuItem>
                             {webhooks.map(webhook => (
-                              <MenuItem key={webhook.id} value={webhook.id}>
+                              <MenuItem key={webhook.id} value={webhook.id} style={{ color: "#ffffff" }}>
                                 {webhook.name}
                               </MenuItem>
                             ))}
@@ -1570,7 +1972,12 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                   name={"schedules"}
                 >
                   {tab === "schedules" && (
-                    <Paper style={{ padding: 20 }}>
+                    <Paper style={{ 
+                      padding: 20, 
+                      backgroundColor: "#1a1a1a", 
+                      color: "#ffffff",
+                      border: "1px solid #333333"
+                    }}>
                       <SchedulesForm
                         loading={false}
                         onSubmit={handleSaveSchedules}
@@ -1581,7 +1988,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                   )}
                 </TabPanel>
               </Paper>
-              <DialogActions className={classes.dialogActions}>
+              <DialogActions className={classes.dialogActions} style={{ backgroundColor: "#1a1a1a", borderTop: "1px solid #333333", padding: "16px 24px" }}>
                 <Button
                   onClick={handleClose}
                   style={{

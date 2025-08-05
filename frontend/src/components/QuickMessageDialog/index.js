@@ -84,14 +84,13 @@ const useStyles = makeStyles((theme) => ({
     height: 20,
   },
   dialogTitle: {
-    backgroundColor: "#3f51b5",
+    backgroundColor: "#000000",
     color: "#fff",
     padding: theme.spacing(2),
     textAlign: "left",
     cursor: 'move',
     borderTopLeftRadius: "8px",
     borderTopRightRadius: "8px",
-    boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
     display: 'flex',
     alignItems: 'center',
     [theme.breakpoints.down('xs')]: {
@@ -100,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogContent: {
     padding: theme.spacing(3),
-    background: '#fff',
+    background: '#1a1a1a',
     overflowY: 'auto',
     maxHeight: 'calc(100vh - 200px)',
     [theme.breakpoints.down('sm')]: {
@@ -115,13 +114,12 @@ const useStyles = makeStyles((theme) => ({
   dialogActions: {
     padding: theme.spacing(2),
     justifyContent: "space-between",
-    background: '#fff',
+    background: '#1a1a1a',
     borderBottomLeftRadius: "8px",
     borderBottomRightRadius: "8px",
-    borderTop: `1px solid ${grey[200]}`,
+    borderTop: `1px solid ${grey[700]}`,
     position: 'sticky',
     bottom: 0,
-    zIndex: 2,
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column-reverse',
       gap: theme.spacing(1),
@@ -134,15 +132,22 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
     "& .MuiOutlinedInput-root": {
       borderRadius: "10px",
-      background: '#fff',
+      background: '#2a2a2a',
+      color: '#ffffff',
       boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
       "&.Mui-focused fieldset": {
         borderColor: blue[400],
         boxShadow: '0 0 0 2px rgba(102, 126, 234, 0.2)',
       },
     },
+    "& .MuiInputLabel-outlined": {
+      color: '#cccccc',
+    },
     "& .MuiInputLabel-outlined.Mui-focused": {
       color: blue[400],
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: '#555555',
     },
     [theme.breakpoints.down('xs')]: {
       marginBottom: theme.spacing(2),
@@ -221,7 +226,6 @@ const useStyles = makeStyles((theme) => ({
   },
   emojiPicker: {
     position: "absolute",
-    zIndex: 1000,
     top: "100%",
     right: 0,
     marginTop: theme.spacing(1),
@@ -238,7 +242,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     transition: 'background-color 0.3s',
     "&:hover": {
-      backgroundColor: grey[200],
+      backgroundColor: '#444444',
     },
     "&:focus": {
       outline: 'none',
@@ -250,6 +254,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     borderRadius: "12px !important",
     overflow: "hidden",
+    backgroundColor: "#1a1a1a",
     minWidth: '700px',
     maxWidth: '800px',
     maxHeight: '90vh',
@@ -283,12 +288,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     marginBottom: theme.spacing(2),
-    color: grey[800],
+    color: '#ffffff',
     fontWeight: 600,
     fontSize: '1rem',
     "& svg": {
       marginRight: theme.spacing(1.5),
-      color: blue[500],
+      color: blue[400],
     },
     [theme.breakpoints.down('sm')]: {
       fontSize: '0.9rem',
@@ -302,19 +307,19 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(2),
-    background: '#fff',
+    background: '#2a2a2a',
     borderRadius: '10px',
     boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
     marginBottom: theme.spacing(3),
-    border: `1px solid ${grey[200]}`,
+    border: `1px solid #555555`,
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(1.5),
       marginBottom: theme.spacing(2),
     },
   },
   attachmentIcon: {
-    background: blue[50],
-    color: blue[500],
+    background: '#333333',
+    color: '#ffffff',
     marginRight: theme.spacing(2),
     width: 40,
     height: 40,
@@ -325,8 +330,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   variableButton: {
-    background: grey[100],
-    color: grey[800],
+    background: '#333333',
+    color: '#ffffff',
     borderRadius: '8px',
     padding: '6px 12px',
     fontSize: '13px',
@@ -337,7 +342,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     transition: 'all 0.2s',
     "&:hover": {
-      background: grey[200],
+      background: '#444444',
     },
     "& svg": {
       marginRight: '6px',
@@ -356,14 +361,14 @@ const useStyles = makeStyles((theme) => ({
   },
   divider: {
     margin: theme.spacing(3, 0),
-    background: grey[200],
+    background: '#555555',
     height: 2,
     [theme.breakpoints.down('xs')]: {
       margin: theme.spacing(2, 0),
     },
   },
   inputIcon: {
-    color: grey[500],
+    color: '#cccccc',
     [theme.breakpoints.down('xs')]: {
       fontSize: '1rem',
     },
@@ -396,7 +401,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     right: theme.spacing(1),
     bottom: theme.spacing(-3),
-    color: grey[500],
+    color: '#cccccc',
     fontSize: '0.75rem',
     background: 'transparent',
     padding: theme.spacing(0.25, 1),
@@ -431,9 +436,8 @@ const useStyles = makeStyles((theme) => ({
   stickyFooter: {
     position: 'sticky',
     bottom: 0,
-    background: '#fff',
-    zIndex: 1,
-    borderTop: `1px solid ${grey[200]}`,
+    background: '#1a1a1a',
+    borderTop: `1px solid #555555`,
   },
 }));
 
@@ -631,11 +635,9 @@ const QuickMessageDialog = ({ open, onClose, quickemessageId, reload }) => {
         PaperComponent={PaperComponent}
         TransitionComponent={Transition}
         aria-labelledby="draggable-dialog-title"
-        disableBackdropClick
         disableEscapeKeyDown
-        PaperProps={{
-          className: classes.paper,
-        }}
+        hideBackdrop
+        
       >
         <DialogTitle className={classes.dialogTitle} id="draggable-dialog-title">
           <div className={classes.titleContainer}>
@@ -773,7 +775,7 @@ const QuickMessageDialog = ({ open, onClose, quickemessageId, reload }) => {
                   {/* Variables Section */}
                   <Grid item xs={12}>
                     <Box display="flex" flexWrap="wrap" mt={1} mb={2}>
-                      <Typography variant="caption" style={{ marginRight: 8, display: 'flex', alignItems: 'center' }}>
+                      <Typography variant="caption" style={{ marginRight: 8, display: 'flex', alignItems: 'center', color: '#cccccc' }}>
                         <CodeIcon style={{ fontSize: 16, marginRight: 4 }} /> Variáveis disponíveis:
                       </Typography>
                       <MessageVariablesPicker
@@ -871,7 +873,7 @@ const QuickMessageDialog = ({ open, onClose, quickemessageId, reload }) => {
                         <Avatar className={classes.attachmentIcon}>
                           <AttachFileIcon />
                         </Avatar>
-                        <Typography variant="body2" style={{ flex: 1 }}>
+                        <Typography variant="body2" style={{ flex: 1, color: '#ffffff' }}>
                           {attachment ? attachment.name : quickemessage.mediaName}
                         </Typography>
                         <IconButton

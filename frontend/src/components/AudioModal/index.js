@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
-import { IconButton, Menu, MenuItem } from "@material-ui/core";
-import { PlayArrow, Pause, MoreVert, GetApp, Speed } from "@material-ui/icons";
+import { IconButton, Menu, MenuItem, Dialog, DialogContent, DialogTitle, Typography } from "@material-ui/core";
+import { PlayArrow, Pause, MoreVert, GetApp, Speed, Close } from "@material-ui/icons";
 import styled, { keyframes } from "styled-components";
 
 const LS_NAME = 'audioMessageRate';
@@ -172,7 +172,7 @@ const formatTime = (time) => {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
-const AudioModal = ({ url }) => {
+const AudioModal = ({ url, open, onClose }) => {
     const audioRef = useRef(null);
     const [audioRate, setAudioRate] = useState(parseFloat(localStorage.getItem(LS_NAME) || "1"));
     const [isPlaying, setIsPlaying] = useState(false);
@@ -182,6 +182,15 @@ const AudioModal = ({ url }) => {
     const [isMuted, setIsMuted] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    // Reset audio when modal closes
+    useEffect(() => {
+        if (!open && audioRef.current) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+            setCurrentTime(0);
+        }
+    }, [open]);
 
     // Atualiza a taxa de reprodução no localStorage
     useEffect(() => {
@@ -290,50 +299,86 @@ const AudioModal = ({ url }) => {
     };
 
     return (
-        <PlayerContainer>
-            <PlayPauseButton isPlaying={isPlaying} onClick={togglePlayPause}>
-                {isPlaying ? <Pause /> : <PlayArrow />}
-            </PlayPauseButton>
-            
-            <Controls>
-                <SoundWaves isPlaying={isPlaying} />
-            </Controls>
-            
-            <TimeDisplay>
-                {formatTime(duration)}
-            </TimeDisplay>
-            
-            <MenuButton onClick={handleMenuClick}>
-                <MoreVert />
-            </MenuButton>
+        <Dialog
+            open={open}
+            onClose={onClose}
+            maxWidth="sm"
+            fullWidth
+            PaperProps={{
+                style: {
+                    backgroundColor: '#1a1a1a',
+                    border: '1px solid #333333',
+                    borderRadius: '16px',
+                }
+            }}
+        >
+            <DialogTitle style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center',
+                backgroundColor: '#1a1a1a',
+                color: '#ffffff',
+                borderBottom: '1px solid #333333'
+            }}>
+                <Typography variant="h6" style={{ color: '#ffffff' }}>
+                    Reprodutor de Áudio
+                </Typography>
+                <IconButton onClick={onClose} style={{ color: '#a0a0a0' }}>
+                    <Close />
+                </IconButton>
+            </DialogTitle>
+            <DialogContent style={{ 
+                backgroundColor: '#1a1a1a', 
+                padding: '24px',
+                display: 'flex',
+                justifyContent: 'center'
+            }}>
+                <PlayerContainer>
+                    <PlayPauseButton isPlaying={isPlaying} onClick={togglePlayPause}>
+                        {isPlaying ? <Pause /> : <PlayArrow />}
+                    </PlayPauseButton>
+                    
+                    <Controls>
+                        <SoundWaves isPlaying={isPlaying} />
+                    </Controls>
+                    
+                    <TimeDisplay>
+                        {formatTime(duration)}
+                    </TimeDisplay>
+                    
+                    <MenuButton onClick={handleMenuClick}>
+                        <MoreVert />
+                    </MenuButton>
 
-            <StyledMenu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-            >
-                <MenuItem onClick={downloadAudio}>
-                    <GetApp />
-                    Baixar áudio
-                </MenuItem>
-                <MenuItem onClick={toggleRate}>
-                    <Speed />
-                    Velocidade {audioRate}x
-                </MenuItem>
-            </StyledMenu>
-            
-            <audio ref={audioRef}>
-                {getAudioSource()}
-            </audio>
-        </PlayerContainer>
+                    <StyledMenu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleMenuClose}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'right',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                    >
+                        <MenuItem onClick={downloadAudio}>
+                            <GetApp />
+                            Baixar áudio
+                        </MenuItem>
+                        <MenuItem onClick={toggleRate}>
+                            <Speed />
+                            Velocidade {audioRate}x
+                        </MenuItem>
+                    </StyledMenu>
+                    
+                    <audio ref={audioRef}>
+                        {getAudioSource()}
+                    </audio>
+                </PlayerContainer>
+            </DialogContent>
+        </Dialog>
     );
 };
 

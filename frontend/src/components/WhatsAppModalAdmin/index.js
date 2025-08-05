@@ -385,8 +385,18 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
         maxWidth="xl"
         fullWidth
         scroll="paper"
+        hideBackdrop={true}
+        PaperProps={{
+          style: {
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            border: "1px solid #333333",
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          }
+        }}
       >
-        <DialogTitle>
+        <DialogTitle style={{ backgroundColor: "#000000", color: "#ffffff", borderBottom: "1px solid #333333" }}>
           {whatsAppId
             ? i18n.t("whatsappModal.title.edit")
             : i18n.t("whatsappModal.title.add")}
@@ -404,13 +414,13 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
         >
           {({ values, touched, errors, isSubmitting }) => (
             <Form>
-              <Paper className={classes.mainPaper} elevation={1}>
+              <Paper className={classes.mainPaper} elevation={1} style={{ backgroundColor: "#1a1a1a", border: "1px solid #333333" }}>
                 <Tabs
                   value={tab}
                   indicatorColor="primary"
                   style={{
                   color: "white",
-                  backgroundColor: "#444394",
+                  backgroundColor: "#000000",
                   boxShadow: "none",
                   borderRadius: 0
                   }}
@@ -427,13 +437,13 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                   {schedulesEnabled && <Tab label={i18n.t("whatsappModal.tabs.schedules")} value={"schedules"} />}
                 </Tabs>
               </Paper>
-              <Paper className={classes.paper} elevation={0}>
+              <Paper className={classes.paper} elevation={0} style={{ backgroundColor: "#1a1a1a", border: "none" }}>
                 <TabPanel
                   className={classes.container}
                   value={tab}
                   name={"general"}
                 >
-                  <DialogContent dividers>
+                  <DialogContent dividers style={{ backgroundColor: "#1a1a1a", color: "#ffffff", borderColor: "#333333" }}>
                     {attachmentName && (
                       <div
                         style={{ display: 'flex', flexDirection: 'row-reverse' }}
@@ -1103,7 +1113,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
 
                 </TabPanel>
               </Paper>
-              <DialogActions>
+              <DialogActions style={{ backgroundColor: "#1a1a1a", borderTop: "1px solid #333333", padding: "16px 24px" }}>
                 <Button
                   startIcon={<CancelIcon />}
                   onClick={handleClose}

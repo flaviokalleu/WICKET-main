@@ -166,6 +166,15 @@ const FlowBuilderMenuModal = ({ open, onSave, onUpdate, data, close }) => {
         onClose={handleClose}
         fullWidth="md"
         scroll="paper"
+				hideBackdrop={true}
+				PaperProps={{
+					style: {
+						borderRadius: "12px",
+						boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+						background: "#1a1a1a",
+						color: "#ffffff",
+					}
+				}}
       >
         <DialogTitle id="form-dialog-title">{labels.title}</DialogTitle>
         <Stack>

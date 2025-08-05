@@ -182,9 +182,35 @@ export function ChatModal({
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
+      hideBackdrop={true}
+      PaperProps={{
+        style: {
+          borderRadius: 12,
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+          boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+        },
+      }}
     >
-      <DialogTitle id="alert-dialog-title">{i18n.t("chatInternal.modal.title")}</DialogTitle>
-      <DialogContent>
+      <DialogTitle 
+        id="alert-dialog-title"
+        style={{
+          backgroundColor: "#000000",
+          color: "#ffffff",
+          padding: "16px 24px",
+          fontSize: "1.25rem",
+          fontWeight: 600,
+        }}
+      >
+        {i18n.t("chatInternal.modal.title")}
+      </DialogTitle>
+      <DialogContent
+        style={{
+          backgroundColor: "#1a1a1a",
+          padding: "20px",
+          color: "#ffffff",
+        }}
+      >
         <Grid spacing={2} container>
           <Grid xs={12} style={{ padding: 18 }} item>
             <TextField
@@ -195,6 +221,25 @@ export function ChatModal({
               variant="outlined"
               size="small"
               fullWidth
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  borderRadius: "10px",
+                  background: '#2a2a2a',
+                  color: '#ffffff',
+                  "&.Mui-focused fieldset": {
+                    borderColor: '#437db5',
+                  },
+                },
+                "& .MuiInputLabel-outlined": {
+                  color: '#cccccc',
+                },
+                "& .MuiInputLabel-outlined.Mui-focused": {
+                  color: '#437db5',
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: '#555555',
+                },
+              }}
             />
           </Grid>
           <Grid xs={12} item>

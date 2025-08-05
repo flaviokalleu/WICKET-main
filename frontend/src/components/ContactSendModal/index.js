@@ -195,22 +195,61 @@ const ContactSendModal = ({ modalOpen, onClose }) => {
         onClose={handleCloseContactModal}
         onSave={handleAddNewContactTicket}
       ></ContactModal>
-      <Dialog open={modalOpen} onClose={handleClose}>
-        <DialogTitle id="form-dialog-title">
+      <Dialog 
+        open={modalOpen} 
+        onClose={handleClose}
+        hideBackdrop={true}
+        PaperProps={{
+          style: {
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            border: "1px solid #333333",
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          }
+        }}
+      >
+        <DialogTitle 
+          id="form-dialog-title"
+          style={{
+            backgroundColor: "#000000",
+            color: "#ffffff",
+            padding: "16px 24px",
+            borderBottom: "1px solid #333333",
+          }}
+        >
           {i18n.t("SendContactModal.title")}
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent 
+          dividers
+          style={{
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            borderColor: "#333333",
+          }}
+        >
           <Grid style={{ width: 300 }} container spacing={2}>
             {/* CONTATO */}
             {renderContactAutocomplete()}
           </Grid>
         </DialogContent>
-        <DialogActions>
+        <DialogActions
+          style={{
+            backgroundColor: "#1a1a1a",
+            borderTop: "1px solid #333333",
+            padding: "16px 24px",
+          }}
+        >
           <Button
             onClick={handleClose}
             color="secondary"
             disabled={loading}
             variant="outlined"
+            style={{
+              color: "#ffffff",
+              borderColor: "#333333",
+              backgroundColor: "transparent",
+            }}
           >
             {i18n.t("SendContactModal.buttons.cancel")}
           </Button>

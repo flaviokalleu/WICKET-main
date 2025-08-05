@@ -6,43 +6,129 @@ import { Typography, Grid, Select, MenuItem, FormControl, InputLabel, Button } f
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
     flex: 1,
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     paddingBottom: 100,
+    backgroundColor: '#1a1a1a',
+    color: '#ffffff',
+    borderRadius: '12px',
+    border: '1px solid #333333',
+    minHeight: '80vh',
   },
   mainHeader: {
     marginTop: theme.spacing(1),
+    color: '#ffffff',
+    fontSize: '2rem',
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: theme.spacing(3),
   },
   elementMargin: {
     padding: theme.spacing(2),
+    backgroundColor: '#2a2a2a',
+    borderRadius: '8px',
+    margin: theme.spacing(1, 0),
+    border: '1px solid #333333',
   },
   formContainer: {
     width: "100%",
     margin: theme.spacing(2, 0),
+    marginBottom: theme.spacing(4),
   },
   select: {
     width: "100%",
     maxWidth: 600,
-    height: 45,
-    border: "2px solid #4caf50",
-    borderRadius: "4px",
+    height: 50,
+    border: "2px solid #437db5",
+    borderRadius: "8px",
     "&:hover": {
-      borderColor: "#388e3c",
+      borderColor: "#5a8bc7",
     },
     "&.Mui-focused": {
-      borderColor: "#81c784",
+      borderColor: "#437db5",
     },
-    backgroundColor: "#e8f5e9",
+    backgroundColor: "#2a2a2a",
+    color: "#ffffff",
     fontSize: "16px",
+    '& .MuiSelect-icon': {
+      color: '#ffffff',
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#437db5',
+    },
+    '& .MuiMenuItem-root': {
+      backgroundColor: '#2a2a2a',
+      color: '#ffffff',
+      '&:hover': {
+        backgroundColor: '#3a3a3a',
+      },
+    },
   },
   inputLabel: {
-    color: "#388e3c",
-    fontWeight: "bold",
+    color: "#437db5",
+    fontWeight: "600",
+    fontSize: "16px",
     width: "100%",
+    '&.Mui-focused': {
+      color: '#437db5',
+    },
   },
   preCode: {
-    backgroundColor: "#f4f4f4",
-    padding: "10px",
-    borderRadius: "5px",
+    backgroundColor: "#333333",
+    color: "#ffffff",
+    padding: "16px",
+    borderRadius: "8px",
+    border: "1px solid #444444",
+    fontSize: "14px",
+    fontFamily: "'Courier New', monospace",
+    lineHeight: "1.5",
+    overflow: "auto",
+    whiteSpace: "pre-wrap",
+    wordBreak: "break-word",
+    marginTop: "12px",
+  },
+  sectionTitle: {
+    color: "#437db5",
+    fontSize: "1.5rem",
+    fontWeight: "600",
+    marginBottom: theme.spacing(2),
+    borderBottom: "2px solid #437db5",
+    paddingBottom: theme.spacing(1),
+  },
+  endpointTitle: {
+    color: "#ffffff",
+    fontSize: "1.2rem",
+    fontWeight: "600",
+    marginBottom: theme.spacing(1),
+  },
+  urlText: {
+    color: "#00d4aa",
+    fontSize: "16px",
+    fontWeight: "500",
+    marginBottom: theme.spacing(1),
+    wordBreak: "break-all",
+  },
+  methodBadge: {
+    padding: "4px 12px",
+    borderRadius: "4px",
+    fontSize: "12px",
+    fontWeight: "600",
+    marginRight: "8px",
+    '&.GET': {
+      backgroundColor: '#4CAF50',
+      color: '#ffffff',
+    },
+    '&.POST': {
+      backgroundColor: '#2196F3',
+      color: '#ffffff',
+    },
+    '&.PUT': {
+      backgroundColor: '#FF9800',
+      color: '#ffffff',
+    },
+    '&.DELETE': {
+      backgroundColor: '#F44336',
+      color: '#ffffff',
+    },
   },
 }));
 
@@ -165,91 +251,114 @@ dd($response->json());`;
 
   return (
     <Paper className={classes.mainPaper} variant="outlined">
-      <Typography variant="h5">Documentação da API</Typography>
+      <Typography variant="h4" className={classes.mainHeader}>
+        📚 Documentação da API
+      </Typography>
 
       <FormControl className={classes.formContainer}>
-        <InputLabel id="language-select-label" className={classes.inputLabel}>Selecione a Linguagem</InputLabel>
+        <InputLabel id="language-select-label" className={classes.inputLabel}>
+          🔧 Selecione a Linguagem de Programação
+        </InputLabel>
         <Select
           labelId="language-select-label"
           id="language-select"
           value={language}
           onChange={handleLanguageChange}
           className={classes.select}
+          MenuProps={{
+            PaperProps: {
+              style: {
+                backgroundColor: '#2a2a2a',
+                color: '#ffffff',
+                border: '1px solid #333333',
+              },
+            },
+          }}
         >
-          <MenuItem value="React">React</MenuItem>
-          <MenuItem value="Javascript">JavaScript</MenuItem>
-          <MenuItem value="Python">Python</MenuItem>
-          <MenuItem value="PHP">PHP</MenuItem>
-          <MenuItem value="Vue">Vue</MenuItem>
-          <MenuItem value="Laravel">Laravel</MenuItem>
+          <MenuItem value="React" style={{ backgroundColor: '#2a2a2a', color: '#ffffff' }}>
+            ⚛️ React
+          </MenuItem>
+          <MenuItem value="Javascript" style={{ backgroundColor: '#2a2a2a', color: '#ffffff' }}>
+            🟨 JavaScript
+          </MenuItem>
+          <MenuItem value="Python" style={{ backgroundColor: '#2a2a2a', color: '#ffffff' }}>
+            🐍 Python
+          </MenuItem>
+          <MenuItem value="PHP" style={{ backgroundColor: '#2a2a2a', color: '#ffffff' }}>
+            🐘 PHP
+          </MenuItem>
+          <MenuItem value="Vue" style={{ backgroundColor: '#2a2a2a', color: '#ffffff' }}>
+            💚 Vue.js
+          </MenuItem>
+          <MenuItem value="Laravel" style={{ backgroundColor: '#2a2a2a', color: '#ffffff' }}>
+            🔴 Laravel
+          </MenuItem>
         </Select>
       </FormControl>
 
-
-      {/* API Documentation */}
-      <Typography variant="h6" className={classes.elementMargin}>
-        Exemplo de código na linguagem {language}:
-      </Typography>
-      <pre className={classes.preCode}>
-        {getCodeExample("POST", "https://demo.whiticket.com.br/api/auth/login", {
-          username: "usuario",
-          password: "senha",
-        })}
-      </pre>
+      {/* Exemplo Introdutório */}
+      <div className={classes.elementMargin}>
+        <Typography className={classes.endpointTitle}>
+          💡 Exemplo de código em {language}:
+        </Typography>
+        <pre className={classes.preCode}>
+          {getCodeExample("POST", "https://demo.whiticket.com.br/api/auth/login", {
+            username: "usuario",
+            password: "senha",
+          })}
+        </pre>
+      </div>
 
       {/* 1. Autenticação */}
-      <Typography variant="h6" color="primary" className={classes.elementMargin}>
-        1. Autenticação
+      <Typography className={classes.sectionTitle}>
+        🔐 1. Autenticação
       </Typography>
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            POST /auth/login
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} POST`}>POST</span>
+            /auth/login
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/auth/login
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/auth/login
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("POST", "https://demo.whiticket.com.br/api/auth/login", {
               username: "usuario",
               password: "senha",
             })}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       {/* 2. Tickets */}
-      <Typography variant="h6" color="primary" className={classes.elementMargin}>
-        2. Tickets
+      <Typography className={classes.sectionTitle}>
+        🎫 2. Tickets
       </Typography>
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            GET /ticket/list
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} GET`}>GET</span>
+            /ticket/list
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/ticket/list
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/ticket/list
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("GET", "https://demo.whiticket.com.br/api/ticket/list")}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            POST /ticket/create
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} POST`}>POST</span>
+            /ticket/create
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/ticket/create
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/ticket/create
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("POST", "https://demo.whiticket.com.br/api/ticket/create", {
               title: "Novo ticket de teste",
@@ -257,117 +366,111 @@ dd($response->json());`;
               priority: "alta",
             })}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       {/* 3. Mensagens */}
-      <Typography variant="h6" color="primary" className={classes.elementMargin}>
-        3. Mensagens
+      <Typography className={classes.sectionTitle}>
+        💬 3. Mensagens
       </Typography>
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            GET /message/list
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} GET`}>GET</span>
+            /message/list
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/message/list
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/message/list
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("GET", "https://demo.whiticket.com.br/api/message/list")}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            POST /message/send
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} POST`}>POST</span>
+            /message/send
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/message/send
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/message/send
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("POST", "https://demo.whiticket.com.br/api/message/send", {
               recipient: "João",
               message: "Oi, como você está?",
             })}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       {/* 4. Contatos */}
-      <Typography variant="h6" color="primary" className={classes.elementMargin}>
-        4. Contatos
+      <Typography className={classes.sectionTitle}>
+        👥 4. Contatos
       </Typography>
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            GET /contact/list
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} GET`}>GET</span>
+            /contact/list
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/contact/list
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/contact/list
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("GET", "https://demo.whiticket.com.br/api/contact/list")}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            POST /contact/create
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} POST`}>POST</span>
+            /contact/create
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/contact/create
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/contact/create
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("POST", "https://demo.whiticket.com.br/api/contact/create", {
               name: "Eurico Junior",
               phone: "19971395449",
             })}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       {/* 5. Faturas */}
-      <Typography variant="h6" color="primary" className={classes.elementMargin}>
-        5. Faturas
+      <Typography className={classes.sectionTitle}>
+        💰 5. Faturas
       </Typography>
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            GET /invoice/list
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} GET`}>GET</span>
+            /invoice/list
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/invoice/list
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/invoice/list
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("GET", "https://demo.whiticket.com.br/api/invoice/list")}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            POST /invoice/create
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} POST`}>POST</span>
+            /invoice/create
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/invoice/create
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/invoice/create
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("POST", "https://demo.whiticket.com.br/api/invoice/create", {
               amount: 200.0,
@@ -375,23 +478,22 @@ dd($response->json());`;
               customer_id: 1,
             })}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       {/* 6. Webhook */}
-      <Typography variant="h6" color="primary" className={classes.elementMargin}>
-        6. Webhook
+      <Typography className={classes.sectionTitle}>
+        🔗 6. Webhook
       </Typography>
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            POST /webhook
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} POST`}>POST</span>
+            /webhook
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/webhook
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/webhook
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("POST", "https://demo.whiticket.com.br/api/webhook", {
               event: "new_ticket",
@@ -402,62 +504,59 @@ dd($response->json());`;
               },
             })}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       {/* 7. Sessões do WhatsApp */}
-      <Typography variant="h6" color="primary" className={classes.elementMargin}>
-        7. Sessões do WhatsApp
+      <Typography className={classes.sectionTitle}>
+        📱 7. Sessões do WhatsApp
       </Typography>
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            POST /whatsapp/session
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} POST`}>POST</span>
+            /whatsapp/session
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo.whiticket.com.br/api/whatsapp/session
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo.whiticket.com.br/api/whatsapp/session
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("POST", "https://demo.whiticket.com.br/api/whatsapp/session", {
               phone_number: "19971395449",
               session_name: "Sessão WhatsApp 1",
             })}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       {/* 8. Agendamentos */}
-      <Typography variant="h6" color="primary" className={classes.elementMargin}>
-        8. Agendamentos
+      <Typography className={classes.sectionTitle}>
+        📅 8. Agendamentos
       </Typography>
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            GET /schedules
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} GET`}>GET</span>
+            /schedules
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo5.whiticket.com.br/schedules
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo5.whiticket.com.br/schedules
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("GET", "https://demo5.whiticket.com.br/schedules")}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            POST /schedules
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} POST`}>POST</span>
+            /schedules
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo5.whiticket.com.br/schedules
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo5.whiticket.com.br/schedules
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("POST", "https://demo5.whiticket.com.br/schedules", {
               title: "Reunião de Equipe",
@@ -466,19 +565,18 @@ dd($response->json());`;
               location: "Sala 1",
             })}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            PUT /schedules/:scheduleId
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} PUT`}>PUT</span>
+            /schedules/:scheduleId
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo5.whiticket.com.br/schedules/1
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo5.whiticket.com.br/schedules/1
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("PUT", "https://demo5.whiticket.com.br/schedules/1", {
               title: "Reunião de Equipe Atualizada",
@@ -487,71 +585,67 @@ dd($response->json());`;
               location: "Sala 2",
             })}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            GET /schedules/:scheduleId
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} GET`}>GET</span>
+            /schedules/:scheduleId
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo5.whiticket.com.br/schedules/1
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo5.whiticket.com.br/schedules/1
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("GET", "https://demo5.whiticket.com.br/schedules/1")}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            DELETE /schedules/:scheduleId
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} DELETE`}>DELETE</span>
+            /schedules/:scheduleId
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo5.whiticket.com.br/schedules/1
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo5.whiticket.com.br/schedules/1
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("DELETE", "https://demo5.whiticket.com.br/schedules/1")}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            POST /schedules/:id/media-upload
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} POST`}>POST</span>
+            /schedules/:id/media-upload
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo5.whiticket.com.br/schedules/1/media-upload
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo5.whiticket.com.br/schedules/1/media-upload
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("POST", "https://demo5.whiticket.com.br/schedules/1/media-upload")}
           </pre>
-        </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <Typography className={classes.elementMargin} component="div">
-          <Typography variant="h6" component="span" style={{ fontWeight: "bold" }}>
-            DELETE /schedules/:id/media-upload
+        <div className={classes.elementMargin}>
+          <Typography className={classes.endpointTitle}>
+            <span className={`${classes.methodBadge} DELETE`}>DELETE</span>
+            /schedules/:id/media-upload
           </Typography>
-          <br />
-          <span style={{ color: "green" }}>
-            URL: https://demo5.whiticket.com.br/schedules/1/media-upload
-          </span>
-          <br />
+          <Typography className={classes.urlText}>
+            🌐 https://demo5.whiticket.com.br/schedules/1/media-upload
+          </Typography>
           <pre className={classes.preCode}>
             {getCodeExample("DELETE", "https://demo5.whiticket.com.br/schedules/1/media-upload")}
           </pre>
-        </Typography>
+        </div>
       </Grid>
     </Paper>
   );

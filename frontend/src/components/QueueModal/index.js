@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   dialogTitle: {
-    backgroundColor: "#3f51b5",
+    backgroundColor: "#000000",
     color: "white",
     padding: "16px 24px",
     fontSize: "1.25rem",
@@ -124,13 +124,15 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogContent: {
     padding: theme.spacing(3),
+    backgroundColor: "#1a1a1a",
+    color: "#ffffff",
     maxHeight: 'calc(100vh - 200px)',
     overflowY: 'auto',
   },
   dialogActions: {
     padding: theme.spacing(2),
-    background: "#f5f5f5",
-    borderTop: "1px solid #e0e0e0",
+    background: "#1a1a1a",
+    borderTop: "1px solid #333333",
     borderBottomLeftRadius: '8px',
     borderBottomRightRadius: '8px',
     position: 'sticky',
@@ -664,6 +666,16 @@ const QueueModal = ({ open, onClose, queueId, onEdit }) => {
         TransitionComponent={Transition}
         transitionDuration={300}
         classes={{ paper: classes.dialog }}
+        hideBackdrop={true}
+        PaperProps={{
+          style: {
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            border: "1px solid #333333",
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          }
+        }}
       >
         <DialogTitle className={classes.dialogTitle}>
           {queueId

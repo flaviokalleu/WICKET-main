@@ -43,23 +43,24 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[24],
+    backgroundColor: "#1a1a1a",
+    boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
     padding: 0,
-    borderRadius: "8px",
+    borderRadius: "12px",
     overflow: "hidden",
     maxHeight: "90vh",
     width: "90%",
     maxWidth: "1200px",
     border: "none",
+    color: "#ffffff",
     "&:focus": {
       outline: "none",
     },
   },
   header: {
     padding: theme.spacing(3),
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
+    backgroundColor: "#000000",
+    color: "#ffffff",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -71,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(2),
   },
   closeButton: {
-    color: theme.palette.primary.contrastText,
+    color: "#ffffff",
     "&:hover": {
       backgroundColor: "rgba(255, 255, 255, 0.1)",
     },
@@ -102,20 +103,34 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "400px",
     "& .MuiOutlinedInput-root": {
       borderRadius: "8px",
-      backgroundColor: theme.palette.background.default,
+      backgroundColor: "#2a2a2a",
+      color: "#ffffff",
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+      },
     },
     "& .MuiOutlinedInput-input": {
       padding: "12px 14px",
+      color: "#ffffff",
+    },
+    "& .MuiInputLabel-outlined": {
+      color: "#cccccc",
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: "#437db5",
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#555555",
     },
   },
   filterButton: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: "#2a2a2a",
     borderRadius: "12px",
     padding: "8px 16px",
     textTransform: "none",
-    color: theme.palette.text.secondary,
+    color: "#ffffff",
     "&:hover": {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: "#333333",
     },
   },
   tableContainer: {
@@ -136,29 +151,40 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 650,
+    backgroundColor: "#1a1a1a",
+    "& .MuiTableCell-root": {
+      color: "#ffffff",
+      borderBottom: "1px solid #555555",
+    },
   },
   tableHeader: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: "#2a2a2a",
     "& th": {
       fontWeight: 600,
       fontSize: "0.875rem",
-      color: theme.palette.text.secondary,
+      color: "#ffffff",
       padding: "16px",
+      borderBottom: "1px solid #555555",
     },
   },
   tableRow: {
     transition: "all 0.2s ease",
+    backgroundColor: "#1a1a1a",
     "&:hover": {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: "#333333",
+    },
+    "&:nth-child(even)": {
+      backgroundColor: "#2a2a2a",
     },
   },
   tableCell: {
     padding: "16px",
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: "1px solid #555555",
+    color: "#ffffff",
   },
   avatar: {
-    backgroundColor: "#25d366",
-    color: "#fff",
+    backgroundColor: "#437db5",
+    color: "#ffffff",
     width: theme.spacing(4),
     height: theme.spacing(4),
     fontSize: "1rem",
@@ -174,23 +200,23 @@ const useStyles = makeStyles((theme) => ({
   },
   contactId: {
     fontSize: "0.75rem",
-    color: theme.palette.text.secondary,
+    color: "#cccccc",
   },
   phoneCell: {
     display: "flex",
     alignItems: "center",
     gap: theme.spacing(1),
-    color: theme.palette.text.primary,
+    color: "#ffffff",
   },
   actionCell: {
     width: "120px",
     textAlign: "center",
   },
   deleteButton: {
-    backgroundColor: theme.palette.error.light,
-    color: theme.palette.error.main,
+    backgroundColor: "#db6565",
+    color: "#ffffff",
     "&:hover": {
-      backgroundColor: theme.palette.error.lighter,
+      backgroundColor: "#c55555",
     },
   },
   emptyState: {
@@ -217,13 +243,15 @@ const useStyles = makeStyles((theme) => ({
   progressBar: {
     height: "6px",
     borderRadius: "3px",
+    backgroundColor: "#333333",
     "& .MuiLinearProgress-bar": {
       borderRadius: "3px",
+      backgroundColor: "#437db5",
     },
   },
   countBadge: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
+    backgroundColor: "#437db5",
+    color: "#ffffff",
     borderRadius: "12px",
     padding: "4px 8px",
     fontSize: "0.75rem",
@@ -315,10 +343,7 @@ const ContactTagListModal = ({ open, onClose, tag }) => {
       open={open}
       onClose={onClose}
       closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
+      hideBackdrop={true}
     >
       <Transition in={open} timeout={300}>
         <div className={classes.paper}>

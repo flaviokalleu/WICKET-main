@@ -1,7 +1,7 @@
 .customButton {
-	background:linear-gradient(to bottom, #ffffff, #ffffff);
-	background-color:#ffffff;
-	border:1px solid #124d77;
+	background:linear-gradient(to bottom, #000000, #000000);
+	background-color:#000000;
+	border:1px solid #333333;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -13,8 +13,8 @@
         vertical-align: middle; /* Opcional: alinha verticalmente o ícone com o texto */
 }
 .customButton:hover{
-	background:linear-gradient(to bottom, #bdc3c7, #bdc3c7);
-	background-color:#bdc3c7;
+	background:linear-gradient(to bottom, #333333, #333333);
+	background-color:#333333;
 }
 .customButton:active {
 	position:relative;

@@ -57,6 +57,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import SaveIcon from '@mui/icons-material/Save';
+import AddIcon from '@mui/icons-material/Add';
 
 
 const useStyles = makeStyles(theme => ({
@@ -405,8 +407,18 @@ const WhatsAppModalCompany = ({
         maxWidth="lg"
         fullWidth
         scroll="paper"
+        hideBackdrop={true}
+        PaperProps={{
+          style: {
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            border: "1px solid #333333",
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          }
+        }}
       >
-        <MainContainer>
+        <MainContainer style={{ backgroundColor: "#1a1a1a", minHeight: "100vh" }}>
           <ConfirmationModal
             title={confirmModalInfo.title}
             open={confirmModalOpen}
@@ -428,16 +440,20 @@ const WhatsAppModalCompany = ({
 
           <Paper
             className={classes.mainPaper}
-            style={{ overflow: "hidden" }}
+            style={{ 
+              overflow: "hidden",
+              backgroundColor: "#1a1a1a",
+              color: "#ffffff"
+            }}
             variant="outlined"
           >
-            <MainHeader>
+            <MainHeader style={{ backgroundColor: "#000000", borderBottom: "1px solid #333333" }}>
               <Stack>
                 <Typography
                   variant="h5"
-                  color="black"
                   style={{
                     fontWeight: "bold",
+                    color: "#ffffff",
                     marginLeft: "10px",
                     marginTop: "10px"
                   }}
@@ -448,9 +464,36 @@ const WhatsAppModalCompany = ({
               </Stack>
 
               <MainHeaderButtonsWrapper>
+                <Button
+                  startIcon={<SaveIcon />}
+                  variant="contained"
+                  style={{
+                    color: "white",
+                    backgroundColor: "#4ec24e",
+                    boxShadow: "none",
+                    borderRadius: "5px",
+                    marginRight: "10px"
+                  }}
+                  onClick={() => console.log("Lista de Arquivos")}
+                >
+                  Lista de Arquivos
+                </Button>
                 <PopupState variant="popover" popupId="demo-popup-menu">
                   {popupState => (
                     <React.Fragment>
+                      <Button
+                        {...bindTrigger(popupState)}
+                        startIcon={<AddIcon />}
+                        variant="contained"
+                        style={{
+                          color: "white",
+                          backgroundColor: "#437db5",
+                          boxShadow: "none",
+                          borderRadius: "5px"
+                        }}
+                      >
+                        Adicionar Conexão
+                      </Button>
                       <Menu {...bindMenu(popupState)}>
                         <MenuItem
                           onClick={() => {
@@ -515,88 +558,90 @@ const WhatsAppModalCompany = ({
               style={{
                 overflowY: "auto",
                 padding: "20px",
-                backgroundColor: "rgb(244 244 244 / 53%)",
+                backgroundColor: "#1a1a1a",
                 borderRadius: "5px",
                 height: "93%"
               }}
             >
-              <Paper>
+              <Paper style={{ backgroundColor: "#1a1a1a", color: "#ffffff" }}>
                 <Table size="small">
                   <TableHead
                     className={classes.TableHead}
+                    style={{ backgroundColor: "#333333" }}
                   >
-                    <TableRow style={{ color: "#fff" }}>
-                      <TableCell style={{ color: "#fff" }} align="center">
+                    <TableRow style={{ backgroundColor: "#333333" }}>
+                      <TableCell style={{ color: "#ffffff" }} align="center">
                         Channel
                       </TableCell>
-                      <TableCell style={{ color: "#fff" }} align="center">
+                      <TableCell style={{ color: "#ffffff" }} align="center">
                         {i18n.t("connections.table.name")}
                       </TableCell>
-                      <TableCell style={{ color: "#fff" }} align="center">
+                      <TableCell style={{ color: "#ffffff" }} align="center">
                         {i18n.t("connections.table.status")}
                       </TableCell>
                       {user.profile === "admin" && (
-                        <TableCell style={{ color: "#fff" }} align="center">
+                        <TableCell style={{ color: "#ffffff" }} align="center">
                           {i18n.t("connections.table.session")}
                         </TableCell>
                       )}
-                      <TableCell style={{ color: "#fff" }} align="center">
+                      <TableCell style={{ color: "#ffffff" }} align="center">
                         {i18n.t("connections.table.lastUpdate")}
                       </TableCell>
-                      <TableCell style={{ color: "#fff" }} align="center">
+                      <TableCell style={{ color: "#ffffff" }} align="center">
                         {i18n.t("connections.table.default")}
                       </TableCell>
                       {user.profile === "admin" && (
-                        <TableCell style={{ color: "#fff" }} align="center">
+                        <TableCell style={{ color: "#ffffff" }} align="center">
                           {i18n.t("connections.table.actions")}
                         </TableCell>
                       )}
                     </TableRow>
                   </TableHead>
-                  <TableBody>
+                  <TableBody style={{ backgroundColor: "#1a1a1a" }}>
                     {loading ? (
                       <TableRowSkeleton />
                     ) : (
                       <>
                         {filteredWhatsapps?.length > 0 &&
                           filteredWhatsapps.map(whatsApp => (
-                            <TableRow key={whatsApp.id}>
-                              <TableCell align="center">
+                            <TableRow key={whatsApp.id} style={{ backgroundColor: "#1a1a1a", borderBottom: "1px solid #333333" }}>
+                              <TableCell align="center" style={{ color: "#ffffff" }}>
                                 {IconChannel(whatsApp.channel)}
                               </TableCell>
-                              <TableCell align="center">
+                              <TableCell align="center" style={{ color: "#ffffff" }}>
                                 {whatsApp?.name}
                               </TableCell>
-                              <TableCell align="center">
+                              <TableCell align="center" style={{ color: "#ffffff" }}>
                                 {renderStatusToolTips(whatsApp)}
                               </TableCell>
                               {user.profile === "admin" && (
-                                <TableCell align="center">
+                                <TableCell align="center" style={{ color: "#ffffff" }}>
                                   {renderActionButtons(whatsApp)}
                                 </TableCell>
                               )}
-                              <TableCell align="center">
+                              <TableCell align="center" style={{ color: "#ffffff" }}>
                                 {format(
                                   parseISO(whatsApp.updatedAt),
                                   "dd/MM/yy HH:mm"
                                 )}
                               </TableCell>
-                              <TableCell align="center">
+                              <TableCell align="center" style={{ color: "#ffffff" }}>
                                 {whatsApp.isDefault && (
                                   <div className={classes.customTableCell}>
                                     <CheckCircle
-                                      style={{ color: green[500] }}
+                                      style={{ color: "#437db5" }}
                                     />
                                   </div>
                                 )}
                               </TableCell>
                               {user.profile === "admin" && (
-                                <TableCell align="center">
+                                <TableCell align="center" style={{ color: "#ffffff" }}>
                                   <IconButton
                                     size="small"
                                     onClick={() => handleEditWhatsApp(whatsApp)}
+                                    style={{ color: "#437db5" }}
                                   >
-                                    <Edit style={{ color: "#FFA500" }} />
+                                    <Edit />
                                   </IconButton>
 
                                   <IconButton
@@ -607,8 +652,9 @@ const WhatsAppModalCompany = ({
                                         whatsApp.id
                                       );
                                     }}
+                                    style={{ color: "#db6565" }}
                                   >
-                                    <DeleteOutline style={{ color: "#db6565" }} />
+                                    <DeleteOutline />
                                   </IconButton>
                                 </TableCell>
                               )}

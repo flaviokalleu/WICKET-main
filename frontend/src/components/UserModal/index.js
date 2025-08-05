@@ -130,10 +130,10 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '800px',
   },
   dialogTitle: {
-    backgroundColor: "#3f51b5",
+    backgroundColor: "#000000",
     color: 'white',
     padding: theme.spacing(1.5, 3),
-    borderBottom: `1px solid ${deepPurple[100]}`,
+    borderBottom: `1px solid #333333`,
     display: 'flex',
     alignItems: 'center',
     minHeight: '60px',
@@ -148,14 +148,15 @@ const useStyles = makeStyles(theme => ({
   },
   dialogContent: {
     padding: theme.spacing(4),
-    backgroundColor: '#f9f9ff',
+    backgroundColor: '#1a1a1a',
+    color: '#ffffff',
     overflowY: 'auto',
     height: 'calc(100% - 120px)',
   },
   dialogActions: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#1a1a1a',
     padding: theme.spacing(2),
-    borderTop: `1px solid ${grey[200]}`,
+    borderTop: `1px solid #333333`,
     display: 'flex',
     justifyContent: 'space-between',
     position: 'sticky',
@@ -163,16 +164,16 @@ const useStyles = makeStyles(theme => ({
   },
   tab: {
     backgroundColor: 'transparent',
-    color: grey[700],
+    color: '#a0a0a0',
     fontWeight: 600,
     minHeight: 48,
     '&.Mui-selected': {
-      color: deepPurple[500],
+      color: '#437db5',
       fontWeight: 700,
     },
   },
   tabIndicator: {
-    backgroundColor: deepPurple[500],
+    backgroundColor: '#437db5',
     height: 3,
   },
   tabPanel: {
@@ -181,7 +182,7 @@ const useStyles = makeStyles(theme => ({
     overflowY: 'auto',
   },
   sectionTitle: {
-    color: deepPurple[500],
+    color: '#437db5',
     marginBottom: theme.spacing(2),
     fontWeight: 600,
     fontSize: '1.1rem',
@@ -230,20 +231,54 @@ const useStyles = makeStyles(theme => ({
   inputField: {
     '& .MuiOutlinedInput-root': {
       borderRadius: '8px',
+      backgroundColor: '#333333',
+      color: '#ffffff',
       '& fieldset': {
-        borderColor: grey[300],
+        borderColor: '#555555',
       },
       '&:hover fieldset': {
-        borderColor: deepPurple[300],
+        borderColor: '#777777',
       },
       '&.Mui-focused fieldset': {
-        borderColor: deepPurple[500],
+        borderColor: '#437db5',
       },
+    },
+    '& .MuiInputLabel-root': {
+      color: '#a0a0a0',
+      '&.Mui-focused': {
+        color: '#437db5',
+      },
+    },
+    '& .MuiFormHelperText-root': {
+      color: '#ff6b6b',
     },
   },
   selectField: {
     '& .MuiOutlinedInput-root': {
       borderRadius: '8px',
+      backgroundColor: '#333333',
+      color: '#ffffff',
+      '& fieldset': {
+        borderColor: '#555555',
+      },
+      '&:hover fieldset': {
+        borderColor: '#777777',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#437db5',
+      },
+    },
+    '& .MuiInputLabel-root': {
+      color: '#a0a0a0',
+      '&.Mui-focused': {
+        color: '#437db5',
+      },
+    },
+    '& .MuiSelect-select': {
+      color: '#ffffff',
+    },
+    '& .MuiSvgIcon-root': {
+      color: '#a0a0a0',
     },
   },
   timePicker: {
@@ -252,11 +287,12 @@ const useStyles = makeStyles(theme => ({
     },
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: '#2a2a2a',
     borderRadius: '12px',
     padding: theme.spacing(3),
     marginBottom: theme.spacing(3),
-    boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+    border: '1px solid #444444',
   },
   formContainer: {
     display: 'flex',
@@ -264,7 +300,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
   },
   inputIcon: {
-    color: deepPurple[500],
+    color: '#437db5',
   },
 }));
 
@@ -440,6 +476,16 @@ const UserModal = ({ open, onClose, userId }) => {
         scroll="paper"
         classes={{ paper: classes.dialog }}
         TransitionComponent={Transition}
+        hideBackdrop={true}
+        PaperProps={{
+          style: {
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            border: "1px solid #333333",
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          }
+        }}
       >
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           <div className={classes.titleContent}>

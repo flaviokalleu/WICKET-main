@@ -567,7 +567,7 @@ const Connections = () => {
   };
 
   return (
-    <MainContainer>
+    <MainContainer style={{ backgroundColor: "#1a1a1a", minHeight: "100vh" }}>
       <ConfirmationModal
         title={confirmModalInfo.title}
         open={confirmModalOpen}
@@ -592,8 +592,8 @@ const Connections = () => {
         <ForbiddenPage />
       ) : (
         <>
-          <MainHeader>
-            <Title>
+          <MainHeader style={{ backgroundColor: "#1a1a1a", color: "#ffffff", borderBottom: "1px solid #333333" }}>
+            <Title style={{ color: "#ffffff" }}>
               {i18n.t("connections.title")} ({whatsApps.length})
             </Title>
             <MainHeaderButtonsWrapper>
@@ -737,13 +737,13 @@ const Connections = () => {
             </>
           ) : null}
 
-          <Paper className={classes.mainPaper} variant="outlined">
+          <Paper className={classes.mainPaper} variant="outlined" style={{ backgroundColor: "#1a1a1a", border: "1px solid #333333" }}>
             <Grid container spacing={2}>
               {loading ? (
                 <Grid item xs={12}>
-                  <Card variant="outlined" style={{ padding: "10px" }}>
+                  <Card variant="outlined" style={{ padding: "10px", backgroundColor: "#1a1a1a", border: "1px solid #333333" }}>
                     <CardContent>
-                      <Typography variant="body2" color="textSecondary">
+                      <Typography variant="body2" style={{ color: "#ffffff" }}>
                         {i18n.t("loading")}
                       </Typography>
                     </CardContent>
@@ -756,12 +756,12 @@ const Connections = () => {
                     <Card
                       variant="outlined"
                       style={{
-                        backgroundColor: "#f7f9fa",
+                        backgroundColor: "#1a1a1a",
                         borderRadius: "16px",
                         padding: "18px 12px",
                         margin: "10px 0",
                         boxShadow: "none",
-                        border: '1.5px solid #e0e0e0',
+                        border: '1.5px solid #333333',
                         cursor: "pointer",
                         minWidth: 0,
                         width: '100%',
@@ -778,29 +778,29 @@ const Connections = () => {
                       <CardContent>
                         <Typography
                           variant="subtitle1"
-                          color="textPrimary"
+                          style={{ color: "#ffffff" }}
                           align="center"
                         >
                           {IconChannel(whatsApp.channel)}
                         </Typography>
-                        <Typography variant="subtitle2" align="center">
+                        <Typography variant="subtitle2" align="center" style={{ color: "#ffffff" }}>
                           {i18n.t("connections.table.name")}: {whatsApp.name}
                         </Typography>
-                        <Typography variant="body2" align="center">
+                        <Typography variant="body2" align="center" style={{ color: "#ffffff" }}>
                           {i18n.t("connections.table.number")}:{" "}
                           {whatsApp.number && whatsApp.channel === "whatsapp"
                             ? formatSerializedId(whatsApp.number)
                             : whatsApp.number}
                         </Typography>
-                        <Typography variant="body2" align="center">
+                        <Typography variant="body2" align="center" style={{ color: "#ffffff" }}>
                           {i18n.t("connections.table.status")}:{" "}
                           {renderStatusToolTips(whatsApp)}
                         </Typography>
-                        <Typography variant="body2" align="center">
+                        <Typography variant="body2" align="center" style={{ color: "#ffffff" }}>
                           {i18n.t("connections.table.session")}:{" "}
                           {renderActionButtons(whatsApp)}
                         </Typography>
-                        <Typography variant="body2" align="center">
+                        <Typography variant="body2" align="center" style={{ color: "#ffffff" }}>
                           {i18n.t("connections.table.lastUpdate")}:{" "}
                           {format(
                             parseISO(whatsApp.updatedAt),
@@ -811,7 +811,7 @@ const Connections = () => {
                           <Typography
                             variant="body2"
                             align="center"
-                            style={{ color: green[500] }}
+                            style={{ color: "#437db5" }}
                           >
                             {i18n.t("connections.table.default")}
                           </Typography>

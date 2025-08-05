@@ -248,29 +248,7 @@ const MainListItems = ({ collapsed, drawerClose }) => {
   const themeContext = useContext(ColorModeContext);
   const theme = useTheme();
 
-  // Seleciona a logo conforme o modo do tema, sempre como string
-  let logoSrc = theme.mode === "light"
-    ? themeContext.appLogoLight
-    : themeContext.appLogoDark;
-
-  // Se não houver logo customizada, usa o require padrão (garante string)
-  if (!logoSrc) {
-    const reqLogo = theme.mode === "light"
-      ? require("../assets/logo.png")
-      : require("../assets/logo-black.png");
-    logoSrc = reqLogo?.default || reqLogo;
-  }
-
-  // Se vier do backend, monta a URL completa apenas se não for URL absoluta ou caminho absoluto
-  if (
-    typeof logoSrc === "string" &&
-    logoSrc &&
-    !logoSrc.startsWith("data:") &&
-    !logoSrc.startsWith("http") &&
-    !logoSrc.startsWith("/") // já é caminho absoluto
-  ) {
-    logoSrc = getBackendUrl() + "/public/" + logoSrc;
-  }
+  
 
   const [connectionWarning, setConnectionWarning] = useState(false);
   const [openManagementSubmenu, setOpenManagementSubmenu] = useState(false);
@@ -514,7 +492,8 @@ const MainListItems = ({ collapsed, drawerClose }) => {
 
   return (
     <div onClick={drawerClose}>
-      {/* Logo removida do topo do menu */}
+      
+      
       {/* Seção de Gerenciamento */}
       {planExpired && (
         <Can

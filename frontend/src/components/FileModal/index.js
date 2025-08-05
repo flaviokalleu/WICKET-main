@@ -12,19 +12,18 @@ import {
     Grid,
     makeStyles,
     TextField,
-    Slide,
+    Zoom,
     InputAdornment
 } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
-import SaveIcon from '@mui/icons-material/Save';
-import CancelIcon from '@mui/icons-material/Cancel';
-import AddIcon from '@mui/icons-material/Add';
-import DescriptionIcon from '@mui/icons-material/Description';
-import MessageIcon from '@mui/icons-material/Message';
-import TitleIcon from '@mui/icons-material/Title';
+import SaveIcon from "@material-ui/icons/Save";
+import CancelIcon from "@material-ui/icons/Cancel";
+import AddIcon from "@material-ui/icons/Add";
+import DescriptionIcon from "@material-ui/icons/Description";
+import TitleIcon from "@material-ui/icons/Title";
 import { green } from "@material-ui/core/colors";
 import { i18n } from "../../translate/i18n";
 import api from "../../services/api";
@@ -34,7 +33,7 @@ import Draggable from 'react-draggable';
 
 // Add slide transition component
 const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
+    return <Zoom ref={ref} {...props} />;
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -226,17 +225,33 @@ const FilesModal = ({ open, onClose, fileListId, reload }) => {
             onClose={handleClose}
             maxWidth="md"
             fullWidth
+            scroll="paper"
+            hideBackdrop={true}
+            PaperProps={{
+                style: {
+                    backgroundColor: "#1a1a1a",
+                    color: "#ffffff",
+                    border: "1px solid #333333",
+                    borderRadius: "12px",
+                    boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+                }
+            }}
             TransitionComponent={Transition} // Add slide transition
             classes={{ paper: classes.dialog }}
-            disableBackdropClick
-            disableEscapeKeyDown
             PaperComponent={(props) => (
                 <Draggable handle=".dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
                     <div {...props} />
                 </Draggable>
             )}
         >
-            <DialogTitle className={`${classes.dialogTitle} dialog-title`}>
+            <DialogTitle 
+                className={`${classes.dialogTitle} dialog-title`}
+                style={{ 
+                    backgroundColor: "#000000", 
+                    color: "#ffffff",
+                    borderBottom: "1px solid #333333"
+                }}
+            >
                 {fileListId
                     ? `${i18n.t("fileModal.title.edit")}`
                     : `${i18n.t("fileModal.title.add")}`}
@@ -254,7 +269,13 @@ const FilesModal = ({ open, onClose, fileListId, reload }) => {
             >
                 {({ touched, errors, isSubmitting, values }) => (
                     <Form>
-                        <DialogContent className={classes.dialogContent}>
+                        <DialogContent 
+                            className={classes.dialogContent}
+                            style={{ 
+                                backgroundColor: "#1a1a1a", 
+                                color: "#ffffff" 
+                            }}
+                        >
                             <div className={classes.multFieldLine}>
                                 <Field
                                     as={TextField}
@@ -267,11 +288,15 @@ const FilesModal = ({ open, onClose, fileListId, reload }) => {
                                     fullWidth
                                     className={classes.textField}
                                     InputProps={{
+                                        style: { color: "#ffffff" },
                                         startAdornment: (
                                             <InputAdornment position="start">
-                                                <TitleIcon color="action" />
+                                                <TitleIcon style={{ color: "#ffffff" }} />
                                             </InputAdornment>
                                         ),
+                                    }}
+                                    InputLabelProps={{
+                                        style: { color: "#ffffff" }
                                     }}
                                 />
                             </div>
@@ -290,17 +315,27 @@ const FilesModal = ({ open, onClose, fileListId, reload }) => {
                                     margin="dense"
                                     className={classes.textField}
                                     InputProps={{
+                                        style: { color: "#ffffff" },
                                         startAdornment: (
                                             <InputAdornment position="start">
-                                                <MessageIcon color="action" />
+                                                <DescriptionIcon style={{ color: "#ffffff" }} />
                                             </InputAdornment>
                                         ),
                                     }}
+                                    InputLabelProps={{
+                                        style: { color: "#ffffff" }
+                                    }}
                                 />
                             </div>
+
                             <Typography
-                                style={{ marginBottom: 16, marginTop: 24 }}
                                 variant="subtitle1"
+                                style={{
+                                    marginTop: "24px",
+                                    marginBottom: "16px",
+                                    fontWeight: "bold",
+                                    color: "#ffffff"
+                                }}
                             >
                                 {i18n.t("fileModal.form.fileOptions")}
                             </Typography>
@@ -326,17 +361,21 @@ const FilesModal = ({ open, onClose, fileListId, reload }) => {
                                                                 fullWidth
                                                                 className={classes.textField}
                                                                 InputProps={{
+                                                                    style: { color: "#ffffff" },
                                                                     startAdornment: (
                                                                         <InputAdornment position="start">
-                                                                            <DescriptionIcon color="action" />
+                                                                            <DescriptionIcon style={{ color: "#ffffff" }} />
                                                                         </InputAdornment>
                                                                     ),
+                                                                }}
+                                                                InputLabelProps={{
+                                                                    style: { color: "#ffffff" }
                                                                 }}
                                                             />
                                                         </Grid>
                                                         <Grid item xs={4} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                                            <input
-                                                                type="file"
+                            <input
+                                type="file"
                                                                 onChange={(e) => {
                                                                     const selectedFile = e.target.files[0];
                                                                     const updatedOptions = [...values.options];

@@ -611,10 +611,7 @@ const DashboardManage = () => {
           open={openImageModal}
           onClose={handleCloseImageModal}
           closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
+          hideBackdrop={true}
           className={classes.imageModal}
         >
           <Fade in={openImageModal}>

@@ -123,8 +123,15 @@ const ContactDrawer = ({ open, handleDrawerClose, contact, whatsapp, ticketId, l
 			variant="persistent"
 			anchor="right"
 			open={open}
-			PaperProps={{ style: { position: "absolute" } }}
-			BackdropProps={{ style: { position: "absolute" } }}
+			PaperProps={{ 
+				style: { 
+					position: "absolute", 
+					backgroundColor: "#1a1a1a", 
+					color: "#ffffff",
+					borderRadius: "12px 0 0 12px"
+				} 
+			}}
+			hideBackdrop={true}
 			ModalProps={{
 				container: document.getElementById("drawer-container"),
 				style: { position: "absolute" },

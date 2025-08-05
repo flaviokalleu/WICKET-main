@@ -70,33 +70,36 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
   },
   dialogPaper: {
-    borderRadius: "8px",
-    boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.15)",
-    background: "#ffffff",
+    borderRadius: "12px",
+    boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+    background: "#1a1a1a",
+    color: "#ffffff",
     minWidth: "500px",
     maxWidth: "800px",
   },
   dialogTitle: {
-    backgroundColor: "#3f51b5",
-    color: "white",
+    backgroundColor: "#000000",
+    color: "#ffffff",
     padding: "16px 24px",
-    borderRadius: "8px 8px 0 0",
+    borderRadius: "12px 12px 0 0",
     fontSize: "1.5rem",
     fontWeight: 600,
     cursor: "move",
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-start", // Alterado para alinhar à esquerda
+    justifyContent: "flex-start",
     gap: theme.spacing(1),
   },
   dialogContent: {
     padding: "24px",
-    background: "#f9fafc",
+    background: "#1a1a1a",
+    color: "#ffffff",
   },
   dialogActions: {
     padding: "16px 24px",
-    background: "#f5f7fa",
-    borderRadius: "0 0 8px 8px",
+    background: "#1a1a1a",
+    borderRadius: "0 0 12px 12px",
+    borderTop: "1px solid #555555",
     display: "flex",
     justifyContent: "space-between",
   },
@@ -105,19 +108,23 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     "& .MuiOutlinedInput-root": {
       borderRadius: "8px",
+      backgroundColor: "#2a2a2a",
+      color: "#ffffff",
       "& fieldset": {
-        borderColor: "#e0e0e0",
+        borderColor: "#555555",
       },
       "&:hover fieldset": {
-        borderColor: "#667eea",
+        borderColor: "#437db5",
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#667eea",
-        borderWidth: "1px",
+        borderColor: "#437db5",
       },
     },
-    "& .MuiInputLabel-root.Mui-focused": {
-      color: "#667eea",
+    "& .MuiInputLabel-outlined": {
+      color: "#cccccc",
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: "#437db5",
     },
   },
   btnWrapper: {
@@ -136,13 +143,37 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     "& .MuiOutlinedInput-root": {
       borderRadius: "8px",
+      backgroundColor: "#2a2a2a",
+      color: "#ffffff",
+      "& fieldset": {
+        borderColor: "#555555",
+      },
+      "&:hover fieldset": {
+        borderColor: "#437db5",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+      },
+    },
+    "& .MuiInputLabel-outlined": {
+      color: "#cccccc",
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: "#437db5",
+    },
+    "& .MuiMenuItem-root": {
+      backgroundColor: "#2a2a2a",
+      color: "#ffffff",
+      "&:hover": {
+        backgroundColor: "#333333",
+      },
     },
   },
   cancelButton: {
-    backgroundColor: red[500],
-    color: "white",
+    backgroundColor: "#db6565",
+    color: "#ffffff",
     "&:hover": {
-      backgroundColor: red[700],
+      backgroundColor: "#c55555",
     },
     borderRadius: "8px",
     padding: "8px 16px",
@@ -151,10 +182,10 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
   },
   saveButton: {
-    backgroundColor: blue[500],
-    color: "white",
+    backgroundColor: "#437db5",
+    color: "#ffffff",
     "&:hover": {
-      backgroundColor: blue[700],
+      backgroundColor: "#3a6ba5",
     },
     borderRadius: "8px",
     padding: "8px 16px",
@@ -163,10 +194,10 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
   },
   attachButton: {
-    backgroundColor: green[500],
-    color: "white",
+    backgroundColor: "#FFA500",
+    color: "#ffffff",
     "&:hover": {
-      backgroundColor: green[700],
+      backgroundColor: "#e69500",
     },
     borderRadius: "8px",
     padding: "8px 16px",
@@ -641,6 +672,7 @@ const CampaignModal = ({
         PaperComponent={DraggablePaper}
         disableBackdropClick
         disableEscapeKeyDown
+        hideBackdrop={true}
       >
         <DialogTitle
           id="draggable-dialog-title"

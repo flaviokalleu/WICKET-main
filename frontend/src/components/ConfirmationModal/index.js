@@ -84,10 +84,38 @@ const ConfirmationModal = ({
       open={open}
       onClose={() => onClose(false)}
       aria-labelledby="confirm-dialog"
+      hideBackdrop={true}
+      PaperProps={{
+        style: {
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+          border: "1px solid #333333",
+          borderRadius: "12px",
+          boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+        }
+      }}
     >
-      <DialogTitle id="confirm-dialog">{title}</DialogTitle>
-      <DialogContent dividers>
-        <Typography>{children}</Typography>
+      <DialogTitle 
+        id="confirm-dialog"
+        style={{
+          backgroundColor: "#000000",
+          color: "#ffffff",
+          padding: "16px 24px",
+          fontSize: "1.25rem",
+          fontWeight: 600,
+        }}
+      >
+        {title}
+      </DialogTitle>
+      <DialogContent 
+        dividers
+        style={{
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+          padding: "24px",
+        }}
+      >
+        <Typography style={{ color: "#ffffff" }}>{children}</Typography>
         {isCellPhone && (
           <Grid style={{ width: 300, marginTop: 10 }} container>
             <Grid xs={12} item>

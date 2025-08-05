@@ -61,7 +61,6 @@ import toastError from "../errors/toastError";
 import AnnouncementsPopover from "../components/AnnouncementsPopover";
 
 import logo from "../assets/logo.png";
-import logoDark from "../assets/logo-black.png";
 import ChatPopover from "../pages/Chat/ChatPopover";
 
 import { useDate } from "../hooks/useDate";
@@ -503,8 +502,8 @@ const LoggedInLayout = ({ children, themeToggle }) => {
                 height: "100%",
                 width: "100%",
               }}
-              src={theme.mode === "light" ? logo : logoDark}
-              alt="logo"
+              src={logo}
+              alt="Logo"
             />
           )}
           <IconButton onClick={() => setDrawerOpen(!drawerOpen)}>

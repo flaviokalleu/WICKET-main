@@ -25,8 +25,24 @@ const useStyles = makeStyles(theme => ({
 		flexWrap: "wrap",
 	},
 	textField: {
-		marginRight: theme.spacing(1),
-		flex: 1,
+		marginBottom: theme.spacing(3),
+		"& .MuiOutlinedInput-root": {
+			borderRadius: "10px",
+			background: '#2a2a2a',
+			color: '#ffffff',
+			"&.Mui-focused fieldset": {
+				borderColor: '#437db5',
+			},
+		},
+		"& .MuiInputLabel-outlined": {
+			color: '#cccccc',
+		},
+		"& .MuiInputLabel-outlined.Mui-focused": {
+			color: '#437db5',
+		},
+		"& .MuiOutlinedInput-notchedOutline": {
+			borderColor: '#555555',
+		},
 	},
 
 	extraAttr: {
@@ -48,9 +64,35 @@ const useStyles = makeStyles(theme => ({
 		marginLeft: -12,
 	},
 
-    textCenter: {
-        backgroundColor: 'red'
-    }
+	buttonCancel: {
+		background: '#db6565',
+		color: "white",
+		borderRadius: "8px",
+		padding: '10px 20px',
+		fontWeight: 600,
+		textTransform: 'none',
+		"&:hover": {
+			background: '#c55555',
+		},
+	},
+
+	buttonSave: {
+		background: '#437db5',
+		color: "white",
+		borderRadius: "8px",
+		padding: '10px 20px',
+		fontWeight: 600,
+		textTransform: 'none',
+		"&:hover": {
+			background: '#3a6ba5',
+		},
+	},
+
+	formContainer: {
+		background: '#1a1a1a',
+		padding: theme.spacing(3),
+		borderRadius: '12px',
+	},
 }));
 
 const ContactSchema = Yup.object().shape({
@@ -88,117 +130,103 @@ export function ContactForm ({ initialContact, onSave, onCancel }) {
 	};
 
     return (
-        <Formik
-            initialValues={contact}
-            enableReinitialize={true}
-            validationSchema={ContactSchema}
-            onSubmit={(values, actions) => {
-                setTimeout(() => {
-                    handleSaveContact(values);
-                    actions.setSubmitting(false);
-                }, 400);
-            }}
-        >
-            {({ values, errors, touched, isSubmitting }) => (
-                <Form>
-                    <Grid container spacing={1}>
-                        {/* <Grid item xs={12}>
-                            <Typography variant="subtitle1" gutterBottom>
-                                {i18n.t("contactModal.form.mainInfo")}
-                            </Typography>
-                        </Grid> */}
-                        <Grid item xs={12}>
-                            <Field
-                                as={TextField}
-                                label={i18n.t("contactModal.form.name")}
-                                name="name"
-                                autoFocus
-                                error={touched.name && Boolean(errors.name)}
-                                helperText={touched.name && errors.name}
-                                variant="outlined"
-                                margin="dense"
-                                className={classes.textField}
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Field
-                                as={TextField}
-                                label={i18n.t("contactModal.form.number")}
-                                name="number"
-                                error={touched.number && Boolean(errors.number)}
-                                helperText={touched.number && errors.number}
-                                placeholder="5513912344321"
-                                variant="outlined"
-                                margin="dense"
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Field
-                                as={TextField}
-                                label={i18n.t("contactModal.form.email")}
-                                name="email"
-                                error={touched.email && Boolean(errors.email)}
-                                helperText={touched.email && errors.email}
-                                placeholder="Email address"
-                                fullWidth
-                                margin="dense"
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={12} spacing={1}>
-                            <Grid container spacing={1}>
-                                <Grid xs={6} item>
-                                    <Button
-                                        startIcon={<CancelIcon />}
-                                        onClick={onCancel}
-					style={{
-                                        color: "white",
-                                        backgroundColor: "#db6565",
-                                        boxShadow: "none",
-                                        borderRadius: 0,
-                                        fontSize: "12px",
-                                        }}
-                                        disabled={isSubmitting}
-                                        variant="outlined"
-                                        fullWidth
-                                    >
-                                        {i18n.t("contactModal.buttons.cancel")}
-                                    </Button>
-                                </Grid>
-                                <Grid classes={classes.textCenter} xs={6} item>
-                                    <Button
-                                        startIcon={<SaveIcon />}
-                                        type="submit"
-					style={{
-                                        color: "white",
-                                        backgroundColor: "#437db5",
-                                        boxShadow: "none",
-                                        borderRadius: 0,
-                                        fontSize: "12px",
-                                        }}
-                                        disabled={isSubmitting}
-                                        variant="contained"
-                                        className={classes.btnWrapper}
-                                        fullWidth
-                                    >
-                                        {contact.id
-                                            ? `${i18n.t("contactModal.buttons.okEdit")}`
-                                            : `${i18n.t("contactModal.buttons.okAdd")}`}
-                                        {isSubmitting && (
-                                            <CircularProgress
-                                                size={24}
-                                                className={classes.buttonProgress}
-                                            />
-                                        )}
-                                    </Button>
+        <div className={classes.formContainer}>
+            <Formik
+                initialValues={contact}
+                enableReinitialize={true}
+                validationSchema={ContactSchema}
+                onSubmit={(values, actions) => {
+                    setTimeout(() => {
+                        handleSaveContact(values);
+                        actions.setSubmitting(false);
+                    }, 400);
+                }}
+            >
+                {({ values, errors, touched, isSubmitting }) => (
+                    <Form>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12}>
+                                <Field
+                                    as={TextField}
+                                    label={i18n.t("contactModal.form.name")}
+                                    name="name"
+                                    autoFocus
+                                    error={touched.name && Boolean(errors.name)}
+                                    helperText={touched.name && errors.name}
+                                    variant="outlined"
+                                    margin="dense"
+                                    className={classes.textField}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Field
+                                    as={TextField}
+                                    label={i18n.t("contactModal.form.number")}
+                                    name="number"
+                                    error={touched.number && Boolean(errors.number)}
+                                    helperText={touched.number && errors.number}
+                                    placeholder="5513912344321"
+                                    variant="outlined"
+                                    margin="dense"
+                                    className={classes.textField}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Field
+                                    as={TextField}
+                                    label={i18n.t("contactModal.form.email")}
+                                    name="email"
+                                    error={touched.email && Boolean(errors.email)}
+                                    helperText={touched.email && errors.email}
+                                    placeholder="Email address"
+                                    fullWidth
+                                    margin="dense"
+                                    variant="outlined"
+                                    className={classes.textField}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={6}>
+                                        <Button
+                                            startIcon={<CancelIcon />}
+                                            onClick={onCancel}
+                                            disabled={isSubmitting}
+                                            variant="contained"
+                                            fullWidth
+                                            className={classes.buttonCancel}
+                                        >
+                                            {i18n.t("contactModal.buttons.cancel")}
+                                        </Button>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Button
+                                            startIcon={<SaveIcon />}
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            variant="contained"
+                                            className={`${classes.btnWrapper} ${classes.buttonSave}`}
+                                            fullWidth
+                                        >
+                                            {contact.id
+                                                ? `${i18n.t("contactModal.buttons.okEdit")}`
+                                                : `${i18n.t("contactModal.buttons.okAdd")}`}
+                                            {isSubmitting && (
+                                                <CircularProgress
+                                                    size={24}
+                                                    className={classes.buttonProgress}
+                                                />
+                                            )}
+                                        </Button>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                </Form>
-            )}
-        </Formik>
+                    </Form>
+                )}
+            </Formik>
+        </div>
     )
 }

@@ -149,37 +149,27 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
   return (
     <Dialog
       open={open}
-      onClose={(event, reason) => {
-        if (reason === "backdropClick" || reason === "escapeKeyDown") {
-          return;
-        }
-        handleClose();
-      }}
+      onClose={handleClose}
       maxWidth="md"
       fullWidth
       TransitionComponent={Transition}
-      PaperComponent={(props) => (
-        <Draggable
-          handle="#draggable-dialog-title"
-          bounds="parent"
-          cancel={'[class*="MuiDialogContent-root"]'}
-        >
-          <Paper
-            {...props}
-            sx={{
-              borderRadius: "8px",
-              boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)",
-              overflow: "hidden",
-            }}
-          />
-        </Draggable>
-      )}
+      PaperProps={{
+        sx: {
+          borderRadius: "12px",
+          overflow: "hidden",
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+          minHeight: "500px",
+          boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+        },
+      }}
+      hideBackdrop={true}
     >
       <DialogTitle
         id="draggable-dialog-title"
         sx={{
-          backgroundColor: "#3f51b5",
-          color: "white",
+          backgroundColor: "#000000",
+          color: "#ffffff",
           cursor: "move",
           padding: "16px 24px",
           display: "flex",
@@ -207,7 +197,7 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
           }}
         />
       </DialogTitle>
-      <DialogContent dividers sx={{ bgcolor: "#f8fafc", p: 0 }}>
+      <DialogContent dividers sx={{ bgcolor: "#1a1a1a", p: 0 }}>
         <Formik
           initialValues={contact}
           enableReinitialize
@@ -255,14 +245,21 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                       }}
                       sx={{
                         "& .MuiFilledInput-root": {
-                          bgcolor: "rgba(233, 236, 239, 0.4)",
+                          bgcolor: "#2a2a2a",
                           borderRadius: "8px",
+                          color: "#ffffff",
                           "&:hover": {
-                            bgcolor: "rgba(233, 236, 239, 0.6)",
+                            bgcolor: "#333333",
                           },
                           "&.Mui-focused": {
-                            bgcolor: "rgba(233, 236, 239, 0.8)",
+                            bgcolor: "#333333",
                           },
+                        },
+                        "& .MuiInputLabel-root": {
+                          color: "#cccccc",
+                        },
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: "#437db5",
                         },
                       }}
                     />
@@ -281,20 +278,27 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
-                            <PhoneIcon color="primary" />
+                            <PhoneIcon sx={{ color: "#437db5" }} />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
                         "& .MuiFilledInput-root": {
-                          bgcolor: "rgba(233, 236, 239, 0.4)",
+                          bgcolor: "#2a2a2a",
                           borderRadius: "8px",
+                          color: "#ffffff",
                           "&:hover": {
-                            bgcolor: "rgba(233, 236, 239, 0.6)",
+                            bgcolor: "#333333",
                           },
                           "&.Mui-focused": {
-                            bgcolor: "rgba(233, 236, 239, 0.8)",
+                            bgcolor: "#333333",
                           },
+                        },
+                        "& .MuiInputLabel-root": {
+                          color: "#cccccc",
+                        },
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: "#437db5",
                         },
                       }}
                     />
@@ -313,20 +317,27 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
-                            <EmailIcon color="primary" />
+                            <EmailIcon sx={{ color: "#437db5" }} />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
                         "& .MuiFilledInput-root": {
-                          bgcolor: "rgba(233, 236, 239, 0.4)",
+                          bgcolor: "#2a2a2a",
                           borderRadius: "8px",
+                          color: "#ffffff",
                           "&:hover": {
-                            bgcolor: "rgba(233, 236, 239, 0.6)",
+                            bgcolor: "#333333",
                           },
                           "&.Mui-focused": {
-                            bgcolor: "rgba(233, 236, 239, 0.8)",
+                            bgcolor: "#333333",
                           },
+                        },
+                        "& .MuiInputLabel-root": {
+                          color: "#cccccc",
+                        },
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: "#437db5",
                         },
                       }}
                     />
@@ -341,7 +352,7 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                   sx={{
                     mt: 3,
                     p: 2,
-                    bgcolor: "rgba(233, 236, 239, 0.4)",
+                    bgcolor: "#2a2a2a",
                     borderRadius: "8px",
                   }}
                 >
@@ -387,13 +398,13 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                   sx={{
                     mt: 3,
                     p: 2,
-                    bgcolor: "rgba(233, 236, 239, 0.4)",
+                    bgcolor: "#2a2a2a",
                     borderRadius: "8px",
                   }}
                 >
                   <Typography
                     variant="subtitle1"
-                    sx={{ mb: 1, display: "flex", alignItems: "center" }}
+                    sx={{ mb: 1, display: "flex", alignItems: "center", color: "#ffffff" }}
                   >
                     <WhatsAppIcon
                       sx={{
@@ -407,14 +418,17 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                         contact?.whatsapp ? contact?.whatsapp.name : "Not linked"
                       }
                       size="small"
-                      sx={{ ml: 1 }}
-                      color={contact?.whatsapp ? "success" : "default"}
+                      sx={{ 
+                        ml: 1,
+                        backgroundColor: contact?.whatsapp ? green[500] : "#555555",
+                        color: "#ffffff"
+                      }}
                     />
                   </Typography>
 
                   <Typography
                     variant="subtitle1"
-                    sx={{ display: "flex", alignItems: "center" }}
+                    sx={{ display: "flex", alignItems: "center", color: "#ffffff" }}
                   >
                     <InfoIcon
                       sx={{
@@ -433,8 +447,11 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                           : "Não Informado"
                       }
                       size="small"
-                      sx={{ ml: 1 }}
-                      color={contact?.lgpdAcceptedAt ? "primary" : "default"}
+                      sx={{ 
+                        ml: 1,
+                        backgroundColor: contact?.lgpdAcceptedAt ? blue[500] : "#555555",
+                        color: "#ffffff"
+                      }}
                     />
                   </Typography>
                 </Box>
@@ -447,13 +464,13 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                         gutterBottom
                         sx={{
                           mt: 3,
-                          color: indigo[700],
+                          color: "#ffffff",
                           fontWeight: "bold",
                           display: "flex",
                           alignItems: "center",
                         }}
                       >
-                        <AddIcon sx={{ mr: 1, fontSize: "1.2rem" }} />
+                        <AddIcon sx={{ mr: 1, fontSize: "1.2rem", color: "#437db5" }} />
                         {i18n.t("contactModal.form.extraInfo")}
                       </Typography>
 
@@ -474,8 +491,12 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                               variant="filled"
                               sx={{
                                 "& .MuiFilledInput-root": {
-                                  bgcolor: "rgba(233, 236, 239, 0.4)",
+                                  bgcolor: "#2a2a2a",
                                   borderRadius: "8px",
+                                  color: "#ffffff",
+                                },
+                                "& .MuiInputLabel-root": {
+                                  color: "#cccccc",
                                 },
                               }}
                             />
@@ -487,15 +508,19 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                               variant="filled"
                               sx={{
                                 "& .MuiFilledInput-root": {
-                                  bgcolor: "rgba(233, 236, 239, 0.4)",
+                                  bgcolor: "#2a2a2a",
                                   borderRadius: "8px",
+                                  color: "#ffffff",
+                                },
+                                "& .MuiInputLabel-root": {
+                                  color: "#cccccc",
                                 },
                               }}
                             />
                             <IconButton
                               onClick={() => remove(index)}
                               style={{
-                              backgroundColor: "#FF6B6B",
+                              backgroundColor: "#db6565",
                               borderRadius: "10px",
                               padding: "8px"
                               }}
@@ -511,7 +536,7 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                         variant="contained"
                         style={{
                         color: "white",
-                        backgroundColor: "#FFA500",
+                        backgroundColor: "#437db5",
                         boxShadow: "none",
                         borderRadius: "5px",
                         fontSize: "12px",
@@ -524,11 +549,11 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
                 </FieldArray>
               </Box>
 
-              <Divider sx={{ my: 1 }} />
+              <Divider sx={{ my: 1, backgroundColor: "#555555" }} />
 
               <DialogActions
                 sx={{
-                  bgcolor: "#f8fafc",
+                  bgcolor: "#1a1a1a",
                   p: 2,
                   display: "flex",
                   justifyContent: "space-between",

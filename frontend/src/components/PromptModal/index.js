@@ -260,8 +260,24 @@ const PromptModal = ({ open, onClose, promptId }) => {
                 scroll="paper"
                 fullWidth
                 classes={{ paper: classes.dialogPaper }}
+                hideBackdrop={true}
+                PaperProps={{
+                    style: {
+                        backgroundColor: "#1a1a1a",
+                        color: "#ffffff",
+                        border: "1px solid #333333",
+                        borderRadius: "12px",
+                        boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+                    }
+                }}
             >
-                <div className={classes.dialogHeader}>
+                <div 
+                    className={classes.dialogHeader}
+                    style={{
+                        backgroundColor: "#000000",
+                        borderBottom: "1px solid #333333",
+                    }}
+                >
                     <ChatIcon className={classes.dialogIcon} />
                     <Typography variant="h6" className={classes.dialogTitle}>
                         {promptId
@@ -269,7 +285,14 @@ const PromptModal = ({ open, onClose, promptId }) => {
                             : `${i18n.t("promptModal.title.add")}`}
                     </Typography>
                 </div>
-                <DialogContent dividers>
+                <DialogContent 
+                    dividers
+                    style={{
+                        backgroundColor: "#1a1a1a",
+                        color: "#ffffff",
+                        borderColor: "#333333",
+                    }}
+                >
                     <Formik
                         initialValues={prompt}
                         enableReinitialize={true}
@@ -505,7 +528,14 @@ const PromptModal = ({ open, onClose, promptId }) => {
                                     </div>
                                 </div>
                                 
-                                <DialogActions style={{ padding: "16px 0", justifyContent: "flex-end" }}>
+                                <DialogActions 
+                                    style={{ 
+                                        padding: "16px 24px", 
+                                        justifyContent: "flex-end",
+                                        backgroundColor: "#1a1a1a",
+                                        borderTop: "1px solid #333333",
+                                    }}
+                                >
                                     <Button
                                         startIcon={<CancelIcon />}
                                         onClick={handleClose}

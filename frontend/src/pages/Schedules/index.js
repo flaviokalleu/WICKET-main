@@ -41,6 +41,7 @@ const eventTitleStyle = {
   overflow: "hidden",
   whiteSpace: "nowrap",
   textOverflow: "ellipsis",
+  color: "#ffffff",
 };
 
 const localizer = momentLocalizer(moment);
@@ -113,28 +114,75 @@ const reducer = (state, action) => {
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
     flex: 1,
-    padding: theme.spacing(1),
+    padding: theme.spacing(3),
     overflowY: "scroll",
+    backgroundColor: "#1a1a1a",
+    color: "#ffffff",
+    borderRadius: "12px",
     ...theme.scrollbarStyles,
   },
   calendarToolbar: {
     '& .rbc-toolbar-label': {
-      color: theme.palette.text.primary,
+      color: "#ffffff",
+      fontWeight: 600,
     },
     '& .rbc-btn-group button': {
-      color: theme.palette.text.primary,
+      color: "#ffffff",
+      backgroundColor: "#2a2a2a",
+      border: "1px solid #555555",
+      borderRadius: "8px",
+      margin: "0 2px",
       '&:hover': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: "#333333",
       },
       '&:active, &:focus, &.rbc-active': {
-        backgroundColor: theme.palette.action.selected,
+        backgroundColor: "#437db5",
+        borderColor: "#437db5",
       },
+    },
+  },
+  searchContainer: {
+    padding: theme.spacing(2),
+    backgroundColor: "#2a2a2a",
+    borderRadius: "8px",
+    marginBottom: theme.spacing(2),
+  },
+  searchField: {
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "10px",
+      background: '#1a1a1a',
+      color: '#ffffff',
+      "&.Mui-focused fieldset": {
+        borderColor: '#437db5',
+      },
+    },
+    "& .MuiInputLabel-outlined": {
+      color: '#cccccc',
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: '#437db5',
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: '#555555',
+    },
+  },
+  addButton: {
+    backgroundColor: "#437db5",
+    color: "#ffffff",
+    borderRadius: "8px",
+    padding: "10px 20px",
+    fontWeight: 600,
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#3a6ba5",
     },
   },
   mobileEventContainer: {
     display: "flex",
     flexDirection: "column",
     padding: "4px",
+    backgroundColor: "#2a2a2a",
+    borderRadius: "4px",
   },
   mobileEventActions: {
     display: "flex",
@@ -144,6 +192,83 @@ const useStyles = makeStyles((theme) => ({
   mobileActionButton: {
     minWidth: "auto",
     padding: "4px",
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#333333",
+    },
+  },
+  calendarContainer: {
+    backgroundColor: "#2a2a2a",
+    borderRadius: "8px",
+    padding: theme.spacing(2),
+    "& .rbc-calendar": {
+      backgroundColor: "transparent",
+    },
+    "& .rbc-month-view": {
+      backgroundColor: "transparent",
+    },
+    "& .rbc-header": {
+      backgroundColor: "#333333",
+      color: "#ffffff",
+      padding: "8px",
+      borderRadius: "4px",
+      marginBottom: "4px",
+    },
+    "& .rbc-date-cell": {
+      color: "#ffffff",
+    },
+    "& .rbc-event": {
+      backgroundColor: "#437db5",
+      borderRadius: "4px",
+      border: "none",
+    },
+    "& .rbc-today": {
+      backgroundColor: "rgba(67, 125, 181, 0.2)",
+    },
+    "& .rbc-off-range-bg": {
+      backgroundColor: "#1a1a1a",
+    },
+    "& .event-container": {
+      backgroundColor: "#437db5",
+      color: "#ffffff",
+      padding: "4px 8px",
+      borderRadius: "4px",
+      fontSize: "12px",
+      position: "relative",
+      cursor: "pointer",
+      "& .delete-icon, & .edit-icon": {
+        fontSize: "14px",
+        position: "absolute",
+        top: "2px",
+        cursor: "pointer",
+        "&:hover": {
+          opacity: 0.7,
+        },
+      },
+      "& .delete-icon": {
+        right: "20px",
+      },
+      "& .edit-icon": {
+        right: "4px",
+      },
+    },
+    "& .rbc-agenda-view": {
+      backgroundColor: "transparent",
+      "& .rbc-agenda-table": {
+        backgroundColor: "transparent",
+        "& tbody tr": {
+          backgroundColor: "#2a2a2a",
+          color: "#ffffff",
+          "&:nth-child(even)": {
+            backgroundColor: "#333333",
+          },
+        },
+        "& thead tr": {
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+        },
+      },
+    },
   },
 }));
 
@@ -372,10 +497,11 @@ const Schedules = () => {
             type="search"
             value={searchParam}
             onChange={handleSearch}
+            className={classes.searchField}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon style={{ color: "#FFA500" }} />
+                  <SearchIcon style={{ color: "#437db5" }} />
                 </InputAdornment>
               ),
             }}
@@ -384,13 +510,7 @@ const Schedules = () => {
           <Button
             startIcon={<AddIcon />}
             variant="contained"
-            style={{
-              color: "white",
-              backgroundColor: "#437db5",
-              boxShadow: "none",
-              borderRadius: "5px",
-              margin: isMobile ? "8px 0" : "0 8px"
-            }}
+            className={classes.addButton}
             onClick={handleOpenScheduleModal}
           >
             {i18n.t("schedules.buttons.add")}
@@ -398,27 +518,29 @@ const Schedules = () => {
         </MainHeaderButtonsWrapper>
       </MainHeader>
       <Paper className={classes.mainPaper} variant="outlined" onScroll={handleScroll}>
-        <DragAndDropCalendar
-          messages={defaultMessages}
-          formats={{
-            agendaDateFormat: "DD/MM ddd",
-            weekdayFormat: "dddd",
-          }}
-          localizer={localizer}
-          events={schedules.map((schedule) => ({
-            ...schedule,
-            title: renderEvent(schedule),
-            start: new Date(schedule.sendAt),
-            end: new Date(schedule.sendAt),
-          }))}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: isMobile ? 400 : 500 }}
-          className={classes.calendarToolbar}
-          onEventDrop={handleEventDrop}
-          resizable
-          selectable
-        />
+        <div className={classes.calendarContainer}>
+          <DragAndDropCalendar
+            messages={defaultMessages}
+            formats={{
+              agendaDateFormat: "DD/MM ddd",
+              weekdayFormat: "dddd",
+            }}
+            localizer={localizer}
+            events={schedules.map((schedule) => ({
+              ...schedule,
+              title: renderEvent(schedule),
+              start: new Date(schedule.sendAt),
+              end: new Date(schedule.sendAt),
+            }))}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: isMobile ? 400 : 500 }}
+            className={classes.calendarToolbar}
+            onEventDrop={handleEventDrop}
+            resizable
+            selectable
+          />
+        </div>
       </Paper>
     </MainContainer>
   );

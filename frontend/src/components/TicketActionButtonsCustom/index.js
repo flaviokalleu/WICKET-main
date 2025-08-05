@@ -629,14 +629,18 @@ const TicketActionButtonsCustom = ({ ticket }) => {
                 open={openModal}
                 onClose={handleCloseModal}
                 maxWidth="md"
-                disableBackdropClick // Impede que o modal feche ao clicar fora dele
-                disableEscapeKeyDown // Impede que o modal feche ao pressionar a tecla "Esc"
-                disableEnforceFocus // Permite interagir com outros elementos da interface
-                BackdropProps={{
-                    invisible: true, // Remove completamente o backdrop
-                }}
+                disableBackdropClick
+                disableEscapeKeyDown
+                disableEnforceFocus
+                hideBackdrop={true}
                 PaperProps={{
-                    className: classes.paper, // Aplica o estilo personalizado
+                    className: classes.paper,
+                    style: {
+                        borderRadius: 12,
+                        backgroundColor: "#1a1a1a",
+                        color: "#ffffff",
+                        boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+                    },
                 }}
             >
                 <iframe

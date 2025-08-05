@@ -57,9 +57,24 @@ const QrcodeModal = ({ open, onClose, whatsAppId }) => {
   }, [whatsAppId, onClose]);
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="lg" scroll="paper">
-  <DialogContent>
-    <Paper elevation={0} style={{ display: "flex", alignItems: "center" }}>
+    <Dialog 
+      open={open} 
+      onClose={onClose} 
+      maxWidth="lg" 
+      scroll="paper"
+      hideBackdrop={true}
+      PaperProps={{
+        style: {
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+          border: "1px solid #333333",
+          borderRadius: "12px",
+          boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+        }
+      }}
+    >
+  <DialogContent style={{ backgroundColor: "#1a1a1a", color: "#ffffff" }}>
+    <Paper elevation={0} style={{ display: "flex", alignItems: "center", backgroundColor: "#1a1a1a" }}>
       {/* GIF no lado esquerdo */}
       <img 
         src={g02} 
@@ -68,14 +83,14 @@ const QrcodeModal = ({ open, onClose, whatsAppId }) => {
       />
       
       <div>
-        <Typography color="secondary" gutterBottom>
+        <Typography style={{ color: "#ffffff" }} gutterBottom>
           {i18n.t("qrCode.message")}
         </Typography>
         <div className={classes.root}>
           {qrCode ? (
             <QRCode value={qrCode} size={300} style={{ backgroundColor: "white", padding: '5px' }} />
           ) : (
-            <span>Aguardando pelo QR Code</span>
+            <span style={{ color: "#ffffff" }}>Aguardando pelo QR Code</span>
           )}
         </div>
       </div>

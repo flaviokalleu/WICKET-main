@@ -61,17 +61,23 @@ const useStyles = makeStyles(theme => ({
     marginLeft: -12
   },
   dialogTitle: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
+    backgroundColor: "#000000",
+    color: "#ffffff",
     padding: theme.spacing(2),
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: "1.25rem",
+    fontWeight: 600,
   },
   dialogContent: {
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
+    backgroundColor: "#1a1a1a",
+    color: "#ffffff",
   },
   dialogActions: {
     padding: theme.spacing(2),
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    backgroundColor: "#1a1a1a",
+    borderTop: "1px solid #555555",
   },
   checkbox: {
     color: theme.palette.primary.main
@@ -254,6 +260,15 @@ const CampaignModalPhrase = ({ open, onClose, FlowCampaignId, onSave }) => {
         fullWidth
         maxWidth="md"
         scroll="paper"
+        hideBackdrop={true}
+        PaperProps={{
+          style: {
+            borderRadius: 12,
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          },
+        }}
       >
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
           {campaignEditable ? (

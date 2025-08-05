@@ -222,8 +222,16 @@ const QueueIntegration = ({ open, onClose, integrationId }) => {
         disableBackdropClick
         disableEscapeKeyDown
         TransitionComponent={Transition}
+        hideBackdrop={true}
         PaperProps={{
-          className: classes.paperComponent
+          className: classes.paperComponent,
+          style: {
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            border: "1px solid #333333",
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          }
         }}
         PaperComponent={(props) => (
           <Draggable
@@ -234,7 +242,14 @@ const QueueIntegration = ({ open, onClose, integrationId }) => {
           </Draggable>
         )}
       >
-        <DialogTitle className={`${classes.dialogTitle} dialog-title`}>
+        <DialogTitle 
+          className={`${classes.dialogTitle} dialog-title`}
+          style={{
+            backgroundColor: "#000000",
+            color: "#ffffff",
+            borderBottom: "1px solid #333333",
+          }}
+        >
           {integrationId
             ? `${i18n.t("queueIntegrationModal.title.edit")}`
             : `${i18n.t("queueIntegrationModal.title.add")}`}
@@ -253,7 +268,15 @@ const QueueIntegration = ({ open, onClose, integrationId }) => {
           {({ touched, errors, isSubmitting, values }) => (
             <Form>
               <Paper square className={classes.mainPaper} elevation={1}>
-                <DialogContent dividers className={classes.dialogContent}>
+                <DialogContent 
+                  dividers 
+                  className={classes.dialogContent}
+                  style={{
+                    backgroundColor: "#1a1a1a",
+                    color: "#ffffff",
+                    borderColor: "#333333",
+                  }}
+                >
                   <Grid container spacing={1}>
                     <Grid item xs={12} md={6} xl={6}>
                       <FormControl
@@ -653,7 +676,14 @@ const QueueIntegration = ({ open, onClose, integrationId }) => {
                 </DialogContent>
               </Paper>
 
-              <DialogActions className={classes.dialogActions}>
+              <DialogActions 
+                className={classes.dialogActions}
+                style={{
+                  backgroundColor: "#1a1a1a",
+                  borderTop: "1px solid #333333",
+                  padding: "16px 24px",
+                }}
+              >
                 {values.type === "dialogflow" && (
                   <Button
                     startIcon={<SettingsIcon />}

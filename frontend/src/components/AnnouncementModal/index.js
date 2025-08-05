@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     height: 20,
   },
   dialogTitle: {
-    backgroundColor: "#3f51b5",
+    backgroundColor: "#000000",
     color: "white",
     padding: theme.spacing(2),
     cursor: 'move',
@@ -73,11 +73,12 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogContent: {
     padding: theme.spacing(3),
-    backgroundColor: "white", // Changed to white
+    backgroundColor: "#1a1a1a",
+    color: "#ffffff",
   },
   dialogActions: {
     padding: theme.spacing(2),
-    backgroundColor: "white", // Changed to white
+    backgroundColor: "#1a1a1a",
     borderBottomLeftRadius: "12px",
     borderBottomRightRadius: "12px",
     borderTop: "1px solid rgba(0, 0, 0, 0.08)",
@@ -132,20 +133,37 @@ const useStyles = makeStyles((theme) => ({
   inputField: {
     "& .MuiOutlinedInput-root": {
       borderRadius: "10px",
-      backgroundColor: "white",
+      backgroundColor: "#2a2a2a",
+      color: "#ffffff",
       "&.Mui-focused fieldset": {
-        borderColor: "#667eea",
+        borderColor: "#437db5",
       },
+      "& fieldset": {
+        borderColor: "#444444",
+      },
+      "&:hover fieldset": {
+        borderColor: "#666666",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#a0a0a0",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiFormHelperText-root": {
+      color: "#ff6b6b",
     },
   },
   attachmentBox: {
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(1),
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#2a2a2a",
     borderRadius: "10px",
     marginTop: theme.spacing(1),
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+    border: "1px solid #444444",
   },
   priorityIcon: {
     marginRight: theme.spacing(1),
@@ -155,11 +173,26 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiPaper-root": {
       borderRadius: "10px",
       marginTop: theme.spacing(1),
-      boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
+      backgroundColor: "#2a2a2a",
+      color: "#ffffff",
+      border: "1px solid #444444",
+      boxShadow: "0 5px 15px rgba(0, 0, 0, 0.3)",
+    },
+    "& .MuiMenuItem-root": {
+      color: "#ffffff",
+      "&:hover": {
+        backgroundColor: "#3a3a3a",
+      },
+      "&.Mui-selected": {
+        backgroundColor: "#437db5",
+        "&:hover": {
+          backgroundColor: "#3a6da3",
+        },
+      },
     },
   },
   iconAdornment: {
-    color: "#667eea",
+    color: "#437db5",
   },
 }));
 
@@ -348,8 +381,16 @@ const AnnouncementModal = ({ open, onClose, announcementId, reload }) => {
         PaperComponent={PaperComponent}
         TransitionComponent={Transition}
         aria-labelledby="draggable-dialog-title"
+        hideBackdrop={true}
         PaperProps={{
           className: classes.paper,
+          style: {
+            backgroundColor: "#1a1a1a",
+            color: "#ffffff",
+            border: "1px solid #333333",
+            borderRadius: "12px",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.8)",
+          }
         }}
       >
         <DialogTitle id="draggable-dialog-title" className={classes.dialogTitle}>
@@ -509,13 +550,13 @@ const AnnouncementModal = ({ open, onClose, announcementId, reload }) => {
                   {(announcement.mediaPath || attachment) && (
                     <Grid xs={12} item>
                       <Box className={classes.attachmentBox}>
-                        <AttachFileIcon color="primary" style={{ marginRight: 8 }} />
-                        <Typography variant="body2" style={{ flexGrow: 1 }}>
+                        <AttachFileIcon style={{ color: "#437db5", marginRight: 8 }} />
+                        <Typography variant="body2" style={{ flexGrow: 1, color: "#ffffff" }}>
                           {attachment ? attachment.name : announcement.mediaName}
                         </Typography>
                         <IconButton
                           onClick={() => setConfirmationOpen(true)}
-                          color="secondary"
+                          style={{ color: "#d32f2f" }}
                           size="small"
                         >
                           <DeleteOutlineIcon fontSize="small" />

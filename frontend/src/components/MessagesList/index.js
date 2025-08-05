@@ -50,6 +50,7 @@ import useCompanySettings from "../../hooks/useSettings/companySettings";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { QueueSelectedContext } from "../../context/QueuesSelected/QueuesSelectedContext";
 import AudioModal from "../AudioModal";
+import AudioPlayer from "../AudioPlayer";
 import { messages } from "../../translate/languages";
 import { useParams, useHistory } from 'react-router-dom';
 import { downloadResource } from "../../utils";
@@ -455,6 +456,10 @@ const MessagesList = ({
   const [anchorEl, setAnchorEl] = useState(null);
   const messageOptionsMenuOpen = Boolean(anchorEl);
   const { ticketId } = useParams();
+  
+  // Audio modal state
+  const [audioModalOpen, setAudioModalOpen] = useState(false);
+  const [currentAudioUrl, setCurrentAudioUrl] = useState("");
 
   const currentTicketId = useRef(ticketId);
   const { getAll } = useCompanySettings();
@@ -468,6 +473,18 @@ const MessagesList = ({
   const { user, socket } = useContext(AuthContext);
 
   const companyId = user.companyId;
+
+  // Function to open audio modal
+  const handleOpenAudioModal = (audioUrl) => {
+    setCurrentAudioUrl(audioUrl);
+    setAudioModalOpen(true);
+  };
+
+  // Function to close audio modal
+  const handleCloseAudioModal = () => {
+    setAudioModalOpen(false);
+    setCurrentAudioUrl("");
+  };
 
   useEffect(() => {
 
@@ -838,11 +855,10 @@ const checkMessageMedia = (message) => {
 
         if (message.mediaType === "audio") {
           return (
-            <AudioModal url={message.mediaUrl} />
-            // <audio controls>
-            //   <source src={message.mediaUrl} type="audio/ogg"></source>
-            //   {/* <source src={message.mediaUrl} type="audio/mp3"></source> */}
-            // </audio>
+            <AudioPlayer 
+              url={message.mediaUrl} 
+              onOpenModal={() => handleOpenAudioModal(message.mediaUrl)}
+            />
           );
         } else
 
@@ -1015,12 +1031,10 @@ const renderQuotedMessage = (message) => {
         {message.quotedMsg.mediaType === "audio"
           && (
             <div className={classes.downloadMedia}>
-              <AudioModal url={message.quotedMsg.mediaUrl} />
-
-              {/* <audio controls>
-                  <source src={message.quotedMsg.mediaUrl} type="audio/mp3"></source>
-                  {/* <source src={message.quotedMsg.mediaUrl} type="audio/ogg"></source> 
-                </audio> */}
+              <AudioPlayer 
+                url={message.quotedMsg.mediaUrl} 
+                onOpenModal={() => handleOpenAudioModal(message.quotedMsg.mediaUrl)}
+              />
             </div>
           )
         }
@@ -1416,6 +1430,15 @@ return (
       <div>
         <CircularProgress className={classes.circleLoading} />
       </div>
+    )}
+    
+    {/* Audio Modal */}
+    {audioModalOpen && (
+      <AudioModal 
+        url={currentAudioUrl} 
+        open={audioModalOpen}
+        onClose={handleCloseAudioModal}
+      />
     )}
   </div>
 );
