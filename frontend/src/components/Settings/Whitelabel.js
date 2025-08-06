@@ -22,7 +22,7 @@ import api from "../../services/api";
 import { getBackendUrl } from "../../config";
 
 import defaultLogoLight from "../../assets/logo.png";
-import defaultLogoDark from "../../assets/logo-black.png";
+import defaultLogoDark from "../../assets/logo.png";
 import defaultLogoFavicon from "../../assets/favicon.ico";
 import ColorBoxModal from "../ColorBoxModal/index.js";
 
@@ -32,42 +32,50 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   fixedHeightPaper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
     height: 240,
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #2a2a2a",
+    borderRadius: "16px",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
   },
   tab: {
     borderRadius: 4,
     width: "100%",
     "& .MuiTab-wrapper": {
-      color: "#128c7e"
+      color: "#ffffff"
     },
     "& .MuiTabs-flexContainer": {
       justifyContent: "center"
     }
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     display: "flex",
     alignItems: "center",
     marginBottom: 12,
     width: "100%",
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #2a2a2a",
+    borderRadius: "16px",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
   },
   cardAvatar: {
     fontSize: "55px",
-    color: grey[500],
-    backgroundColor: "#ffffff",
+    color: "#ffffff",
+    backgroundColor: "#262626",
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
   cardTitle: {
     fontSize: "18px",
-    color: blue[700],
+    color: "#ffffff",
   },
   cardSubtitle: {
-    color: grey[600],
+    color: "#b3b3b3",
     fontSize: "14px",
   },
   alignRight: {
@@ -79,6 +87,32 @@ const useStyles = makeStyles((theme) => ({
   selectContainer: {
     width: "100%",
     textAlign: "left",
+    "& .MuiTextField-root": {
+      backgroundColor: "#262626",
+      borderRadius: "12px",
+    },
+    "& .MuiOutlinedInput-root": {
+      backgroundColor: "#262626",
+      borderRadius: "12px",
+      "& fieldset": {
+        borderColor: "#404040",
+      },
+      "&:hover fieldset": {
+        borderColor: "#525252",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiOutlinedInput-input": {
+      color: "#ffffff",
+    },
   },
   colorAdorment: {
     width: 20,
@@ -88,11 +122,12 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
   },
   appLogoLightPreviewDiv: {
-    backgroundColor: "white",
+    backgroundColor: "#262626",
     padding: "10px",
     borderStyle: "solid",
     borderWidth: "1px",
-    borderColor: "#424242",
+    borderColor: "#404040",
+    borderRadius: "12px",
     textAlign: "center",
   },
   appLogoDarkPreviewDiv: {
@@ -100,14 +135,17 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     borderStyle: "solid",
     borderWidth: "1px",
-    borderColor: "white",
+    borderColor: "#404040",
+    borderRadius: "12px",
     textAlign: "center",
   },
   appLogoFaviconPreviewDiv: {
+    backgroundColor: "#262626",
     padding: "10px",
     borderStyle: "solid",
     borderWidth: "1px",
-    borderColor: "black",
+    borderColor: "#404040",
+    borderRadius: "12px",
     textAlign: "center",
   },
   appLogoLightPreviewImg: {
@@ -237,10 +275,6 @@ export default function Whitelabel(props) {
                     value={settingsLoaded.primaryColorLight || ""}
                     onClick={() => setPrimaryColorLightModalOpen(true)}
                     InputProps={{
-                      style: {
-                        backgroundColor: "#ffffff",
-                        borderRadius: "0px",
-                      },
                       startAdornment: (
                         <InputAdornment position="start">
                           <div
@@ -253,6 +287,7 @@ export default function Whitelabel(props) {
                         <IconButton
                           size="small"
                           color="default"
+                          style={{ color: "#437db5" }}
                           onClick={() => setPrimaryColorLightModalOpen(true)}
                         >
                           <Colorize />
@@ -292,8 +327,7 @@ export default function Whitelabel(props) {
                     }}
                     InputProps={{
                       style: {
-                        backgroundColor: "#ffffff",
-                        borderRadius: "0px",
+                        color: "#ffffff",
                       },
                     }}
                   />
@@ -307,16 +341,13 @@ export default function Whitelabel(props) {
                     variant="standard"
                     value={settingsLoaded.appLogoLight || ""}
                     InputProps={{
-                      style: {
-                        backgroundColor: "#ffffff",
-                        borderRadius: "0px",
-                      },
                       endAdornment: (
                         <>
                           {settingsLoaded.appLogoLight &&
                             <IconButton
                               size="small"
                               color="default"
+                              style={{ color: "#dc3545" }}
                               onClick={() => {
                                 handleSaveSetting("appLogoLight", "");
                                 colorMode.setAppLogoLight(defaultLogoLight);
@@ -336,6 +367,7 @@ export default function Whitelabel(props) {
                             <IconButton
                               size="small"
                               color="default"
+                              style={{ color: "#437db5" }}
                               onClick={() => {
                                 logoLightInput.current.click();
                               }}
@@ -359,16 +391,13 @@ export default function Whitelabel(props) {
                     variant="standard"
                     value={settingsLoaded.appLogoFavicon || ""}
                     InputProps={{
-                      style: {
-                        backgroundColor: "#ffffff",
-                        borderRadius: "0px",
-                      },
                       endAdornment: (
                         <>
                           {settingsLoaded.appLogoFavicon &&
                             <IconButton
                               size="small"
                               color="default"
+                              style={{ color: "#dc3545" }}
                               onClick={() => {
                                 handleSaveSetting("appLogoFavicon", "");
                                 colorMode.setAppLogoFavicon(defaultLogoFavicon);
@@ -388,6 +417,7 @@ export default function Whitelabel(props) {
                             <IconButton
                               size="small"
                               color="default"
+                              style={{ color: "#437db5" }}
                               onClick={() => {
                                 logoFaviconInput.current.click();
                               }}

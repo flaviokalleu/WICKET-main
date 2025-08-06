@@ -32,6 +32,96 @@ const useStyles = makeStyles((theme) => ({
   maxWidth: {
     width: "100%",
   },
+  modernTextField: {
+    "& .MuiOutlinedInput-root": {
+      backgroundColor: "#262626",
+      borderRadius: "12px",
+      "& fieldset": {
+        borderColor: "#404040",
+        borderWidth: "1px",
+      },
+      "&:hover fieldset": {
+        borderColor: "#525252",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+        borderWidth: "2px",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiOutlinedInput-input": {
+      color: "#ffffff",
+      fontSize: "14px",
+    },
+  },
+  modernSelect: {
+    "& .MuiOutlinedInput-root": {
+      backgroundColor: "#262626",
+      borderRadius: "12px",
+      "& fieldset": {
+        borderColor: "#404040",
+        borderWidth: "1px",
+      },
+      "&:hover fieldset": {
+        borderColor: "#525252",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+        borderWidth: "2px",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiSelect-select": {
+      color: "#ffffff",
+      fontSize: "14px",
+    },
+    "& .MuiSvgIcon-root": {
+      color: "#b3b3b3",
+    },
+  },
+  modernAutocomplete: {
+    "& .MuiOutlinedInput-root": {
+      backgroundColor: "#262626",
+      borderRadius: "12px",
+      "& fieldset": {
+        borderColor: "#404040",
+        borderWidth: "1px",
+      },
+      "&:hover fieldset": {
+        borderColor: "#525252",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+        borderWidth: "2px",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiOutlinedInput-input": {
+      color: "#ffffff",
+      fontSize: "14px",
+    },
+    "& .MuiAutocomplete-popupIndicator": {
+      color: "#b3b3b3",
+    },
+    "& .MuiAutocomplete-clearIndicator": {
+      color: "#b3b3b3",
+    },
+  },
 }));
 
 const filterOptions = createFilterOptions({
@@ -134,15 +224,56 @@ const TransferTicketModalCustom = ({ modalOpen, onClose, ticketid, ticket }) => 
 
 
   return (
-    <Dialog open={modalOpen} onClose={handleClose} maxWidth="md" fullWidth scroll="paper">
+    <Dialog 
+      open={modalOpen} 
+      onClose={handleClose} 
+      maxWidth="md" 
+      fullWidth 
+      scroll="paper"
+      hideBackdrop={true}
+      PaperProps={{
+        style: {
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+          border: "1px solid #404040",
+          borderRadius: "16px",
+          boxShadow: "0 32px 64px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.05)",
+          backdropFilter: "blur(20px)",
+          overflow: "hidden",
+        }
+      }}
+    >
       {/* <form onSubmit={handleSaveTicket}> */}
-      <DialogTitle id="form-dialog-title">
+      <DialogTitle 
+        id="form-dialog-title"
+        style={{
+          backgroundColor: "#0a0a0a",
+          color: "#ffffff",
+          borderBottom: "1px solid #333333",
+          padding: "20px 24px",
+          fontSize: "18px",
+          fontWeight: "600",
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+        }}
+      >
+        <SwapHorizIcon style={{ color: "#437db5", fontSize: "24px" }} />
         {i18n.t("transferTicketModal.title")}
       </DialogTitle>
-      <DialogContent dividers>
-        <Grid container spacing={2}>
+      <DialogContent 
+        dividers
+        style={{
+          backgroundColor: "#1a1a1a",
+          color: "#ffffff",
+          borderColor: "#333333",
+          padding: "24px",
+        }}
+      >
+        <Grid container spacing={3}>
           <Grid item xs={12} sm={6} xl={6}>
             <Autocomplete
+              className={classes.modernAutocomplete}
               fullWidth
               getOptionLabel={(option) => `${option.name}`}
               onChange={(e, newValue) => {
@@ -164,7 +295,21 @@ const TransferTicketModalCustom = ({ modalOpen, onClose, ticketid, ticket }) => 
               autoHighlight
               noOptionsText={i18n.t("transferTicketModal.noOptions")}
               loading={loading}
-              renderOption={option => (<span> <UserStatusIcon user={option} /> {option.name}</span>)}
+              renderOption={option => (
+                <div style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  padding: "8px 12px",
+                  backgroundColor: "#262626",
+                  color: "#ffffff",
+                  "&:hover": {
+                    backgroundColor: "#333333",
+                  }
+                }}>
+                  <UserStatusIcon user={option} /> 
+                  <span style={{ marginLeft: "8px" }}>{option.name}</span>
+                </div>
+              )}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -177,7 +322,10 @@ const TransferTicketModalCustom = ({ modalOpen, onClose, ticketid, ticket }) => 
                     endAdornment: (
                       <React.Fragment>
                         {loading ? (
-                          <CircularProgress color="inherit" size={20} />
+                          <CircularProgress 
+                            style={{ color: "#437db5" }} 
+                            size={20} 
+                          />
                         ) : null}
                         {params.InputProps.endAdornment}
                       </React.Fragment>
@@ -188,7 +336,7 @@ const TransferTicketModalCustom = ({ modalOpen, onClose, ticketid, ticket }) => 
             />
           </Grid>
           <Grid xs={12} sm={6} xl={6} item >
-            <FormControl variant="outlined" fullWidth>
+            <FormControl variant="outlined" fullWidth className={classes.modernSelect}>
               <InputLabel>
                 {i18n.t("transferTicketModal.fieldQueueLabel")}
               </InputLabel>
@@ -196,9 +344,28 @@ const TransferTicketModalCustom = ({ modalOpen, onClose, ticketid, ticket }) => 
                 value={selectedQueue}
                 onChange={(e) => setSelectedQueue(e.target.value)}
                 label={i18n.t("transferTicketModal.fieldQueuePlaceholder")}
+                MenuProps={{
+                  PaperProps: {
+                    style: {
+                      backgroundColor: "#262626",
+                      border: "1px solid #404040",
+                      borderRadius: "8px",
+                    },
+                  },
+                }}
               >
                 {queues.map((queue) => (
-                  <MenuItem key={queue.id} value={queue.id}>
+                  <MenuItem 
+                    key={queue.id} 
+                    value={queue.id}
+                    style={{
+                      color: "#ffffff",
+                      backgroundColor: "#262626",
+                      "&:hover": {
+                        backgroundColor: "#333333",
+                      }
+                    }}
+                  >
                     {queue.name}
                   </MenuItem>
                 ))}
@@ -206,33 +373,53 @@ const TransferTicketModalCustom = ({ modalOpen, onClose, ticketid, ticket }) => 
             </FormControl>
           </Grid>
         </Grid>
-        <Grid container spacing={2}>
+        <Grid container spacing={3} style={{ marginTop: "8px" }}>
           <Grid item xs={12} sm={12} xl={12} >
             <TextField
+              className={classes.modernTextField}
               label={i18n.t("transferTicketModal.msgTransfer")}
               value={msgTransfer}
               onChange={handleMsgTransferChange}
               variant="outlined"
               multiline
               maxRows={5}
-              minRows={5}
+              minRows={4}
               fullWidth
+              placeholder="Digite uma mensagem para acompanhar a transferência..."
             />
           </Grid>
         </Grid>
       </DialogContent>
-      <DialogActions>
+      <DialogActions
+        style={{
+          backgroundColor: "#0a0a0a",
+          borderTop: "1px solid #333333",
+          padding: "20px 24px",
+          gap: "12px",
+          justifyContent: "flex-end",
+        }}
+      >
         <Button
           startIcon={<CancelIcon />}
           onClick={handleClose}
           style={{
-          color: "white",
-          backgroundColor: "#db6565",
-          boxShadow: "none",
-          borderRadius: 0
+            color: "#ffffff",
+            backgroundColor: "#dc3545",
+            border: "1px solid #dc3545",
+            borderRadius: "10px",
+            fontSize: "13px",
+            padding: "10px 20px",
+            textTransform: "none",
+            fontWeight: "500",
+            transition: "all 0.2s ease",
+            "&:hover": {
+              backgroundColor: "#c82333",
+              transform: "translateY(-1px)",
+            },
           }} 
           disabled={loading}
-          variant="outlined"
+          variant="contained"
+          size="medium"
         >
           {i18n.t("transferTicketModal.buttons.cancel")}
         </Button>
@@ -241,15 +428,24 @@ const TransferTicketModalCustom = ({ modalOpen, onClose, ticketid, ticket }) => 
           variant="contained"
           type="submit"
           style={{
-          color: "white",
-          backgroundColor: "#437db5",
-          boxShadow: "none",
-          borderRadius: 0
+            color: "#ffffff",
+            backgroundColor: "#437db5",
+            border: "1px solid #437db5",
+            borderRadius: "10px",
+            fontSize: "13px",
+            padding: "10px 20px",
+            textTransform: "none",
+            fontWeight: "500",
+            transition: "all 0.2s ease",
+            "&:hover": {
+              backgroundColor: "#3a6ba3",
+              transform: "translateY(-1px)",
+            },
           }}
           loading={loading}
           disabled={selectedQueue === ""}
           onClick={() => handleSaveTicket(selectedQueue)}
-
+          size="medium"
         >
           {i18n.t("transferTicketModal.buttons.ok")}
         </ButtonWithSpinner>

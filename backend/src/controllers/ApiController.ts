@@ -294,7 +294,7 @@ export const index = async (req: Request, res: Response): Promise<Response> => {
             const publicFolder = path.resolve(__dirname, "..", "..", "public");
             const filePath = path.join(publicFolder, `company${companyId}`, media.filename);
 
-            const options = await getMessageOptions(media.filename, filePath, companyId.toString(), `\u200e ${bodyMessage}`);
+            const options = await getMessageOptions(media.filename, filePath, companyId.toString(), `\u200e ${bodyMessage}`, false);
             await wbot.sendMessage(
               `${newContact.number}@${newContact.number.length > 17 ? "g.us" : "s.whatsapp.net"}`,
               options);

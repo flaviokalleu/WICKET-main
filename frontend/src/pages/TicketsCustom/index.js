@@ -14,7 +14,7 @@ import api from "../../services/api";
 import { CircularProgress } from "@material-ui/core";
 import { getBackendUrl } from "../../config";
 import logo from "../../assets/logo.png";
-import logoDark from "../../assets/logo-black.png";
+import logoDark from "../../assets/logo.png";
 import moment from "moment";
 
 const defaultTicketsManagerWidth = 550;

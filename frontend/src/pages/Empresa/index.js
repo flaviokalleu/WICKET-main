@@ -44,30 +44,51 @@ import 'react-phone-number-input/style.css';
 import flags from 'react-phone-number-input/flags';
 
 const customStyle = {
-  borderRadius: "5px",
+  borderRadius: "12px",
   margin: 1,
-  boxShadow: "none",
-  backgroundColor: "#F78C6B",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+  backgroundColor: "#437db5",
   color: "white",
-  fontSize: "12px",
+  fontSize: "14px",
+  fontWeight: "600",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    backgroundColor: "#3a6ca3",
+    transform: "translateY(-2px)",
+    boxShadow: "0 6px 16px rgba(0,0,0,0.4)",
+  },
 };
 
 const customStyle2 = {
-  borderRadius: "5px",
+  borderRadius: "12px",
   margin: 1,
-  boxShadow: "none",
-  backgroundColor: "#0f65ab",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+  backgroundColor: "#437db5",
   color: "white",
-  fontSize: "12px",
+  fontSize: "14px",
+  fontWeight: "600",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    backgroundColor: "#3a6ca3",
+    transform: "translateY(-2px)",
+    boxShadow: "0 6px 16px rgba(0,0,0,0.4)",
+  },
 };
 
 const customStyle3 = {
-  borderRadius: "5px",
+  borderRadius: "12px",
   margin: 1,
-  boxShadow: "none",
-  backgroundColor: "#0ea17b",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+  backgroundColor: "#437db5",
   color: "white",
-  fontSize: "12px",
+  fontSize: "14px",
+  fontWeight: "600",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    backgroundColor: "#3a6ca3",
+    transform: "translateY(-2px)",
+    boxShadow: "0 6px 16px rgba(0,0,0,0.4)",
+  },
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -76,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100vh",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#0a0a0a",
     padding: theme.spacing(3),
   },
   paperContainer: {
@@ -88,15 +109,18 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(4),
-    borderRadius: theme.shape.borderRadius * 2,
+    borderRadius: 16,
     width: "100%",
     maxWidth: "800px",
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #404040",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
   },
   formContainer: {
     width: "100%",
     padding: theme.spacing(2),
-    backgroundColor: "#ffffff",
-    borderRadius: theme.shape.borderRadius,
+    backgroundColor: "#1a1a1a",
+    borderRadius: 12,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -108,8 +132,30 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
     "& .MuiOutlinedInput-root": {
-      height: "40px",
-      backgroundColor: "#ffffff",
+      height: "48px",
+      backgroundColor: "#262626",
+      borderRadius: 12,
+      color: "#ffffff",
+      transition: "all 0.2s ease",
+      "& input": {
+        color: "#ffffff",
+      },
+      "& fieldset": {
+        borderColor: "#404040",
+      },
+      "&:hover fieldset": {
+        borderColor: "#437db5",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+        borderWidth: 2,
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+    },
+    "& .MuiInputAdornment-root": {
+      color: "#b3b3b3",
     },
   },
   phoneInputContainer: {
@@ -119,17 +165,19 @@ const useStyles = makeStyles((theme) => ({
     "& .PhoneInput": {
       width: "100%",
       "& .PhoneInputInput": {
-        height: "40px",
+        height: "48px",
         padding: "10.5px 14px",
-        backgroundColor: "#ffffff",
-        borderRadius: "4px",
-        border: "1px solid rgba(0, 0, 0, 0.23)",
+        backgroundColor: "#262626",
+        borderRadius: "12px",
+        border: "1px solid #404040",
         width: "100%",
+        color: "#ffffff",
+        transition: "all 0.2s ease",
         "&:hover": {
-          borderColor: "rgba(0, 0, 0, 0.87)",
+          borderColor: "#437db5",
         },
         "&:focus": {
-          borderColor: "#3f51b5",
+          borderColor: "#437db5",
           borderWidth: "2px",
           outline: "none",
         },
@@ -139,24 +187,33 @@ const useStyles = makeStyles((theme) => ({
       },
       "& .PhoneInputCountrySelect": {
         marginRight: theme.spacing(1),
+        backgroundColor: "#262626",
+        borderRadius: "8px",
       },
     },
   },
   inputLabel: {
     marginBottom: theme.spacing(0.5),
-    fontWeight: "bold",
+    fontWeight: "600",
     fontSize: "0.875rem",
+    color: "#ffffff",
   },
   submitButton: {
     width: "100%",
     marginTop: theme.spacing(2),
-    backgroundColor: "#0f65ab",
+    backgroundColor: "#437db5",
     color: "#ffffff",
+    borderRadius: 12,
+    height: "48px",
+    fontSize: "1rem",
+    fontWeight: "600",
+    transition: "all 0.2s ease",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
     "&:hover": {
-      backgroundColor: "#0d47a1",
+      backgroundColor: "#3a6ca3",
+      transform: "translateY(-2px)",
+      boxShadow: "0 6px 16px rgba(0,0,0,0.4)",
     },
-    height: "40px",
-    fontSize: "0.875rem",
   },
   modal: {
     display: 'flex',
@@ -164,14 +221,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   modalPaper: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#1a1a1a",
     padding: theme.spacing(4),
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 16,
     outline: 'none',
     textAlign: 'center',
+    border: "1px solid #404040",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
   },
   icon: {
-    color: "#0f65ab",
+    color: "#437db5",
   },
   flag: {
     width: "20px",
@@ -180,8 +239,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginBottom: theme.spacing(3),
-    color: "#0f65ab",
-    fontWeight: "bold",
+    color: "#ffffff",
+    fontWeight: "600",
+    textAlign: "center",
   },
   progressContainer: {
     display: 'flex',
@@ -189,13 +249,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     padding: theme.spacing(4),
-    backgroundColor: '#ffffff',
-    borderRadius: theme.shape.borderRadius,
+    backgroundColor: '#1a1a1a',
+    borderRadius: 16,
+    border: "1px solid #404040",
   },
   progressText: {
     marginTop: theme.spacing(2),
-    color: '#0f65ab',
-    fontWeight: 'bold',
+    color: '#437db5',
+    fontWeight: '600',
   },
 }));
 
@@ -295,32 +356,26 @@ const SignUp = () => {
                         >
                             {({ touched, errors, isSubmitting, setFieldValue, values }) => (
                                 <Form className={classes.form}>
-                                    <Field
-                                        as={TextField}
-                                        variant="outlined"
-                                        fullWidth
-                                        id="companyName"
-                                        error={touched.companyName && Boolean(errors.companyName)}
-                                        helperText={touched.companyName && errors.companyName}
-                                        name="companyName"
-                                        placeholder="Nome da Empresa"
-                                        autoComplete="companyName"
-                                        autoFocus
-                                        className={classes.textField}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <BusinessIcon className={classes.icon} />
-                                                </InputAdornment>
-                                            ),
-                                            style: {
-                                                backgroundColor: "#ffffff",
-                                                borderRadius: "8px",
-                                            },
-                                        }}
-                                    />
-
-                                    <Field
+                        <Field
+                            as={TextField}
+                            variant="outlined"
+                            fullWidth
+                            id="companyName"
+                            error={touched.companyName && Boolean(errors.companyName)}
+                            helperText={touched.companyName && errors.companyName}
+                            name="companyName"
+                            placeholder="Nome da Empresa"
+                            autoComplete="companyName"
+                            autoFocus
+                            className={classes.textField}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <BusinessIcon className={classes.icon} />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />                                    <Field
                                         as={TextField}
                                         autoComplete="name"
                                         name="name"
@@ -337,10 +392,6 @@ const SignUp = () => {
                                                     <PersonIcon className={classes.icon} />
                                                 </InputAdornment>
                                             ),
-                                            style: {
-                                                backgroundColor: "#ffffff",
-                                                borderRadius: "8px",
-                                            },
                                         }}
                                     />
 
@@ -361,10 +412,6 @@ const SignUp = () => {
                                                     <EmailIcon className={classes.icon} />
                                                 </InputAdornment>
                                             ),
-                                            style: {
-                                                backgroundColor: "#ffffff",
-                                                borderRadius: "8px",
-                                            },
                                         }}
                                     />
 
@@ -387,10 +434,6 @@ const SignUp = () => {
                                                     <LockIcon className={classes.icon} />
                                                 </InputAdornment>
                                             ),
-                                            style: {
-                                                backgroundColor: "#ffffff",
-                                                borderRadius: "8px",
-                                            },
                                             endAdornment: (
                                                 <InputAdornment position="end">
                                                     <IconButton
@@ -423,10 +466,6 @@ const SignUp = () => {
                                                     <LockIcon className={classes.icon} />
                                                 </InputAdornment>
                                             ),
-                                            style: {
-                                                backgroundColor: "#ffffff",
-                                                borderRadius: "8px",
-                                            },
                                             endAdornment: (
                                                 <InputAdornment position="end">
                                                     <IconButton
@@ -466,21 +505,10 @@ const SignUp = () => {
                                         required
                                         displayEmpty
                                         className={classes.textField}
-                                        style={{
-                                            backgroundColor: "#ffffff",
-                                            borderRadius: "8px",
-                                        }}
-                                        inputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <CardMembershipIcon className={classes.icon} />
-                                                </InputAdornment>
-                                            ),
-                                        }}
                                         renderValue={(selected) => {
                                             if (!selected) {
                                                 return (
-                                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <div style={{ display: 'flex', alignItems: 'center', color: '#b3b3b3' }}>
                                                         <CardMembershipIcon className={classes.icon} style={{ marginRight: 8 }} />
                                                         <span>Selecione um Plano</span>
                                                     </div>
@@ -495,7 +523,7 @@ const SignUp = () => {
                                             Selecione um Plano
                                         </MenuItem>
                                         {plans.map((plan, key) => (
-                                            <MenuItem key={key} value={plan.id}>
+                                            <MenuItem key={key} value={plan.id} style={{ color: '#ffffff', backgroundColor: '#262626' }}>
                                                 {plan.name} - Atendentes: {plan.users} - Conexões: {plan.connections} - Filas:{" "}
                                                 {plan.queues} - $ {plan.amount}
                                             </MenuItem>
@@ -530,13 +558,21 @@ const SignUp = () => {
                 className={classes.modal}
                 disableBackdropClick
                 disableEscapeKeyDown
+                PaperProps={{
+                    style: {
+                        backgroundColor: '#1a1a1a',
+                        borderRadius: '16px',
+                        border: '1px solid #404040',
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                    }
+                }}
             >
                 <div className={classes.progressContainer}>
-                    <CircularProgress size={60} thickness={5} style={{ color: '#0f65ab' }} />
+                    <CircularProgress size={60} thickness={5} style={{ color: '#437db5' }} />
                     <Typography variant="h6" className={classes.progressText}>
                         Realizando Cadastro...
                     </Typography>
-                    <Typography variant="body1" style={{ color: '#0f65ab', marginTop: '10px' }}>
+                    <Typography variant="body1" style={{ color: '#b3b3b3', marginTop: '10px' }}>
                         Por favor, aguarde enquanto processamos seu cadastro.
                     </Typography>
                 </div>
@@ -549,20 +585,42 @@ const SignUp = () => {
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"
                 className={classes.modal}
+                PaperProps={{
+                    style: {
+                        backgroundColor: '#1a1a1a',
+                        borderRadius: '16px',
+                        border: '1px solid #404040',
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                    }
+                }}
             >
-                <DialogTitle id="modal-title" style={{ backgroundColor: "#0f65ab", color: "#ffffff" }}>
+                <DialogTitle id="modal-title" style={{ backgroundColor: "#1a1a1a", color: "#437db5", textAlign: 'center', fontWeight: '600' }}>
                     Cadastro Realizado com Sucesso!
                 </DialogTitle>
-                <DialogContent style={{ backgroundColor: "#ffffff" }}>
-                    <Typography variant="h6" id="modal-description" style={{ color: "#0f65ab" }}>
+                <DialogContent style={{ backgroundColor: "#1a1a1a" }}>
+                    <Typography variant="h6" id="modal-description" style={{ color: "#ffffff", textAlign: 'center' }}>
                         Parabéns! Seu cadastro foi realizado com sucesso.
                     </Typography>
-                    <Typography variant="body1" style={{ color: "#0f65ab" }}>
+                    <Typography variant="body1" style={{ color: "#b3b3b3", textAlign: 'center', marginTop: '8px' }}>
                         Agora a Empresa podera acessar sua conta e começar a usar nossa plataforma.
                     </Typography>
                 </DialogContent>
-                <DialogActions style={{ backgroundColor: "#ffffff" }}>
-                    <Button onClick={handleCloseModal} style={{ color: "#0f65ab" }}>
+                <DialogActions style={{ backgroundColor: "#1a1a1a", justifyContent: 'center', paddingBottom: '24px' }}>
+                    <Button 
+                        onClick={handleCloseModal} 
+                        style={{ 
+                            color: "#ffffff", 
+                            backgroundColor: "#437db5",
+                            borderRadius: "12px",
+                            padding: "8px 24px",
+                            fontWeight: "600",
+                            transition: "all 0.2s ease",
+                            "&:hover": {
+                                backgroundColor: "#3a6ca3",
+                                transform: "translateY(-2px)",
+                            }
+                        }}
+                    >
                         Fechar
                     </Button>
                 </DialogActions>

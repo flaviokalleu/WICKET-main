@@ -56,14 +56,15 @@ import SettingsIcon from "@material-ui/icons/Settings";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: "#0a0a0a",
     padding: theme.spacing(3),
     minHeight: '100vh',
+    borderRadius: "16px",
   },
   pageTitle: {
     fontSize: '2rem',
     fontWeight: 600,
-    color: theme.palette.primary.main,
+    color: "#437db5",
     marginBottom: theme.spacing(3),
     display: 'flex',
     alignItems: 'center',
@@ -71,42 +72,50 @@ const useStyles = makeStyles((theme) => ({
   },
   sectionCard: {
     marginBottom: theme.spacing(3),
-    borderRadius: 12,
-    boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-    border: '1px solid rgba(0,0,0,0.06)',
+    borderRadius: 16,
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #2a2a2a",
+    boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
     transition: 'all 0.3s ease',
+    overflow: "hidden",
     '&:hover': {
-      boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
+      boxShadow: '0 12px 40px rgba(0,0,0,0.4)',
       transform: 'translateY(-2px)',
+      borderColor: "#404040",
     },
   },
   sectionHeader: {
-    backgroundColor: theme.palette.primary.main,
-    color: 'white',
-    padding: theme.spacing(2),
-    borderRadius: '12px 12px 0 0',
+    backgroundColor: "#262626",
+    color: '#ffffff',
+    padding: theme.spacing(3),
+    borderRadius: '16px 16px 0 0',
     display: 'flex',
     alignItems: 'center',
-    gap: theme.spacing(1),
+    gap: theme.spacing(2),
+    borderBottom: "1px solid #404040",
   },
   sectionTitle: {
     fontSize: '1.25rem',
     fontWeight: 600,
     margin: 0,
+    color: "#ffffff",
   },
   sectionContent: {
     padding: theme.spacing(3),
+    backgroundColor: "#1a1a1a",
   },
   switchCard: {
-    backgroundColor: '#fafafa',
-    borderRadius: 8,
-    padding: theme.spacing(2),
+    backgroundColor: '#262626',
+    borderRadius: 12,
+    padding: theme.spacing(2.5),
     marginBottom: theme.spacing(2),
-    border: '1px solid #e0e0e0',
+    border: '1px solid #404040',
     transition: 'all 0.2s ease',
     '&:hover': {
-      backgroundColor: '#f5f5f5',
-      borderColor: theme.palette.primary.light,
+      backgroundColor: '#2a2a2a',
+      borderColor: "#525252",
+      transform: 'translateY(-1px)',
+      boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
     },
   },
   switchContainer: {
@@ -117,70 +126,117 @@ const useStyles = makeStyles((theme) => ({
   },
   switchLabel: {
     fontSize: "0.95rem",
-    color: theme.palette.text.primary,
+    color: "#ffffff",
     fontWeight: 500,
     flex: 1,
   },
   switchHelperText: {
     fontSize: "0.8rem",
-    color: theme.palette.text.secondary,
+    color: "#b3b3b3",
     marginTop: theme.spacing(0.5),
   },
   customTextField: {
     '& .MuiOutlinedInput-root': {
-      borderRadius: 8,
-      backgroundColor: 'white',
-      '&:hover fieldset': {
-        borderColor: theme.palette.primary.light,
+      borderRadius: 12,
+      backgroundColor: "#262626",
+      transition: 'all 0.2s ease',
+      "& fieldset": {
+        borderColor: "#404040",
+        borderWidth: "1px",
       },
-      '&.Mui-focused fieldset': {
-        borderColor: theme.palette.primary.main,
+      "&:hover fieldset": {
+        borderColor: "#525252",
       },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+        borderWidth: "2px",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiOutlinedInput-input": {
+      color: "#ffffff",
+      fontSize: "14px",
     },
   },
   customSelect: {
     '& .MuiOutlinedInput-root': {
-      borderRadius: 8,
-      backgroundColor: 'white',
+      borderRadius: 12,
+      backgroundColor: "#262626",
+      "& fieldset": {
+        borderColor: "#404040",
+      },
+      "&:hover fieldset": {
+        borderColor: "#525252",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiSelect-select": {
+      color: "#ffffff",
+    },
+    "& .MuiSvgIcon-root": {
+      color: "#b3b3b3",
     },
   },
   accordion: {
     marginBottom: theme.spacing(2),
-    borderRadius: 8,
+    borderRadius: 12,
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #2a2a2a",
     '&:before': {
       display: 'none',
     },
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+    overflow: "hidden",
   },
   accordionSummary: {
-    backgroundColor: theme.palette.grey[50],
-    borderRadius: '8px 8px 0 0',
+    backgroundColor: "#262626",
+    borderRadius: '12px 12px 0 0',
+    borderBottom: "1px solid #404040",
     '&.Mui-expanded': {
       minHeight: 48,
     },
+    "& .MuiAccordionSummary-content": {
+      color: "#ffffff",
+    },
+    "& .MuiSvgIcon-root": {
+      color: "#b3b3b3",
+    },
   },
   paymentSection: {
-    backgroundColor: '#f8f9ff',
-    borderLeft: `4px solid ${theme.palette.primary.main}`,
+    backgroundColor: '#1a1a1a',
+    borderLeft: `4px solid #437db5`,
   },
   lgpdSection: {
-    backgroundColor: '#fff8f0',
+    backgroundColor: '#1a1a1a',
     borderLeft: `4px solid ${orange[500]}`,
   },
   statusChip: {
-    padding: '4px 12px',
-    borderRadius: 16,
+    padding: '6px 14px',
+    borderRadius: 20,
     fontSize: '0.75rem',
     fontWeight: 600,
     textTransform: 'uppercase',
   },
   enabledChip: {
-    backgroundColor: green[100],
-    color: green[800],
+    backgroundColor: "#4caf50",
+    color: "#ffffff",
   },
   disabledChip: {
-    backgroundColor: grey[200],
-    color: grey[700],
+    backgroundColor: "#666666",
+    color: "#ffffff",
   },
 }));
 
@@ -224,13 +280,13 @@ const CustomSwitch = ({
 };
 
 // Componente para seção de configurações
-const SettingsSection = ({ title, icon: Icon, children, color = "primary" }) => {
+const SettingsSection = ({ title, icon: Icon, children, color = "#437db5" }) => {
   const classes = useStyles();
   
   return (
     <Card className={classes.sectionCard}>
-      <div className={classes.sectionHeader} style={{ backgroundColor: color === "primary" ? "#1976d2" : color }}>
-        {Icon && <Icon />}
+      <div className={classes.sectionHeader} style={{ backgroundColor: color }}>
+        {Icon && <Icon style={{ color: "#ffffff" }} />}
         <Typography className={classes.sectionTitle}>{title}</Typography>
       </div>
       <CardContent className={classes.sectionContent}>

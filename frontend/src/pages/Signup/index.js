@@ -71,42 +71,74 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 const customStyle = {
-  borderRadius: "5px",
+  borderRadius: "12px",
   margin: 1,
-  boxShadow: "none",
-  backgroundColor: "#F78C6B",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+  backgroundColor: "#437db5",
   color: "white",
-  fontSize: "12px",
+  fontSize: "14px",
+  fontWeight: "600",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    backgroundColor: "#3a6ca3",
+    transform: "translateY(-2px)",
+    boxShadow: "0 6px 16px rgba(0,0,0,0.4)",
+  },
 };
 
 const customStyle2 = {
-  borderRadius: "5px",
+  borderRadius: "12px",
   margin: 1,
-  boxShadow: "none",
-  backgroundColor: "#444198",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+  backgroundColor: "#437db5",
   color: "white",
-  fontSize: "12px",
+  fontSize: "14px",
+  fontWeight: "600",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    backgroundColor: "#3a6ca3",
+    transform: "translateY(-2px)",
+    boxShadow: "0 6px 16px rgba(0,0,0,0.4)",
+  },
 };
 
 const Stylefacebook = {
-  borderRadius: "50%",
-  backgroundColor: "#5664af",
+  borderRadius: "12px",
+  backgroundColor: "#1877f2",
   color: "white",
-  padding: "10px",
+  padding: "12px",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    backgroundColor: "#166fe5",
+    transform: "translateY(-2px)",
+    boxShadow: "0 4px 12px rgba(24, 119, 242, 0.3)",
+  },
 };
 
 const Styleyoutube = {
-  borderRadius: "50%",
-  backgroundColor: "#ce6060",
+  borderRadius: "12px",
+  backgroundColor: "#ff0000",
   color: "white",
-  padding: "10px",
+  padding: "12px",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    backgroundColor: "#e60000",
+    transform: "translateY(-2px)",
+    boxShadow: "0 4px 12px rgba(255, 0, 0, 0.3)",
+  },
 };
 
 const Styleinstagram = {
-  borderRadius: "50%",
+  borderRadius: "12px",
   backgroundColor: "#e1306c",
   color: "white",
-  padding: "10px",
+  padding: "12px",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    backgroundColor: "#d12763",
+    transform: "translateY(-2px)",
+    boxShadow: "0 4px 12px rgba(225, 48, 108, 0.3)",
+  },
 };
 
 const Copyright = () => {
@@ -125,17 +157,17 @@ const Copyright = () => {
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
-    background: "#232533",
+    background: "#0a0a0a",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     padding: theme.spacing(3),
   },
   paper: {
-    background: "#232533",
-    border: "1.5px solid #35384a",
+    background: "#1a1a1a",
+    border: "1px solid #404040",
     borderRadius: 16,
-    boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
     padding: "36px 28px 28px 28px",
     maxWidth: 420,
     width: "100%",
@@ -149,8 +181,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     borderRadius: "50%",
     objectFit: "cover",
-    boxShadow: "0 2px 8px #0002",
-    border: "2px solid #35384a",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+    border: "2px solid #404040",
     background: "#fff",
   },
   form: {
@@ -161,48 +193,57 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(0.5),
     marginBottom: theme.spacing(1.5),
     '& .MuiOutlinedInput-root': {
-      borderRadius: 8,
-      background: "#181a20",
-      color: "#fff",
+      borderRadius: 12,
+      background: "#262626",
+      color: "#ffffff",
+      transition: "all 0.2s ease",
       '& input': {
-        color: "#fff",
+        color: "#ffffff",
       },
       '& fieldset': {
-        borderColor: "#35384a",
+        borderColor: "#404040",
       },
       '&:hover fieldset': {
-        borderColor: "#3a7cff",
+        borderColor: "#437db5",
       },
       '&.Mui-focused fieldset': {
-        borderColor: "#3a7cff",
+        borderColor: "#437db5",
         borderWidth: 2,
       },
     },
+    '& .MuiInputLabel-root': {
+      color: "#b3b3b3",
+    },
     '& .MuiInputAdornment-root': {
-      color: "#b0b3c6",
+      color: "#b3b3b3",
+    },
+    '& .MuiInputAdornment-root .MuiSvgIcon-root': {
+      color: "#b3b3b3",
     },
   },
   phoneInputContainer: {
-    backgroundColor: "#ffffff",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
+    backgroundColor: "#262626",
+    borderRadius: "12px",
+    border: "1px solid #404040",
     padding: "8.5px 14px",
     width: "100%",
+    transition: "all 0.2s ease",
     "&:focus-within": {
-      borderColor: "#3f51b5",
+      borderColor: "#437db5",
+      transform: "scale(1.02)",
     },
   },
   phoneInput: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#262626",
     border: "none",
     outline: "none",
     width: "100%",
-    color: "#000000",
+    color: "#ffffff",
   },
   appBar: {
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    backgroundColor: "rgba(26, 26, 26, 0.9)",
     backdropFilter: "blur(10px)",
-    boxShadow: "none",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
     position: "absolute",
     top: 0,
   },
@@ -227,6 +268,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     gap: "10px",
+    '& .MuiIconButton-root': {
+      borderRadius: '12px',
+      transition: 'all 0.2s ease',
+      '&:hover': {
+        transform: 'translateY(-2px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+      },
+    },
   },
   progressContainer: {
     display: "flex",
@@ -235,10 +284,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     padding: theme.spacing(4),
     textAlign: "center",
+    background: "#1a1a1a",
   },
   progressText: {
     marginTop: theme.spacing(2),
-    color: "#444198",
+    color: "#437db5",
     fontWeight: "bold",
   },
   mobileToolbar: {
@@ -254,15 +304,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     marginTop: theme.spacing(1),
     padding: theme.spacing(1),
-    backgroundColor: "transparent",
-    borderRadius: 4,
-    color: "#9e9e9e",
+    backgroundColor: "rgba(26, 26, 26, 0.8)",
+    borderRadius: 8,
+    color: "#b3b3b3",
     fontSize: "0.75rem",
+    border: "1px solid #404040",
   },
   lockIcon: {
     fontSize: "1rem",
     marginRight: theme.spacing(0.5),
-    color: "#9e9e9e",
+    color: "#437db5",
   },
   menuButton: {
     color: "white",
@@ -273,9 +324,10 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: 250,
-    backgroundColor: "rgba(68, 65, 152, 0.9)",
+    backgroundColor: "#1a1a1a",
     backdropFilter: "blur(10px)",
     color: "white",
+    border: "1px solid #404040",
   },
   drawerHeader: {
     display: "flex",
@@ -283,33 +335,41 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
+    borderBottom: "1px solid #404040",
   },
   drawerItem: {
     color: "white",
+    borderRadius: "8px",
+    margin: theme.spacing(0.5, 1),
+    transition: "all 0.2s ease",
     "&:hover": {
-      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      backgroundColor: "rgba(67, 125, 181, 0.2)",
+      transform: "translateX(4px)",
     },
   },
   drawerIcon: {
-    color: "white",
+    color: "#437db5",
   },
   copyrightContainer: {
     padding: theme.spacing(2),
     textAlign: "center",
+    borderTop: "1px solid #404040",
   },
   planButton: {
     width: '100%',
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
     padding: theme.spacing(2),
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: '#1a1a1a',
     borderRadius: '12px',
     textAlign: 'left',
     transition: 'all 0.3s ease',
+    border: '1px solid #404040',
     '&:hover': {
       transform: 'translateY(-3px)',
-      boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
-      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+      boxShadow: '0 10px 20px rgba(0, 0, 0, 0.3)',
+      backgroundColor: '#262626',
+      borderColor: '#437db5',
     },
   },
   planButtonContent: {
@@ -320,32 +380,32 @@ const useStyles = makeStyles((theme) => ({
   },
   planName: {
     fontWeight: 'bold',
-    color: '#444198',
+    color: '#437db5',
     fontSize: '1rem',
     marginBottom: theme.spacing(0.5),
   },
   planDetails: {
-    color: '#666',
+    color: '#b3b3b3',
     fontSize: '0.85rem',
     marginBottom: theme.spacing(0.5),
   },
   planPrice: {
-    color: '#444198',
+    color: '#437db5',
     fontWeight: 'bold',
     fontSize: '0.9rem',
   },
   selectPlanText: {
-    color: '#666',
+    color: '#b3b3b3',
     fontSize: '1rem',
     textAlign: 'center',
     width: '100%',
   },
   planDialog: {
     borderRadius: '16px',
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    backgroundColor: '#1a1a1a',
     backdropFilter: 'blur(10px)',
-    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+    border: '1px solid #404040',
   },
   planCard: {
     borderRadius: '12px',
@@ -353,22 +413,25 @@ const useStyles = makeStyles((theme) => ({
     transition: 'all 0.3s ease',
     position: 'relative',
     overflow: 'visible',
+    backgroundColor: '#262626',
+    border: '1px solid #404040',
     '&:hover': {
       transform: 'scale(1.02)',
-      boxShadow: '0 10px 20px rgba(0, 0, 0, 0.15)',
+      boxShadow: '0 10px 20px rgba(0, 0, 0, 0.3)',
+      borderColor: '#437db5',
     },
   },
   popularBadge: {
     position: 'absolute',
     top: theme.spacing(-1),
     right: theme.spacing(2),
-    backgroundColor: '#ff9800',
+    backgroundColor: '#437db5',
     color: 'white',
     padding: theme.spacing(0.5, 2),
     borderRadius: '20px',
     fontSize: '0.75rem',
     fontWeight: 'bold',
-    boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
     zIndex: 1,
     display: 'flex',
     alignItems: 'center',
@@ -384,31 +447,34 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginBottom: theme.spacing(1),
     fontSize: '0.9rem',
+    color: '#ffffff',
   },
   featureIcon: {
     marginRight: theme.spacing(1),
-    color: '#4caf50',
+    color: '#437db5',
     fontSize: '1rem',
   },
   dialogPlanPrice: {
     fontSize: '2rem',
     fontWeight: 'bold',
-    color: '#444198',
+    color: '#437db5',
     margin: theme.spacing(1, 0),
     textAlign: 'center',
   },
   planPeriod: {
     fontSize: '0.9rem',
-    color: '#666',
+    color: '#b3b3b3',
     textAlign: 'center',
   },
   cardContent: {
     paddingTop: theme.spacing(3),
     position: 'relative',
+    backgroundColor: '#262626',
   },
   cardActions: {
     justifyContent: 'center',
     paddingBottom: theme.spacing(2),
+    backgroundColor: '#262626',
   },
 }));
 

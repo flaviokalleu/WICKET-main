@@ -1565,7 +1565,8 @@ const verifyQueue = async (
             messagePath,
             filePath,
             String(companyId),
-            body
+            body,
+            false
           );
           const debouncedSentgreetingMediaAttachment = debounce(
             async () => {
@@ -3786,7 +3787,7 @@ const flowbuilderIntegration = async (
 
   if (
     !isFirstMsg &&
-    listPhrase.filter(item => item.phrase === body).length === 0
+    listPhrase.filter(item => item.phrase === body, false).length === 0
   ) {
     const flow = await FlowBuilderModel.findOne({
       where: {
@@ -3853,7 +3854,7 @@ const flowbuilderIntegration = async (
   const seisHorasEmMilissegundos = 1000;
 
   if (
-    listPhrase.filter(item => item.phrase === body).length === 0 &&
+    listPhrase.filter(item => item.phrase === body, false).length === 0 &&
     diferencaEmMilissegundos >= seisHorasEmMilissegundos &&
     isFirstMsg
   ) {
@@ -3894,8 +3895,8 @@ const flowbuilderIntegration = async (
   }
 
   // Campaign fluxo
-  if (listPhrase.filter(item => item.phrase === body).length !== 0) {
-    const flowDispar = listPhrase.filter(item => item.phrase === body)[0];
+  if (listPhrase.filter(item => item.phrase === body, false).length !== 0) {
+    const flowDispar = listPhrase.filter(item => item.phrase === body, false)[0];
     const flow = await FlowBuilderModel.findOne({
       where: {
         id: flowDispar.flowId
@@ -4091,7 +4092,7 @@ export const handleMessageIntegration = async (
           if (error) {
             throw new Error(error);
           } else {
-            console.log(response.body);
+            console.log(response.body, false);
           }
         });
       } catch (error) {

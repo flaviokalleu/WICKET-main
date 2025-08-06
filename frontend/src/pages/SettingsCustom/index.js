@@ -28,35 +28,111 @@ import Empresa from "../../pages/Empresa"; // Importando o componente da página
 const useStyles = makeStyles((theme) => ({
   root: {
     flex: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#0a0a0a",
+    minHeight: "100vh",
   },
   mainPaper: {
     ...theme.scrollbarStyles,
     overflowY: "scroll",
     flex: 1,
+    backgroundColor: "#0f0f0f",
+    border: "1px solid #2a2a2a",
+    borderRadius: "16px",
+    margin: "16px",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+    "&::-webkit-scrollbar": {
+      width: "6px",
+    },
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: "#1a1a1a",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#404040",
+      borderRadius: "3px",
+      "&:hover": {
+        backgroundColor: "#525252",
+      },
+    },
   },
   tab: {
-    // background: "#f2f5f3",
-    backgroundColor: theme.mode === 'light' ? "#f2f2f2" : "#7f7f7f",
-    borderRadius: 0,
+    backgroundColor: "#1a1a1a",
+    borderRadius: "16px 16px 0 0",
+    borderBottom: "1px solid #2a2a2a",
+    "& .MuiTab-root": {
+      color: "#b3b3b3",
+      fontWeight: "500",
+      fontSize: "14px",
+      textTransform: "none",
+      minHeight: "56px",
+      transition: "all 0.2s ease",
+      "&:hover": {
+        color: "#ffffff",
+        backgroundColor: "#262626",
+      },
+      "&.Mui-selected": {
+        color: "#437db5",
+        backgroundColor: "#262626",
+        borderRadius: "8px",
+        margin: "4px",
+      },
+    },
+    "& .MuiTabs-indicator": {
+      backgroundColor: "#437db5",
+      height: "3px",
+      borderRadius: "3px",
+    },
   },
   paper: {
     ...theme.scrollbarStyles,
     overflowY: "scroll",
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     width: "100%",
+    backgroundColor: "#0f0f0f",
+    borderRadius: "0 0 16px 16px",
+    minHeight: "calc(100vh - 200px)",
   },
   container: {
     width: "100%",
     maxHeight: "100%",
+    backgroundColor: "#0f0f0f",
+    borderRadius: "12px",
+    padding: "24px",
+    border: "1px solid #2a2a2a",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
   },
   control: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
+    backgroundColor: "#1a1a1a",
+    borderRadius: "8px",
+    border: "1px solid #2a2a2a",
+    margin: theme.spacing(1),
   },
   textfield: {
     width: "100%",
+    "& .MuiOutlinedInput-root": {
+      backgroundColor: "#262626",
+      borderRadius: "8px",
+      "& fieldset": {
+        borderColor: "#404040",
+      },
+      "&:hover fieldset": {
+        borderColor: "#525252",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiOutlinedInput-input": {
+      color: "#ffffff",
+    },
   },
 }));
 
@@ -140,17 +216,16 @@ const SettingsCustom = () => {
         :
         <>
           <MainHeader>
-            <Title>{i18n.t("settings.title")}</Title>
+            <Title style={{ color: "#ffffff" }}>{i18n.t("settings.title")}</Title>
           </MainHeader>
-          <Paper className={classes.mainPaper} elevation={1}>
+          <Paper className={classes.mainPaper} elevation={0}>
             <Tabs
               value={tab}
               indicatorColor="primary"
               style={{
-                color: "white",
-                backgroundColor: "#444394",
-                boxShadow: "none",
-                borderRadius: 0
+                backgroundColor: "#1a1a1a",
+                borderRadius: "16px 16px 0 0",
+                padding: "8px",
               }}
               scrollButtons="on"
               variant="scrollable"

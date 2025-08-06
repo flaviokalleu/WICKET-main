@@ -38,7 +38,11 @@ const useStyles = makeStyles(theme => ({
     mainPaper: {
 		width: '100%',
 		flex: 1,
-		padding: theme.spacing(2)
+		padding: theme.spacing(3),
+		backgroundColor: "#1a1a1a",
+		border: "1px solid #2a2a2a",
+		borderRadius: "16px",
+		boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
     },
 	fullWidth: {
 		width: '100%'
@@ -46,10 +50,33 @@ const useStyles = makeStyles(theme => ({
     tableContainer: {
 		width: '100%',
 		overflowX: "scroll",
+		backgroundColor: "#1a1a1a",
 		...theme.scrollbarStyles
     },
 	textfield: {
-		width: '100%'
+		width: '100%',
+		"& .MuiOutlinedInput-root": {
+			backgroundColor: "#262626",
+			borderRadius: "12px",
+			"& fieldset": {
+				borderColor: "#404040",
+			},
+			"&:hover fieldset": {
+				borderColor: "#525252",
+			},
+			"&.Mui-focused fieldset": {
+				borderColor: "#437db5",
+			},
+		},
+		"& .MuiInputLabel-root": {
+			color: "#b3b3b3",
+			"&.Mui-focused": {
+				color: "#437db5",
+			},
+		},
+		"& .MuiOutlinedInput-input": {
+			color: "#ffffff",
+		},
 	},
     textRight: {
         textAlign: 'right'
@@ -105,21 +132,18 @@ export function HelpManagerForm (props) {
                                 variant="outlined"
                                 margin="dense"
                                 fullWidth
+                                className={classes.textfield}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
                                             <TitleIcon color="primary" />
                                         </InputAdornment>
                                     ),
-                                    style: { 
-                                        backgroundColor: "white",
-                                        borderRadius: "8px",
-                                    }
                                 }}
                                 InputLabelProps={{ 
                                     style: { 
                                         fontWeight: "bold", 
-                                        color: "#1976d2" 
+                                        color: "#b3b3b3" 
                                     } 
                                 }}
                             />
@@ -133,21 +157,18 @@ export function HelpManagerForm (props) {
                                 variant="outlined"
                                 margin="dense"
                                 fullWidth
+                                className={classes.textfield}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
                                             <VideoLabelIcon color="success" />
                                         </InputAdornment>
                                     ),
-                                    style: { 
-                                        backgroundColor: "white",
-                                        borderRadius: "8px",
-                                    }
                                 }}
                                 InputLabelProps={{ 
                                     style: { 
                                         fontWeight: "bold", 
-                                        color: "#388e3c" 
+                                        color: "#b3b3b3" 
                                     } 
                                 }}
                             />
@@ -163,21 +184,18 @@ export function HelpManagerForm (props) {
                                 fullWidth
                                 multiline
                                 rows={4}
+                                className={classes.textfield}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
                                             <DescriptionIcon color="warning" />
                                         </InputAdornment>
                                     ),
-                                    style: { 
-                                        backgroundColor: "white",
-                                        borderRadius: "8px",
-                                    }
                                 }}
                                 InputLabelProps={{ 
                                     style: { 
                                         fontWeight: "bold", 
-                                        color: "#f57c00" 
+                                        color: "#b3b3b3" 
                                     } 
                                 }}
                             />
@@ -186,11 +204,15 @@ export function HelpManagerForm (props) {
                             <ButtonWithSpinner
                                 startIcon={<ClearIcon />}
                                 style={{
-                                    color: "white",
-                                    backgroundColor: "#FFA500",
-                                    boxShadow: "none",
-                                    borderRadius: "5px",
+                                    color: "#ffffff",
+                                    backgroundColor: "#dc3545",
+                                    borderRadius: "12px",
                                     fontSize: "12px",
+                                    transition: "all 0.2s ease",
+                                    "&:hover": {
+                                        backgroundColor: "#c82333",
+                                        transform: "translateY(-1px)",
+                                    }
                                 }}
                                 className={classes.fullWidth}
                                 loading={loading}
@@ -208,11 +230,15 @@ export function HelpManagerForm (props) {
                                     onClick={() => onDelete(record)}
                                     variant="contained"
                                     style={{
-                                        color: "white",
-                                        backgroundColor: "#db6565",
-                                        boxShadow: "none",
-                                        borderRadius: "5px",
+                                        color: "#ffffff",
+                                        backgroundColor: "#dc3545",
+                                        borderRadius: "12px",
                                         fontSize: "12px",
+                                        transition: "all 0.2s ease",
+                                        "&:hover": {
+                                            backgroundColor: "#c82333",
+                                            transform: "translateY(-1px)",
+                                        }
                                     }}
                                 >
                                     {i18n.t("helps.settings.delete")}
@@ -227,11 +253,15 @@ export function HelpManagerForm (props) {
                                 type="submit"
                                 variant="contained"
                                 style={{
-                                    color: "white",
+                                    color: "#ffffff",
                                     backgroundColor: "#437db5",
-                                    boxShadow: "none",
-                                    borderRadius: "5px",
+                                    borderRadius: "12px",
                                     fontSize: "12px",
+                                    transition: "all 0.2s ease",
+                                    "&:hover": {
+                                        backgroundColor: "#3a6fa0",
+                                        transform: "translateY(-1px)",
+                                    }
                                 }}
                             >
                                 {i18n.t("helps.settings.save")}
@@ -256,24 +286,31 @@ export function HelpsManagerGrid (props) {
                         <Card
                             variant="outlined"
                             style={{
-                                backgroundColor: "#d7e0e4",
-                                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                                borderRadius: "10px",
+                                backgroundColor: "#262626",
+                                border: "1px solid #404040",
+                                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+                                borderRadius: "16px",
                                 padding: "20px",
                                 margin: "10px",
-                                transition: "transform 0.2s ease-in-out",
+                                transition: "all 0.3s ease",
                                 cursor: "pointer",
                             }}
-                            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
-                            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = "scale(1.03)";
+                                e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.4)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = "scale(1)";
+                                e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.3)";
+                            }}
                         >
                             <CardContent>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                    <Typography variant="h6" style={{ fontWeight: "bold", color: "#1976d2" }}>
+                                    <Typography variant="h6" style={{ fontWeight: "bold", color: "#ffffff" }}>
                                         <TitleIcon fontSize="small" style={{ verticalAlign: "middle", marginRight: 8 }} />
                                         {row.title || "-"}
                                     </Typography>
-                                    <IconButton onClick={() => onSelect(row)} aria-label="edit" style={{ color: "#1976d2" }}>
+                                    <IconButton onClick={() => onSelect(row)} aria-label="edit" style={{ color: "#437db5" }}>
                                         <EditIcon />
                                     </IconButton>
                                 </div>
@@ -284,7 +321,7 @@ export function HelpsManagerGrid (props) {
                                         marginTop: "8px",
                                         marginBottom: "8px",
                                         fontSize: "0.875rem",
-                                        color: "#555",
+                                        color: "#b3b3b3",
                                     }}
                                 >
                                     <DescriptionIcon fontSize="small" style={{ verticalAlign: "middle", marginRight: 8, color: "#f57c00" }} />
@@ -297,7 +334,7 @@ export function HelpsManagerGrid (props) {
                                         marginBottom: "8px",
                                         fontSize: "0.875rem",
                                         fontWeight: "bold",
-                                        color: "#388e3c",
+                                        color: "#4caf50",
                                     }}
                                 >
                                     <VideoLabelIcon fontSize="small" style={{ verticalAlign: "middle", marginRight: 8 }} />

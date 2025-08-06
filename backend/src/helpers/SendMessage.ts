@@ -32,6 +32,7 @@ export const SendMessage = async (
         messageData.mediaPath,
         companyId,
         messageData.body,
+        false
       );
       if (options) {
         const body = fs.readFileSync(messageData.mediaPath);

@@ -69,6 +69,7 @@ type MessageData = {
   quotedMsg?: Message;
   number?: string;
   isPrivate?: string;
+  isRecord?: string;
   vCard?: Contact;
 };
 const chunkDir = path.resolve(os.tmpdir(), "audio_chunks");
@@ -558,7 +559,7 @@ function obterNomeEExtensaoDoArquivo(url) {
 export const store = async (req: Request, res: Response): Promise<Response> => {
   const { ticketId } = req.params;
 
-  const { body, quotedMsg, vCard, isPrivate = "false" }: MessageData = req.body;
+  const { body, quotedMsg, vCard, isPrivate = "false", isRecord = "false" }: MessageData = req.body;
   const medias = req.files as Express.Multer.File[];
   const { companyId } = req.user;
 
@@ -601,7 +602,14 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
           }
 
           if (ticket.channel === "whatsapp") {
-            await SendWhatsAppMedia({ media, ticket, body: Array.isArray(body) ? body[index] : body, isPrivate: isPrivate === "true", isForwarded: false });
+            await SendWhatsAppMedia({ 
+              media, 
+              ticket, 
+              body: Array.isArray(body) ? body[index] : body, 
+              isPrivate: isPrivate === "true", 
+              isForwarded: false,
+              isRecord: isRecord === "true"
+            });
           }
 
           if (["facebook", "instagram"].includes(ticket.channel)) {

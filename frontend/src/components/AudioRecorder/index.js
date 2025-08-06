@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { IconButton, makeStyles, Tooltip, CircularProgress } from '@material-ui/core';
+import { IconButton, makeStyles, Tooltip, CircularProgress, useMediaQuery, useTheme } from '@material-ui/core';
 import { Mic, Stop, Send, Delete, VolumeUp, CloudUpload } from '@material-ui/icons';
 import api from '../../services/api';
 
@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     borderRadius: theme.shape.borderRadius,
     border: `1px solid ${theme.palette.divider}`,
+    [theme.breakpoints.down('sm')]: {
+      gap: theme.spacing(0.3),
+      padding: theme.spacing(0.3),
+      flexWrap: 'wrap',
+    },
   },
   recordButton: {
     color: '#f44336',
@@ -20,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'rgba(244, 67, 54, 0.1)',
       transform: 'scale(1.1)',
     },
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1),
+    },
   },
   stopButton: {
     color: '#ff9800',
@@ -27,11 +35,19 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: 'rgba(255, 152, 0, 0.1)',
     },
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1),
+    },
   },
   sendButton: {
     color: '#4caf50',
     '&:hover': {
       backgroundColor: 'rgba(76, 175, 80, 0.1)',
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1),
+      minWidth: 48,
+      minHeight: 48,
     },
   },
   deleteButton: {
@@ -39,11 +55,17 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: 'rgba(117, 117, 117, 0.1)',
     },
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1),
+    },
   },
   optimizeButton: {
     color: '#2196f3',
     '&:hover': {
       backgroundColor: 'rgba(33, 150, 243, 0.1)',
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1),
     },
   },
   waveform: {
@@ -52,18 +74,30 @@ const useStyles = makeStyles((theme) => ({
     gap: 2,
     padding: theme.spacing(0, 1),
     minWidth: 60,
+    [theme.breakpoints.down('sm')]: {
+      minWidth: 40,
+      gap: 1,
+      padding: theme.spacing(0, 0.5),
+    },
   },
   wave: {
     width: 3,
     backgroundColor: '#2196f3',
     borderRadius: 2,
     transition: 'height 0.1s ease',
+    [theme.breakpoints.down('sm')]: {
+      width: 2,
+    },
   },
   timeDisplay: {
     fontSize: '0.8rem',
     color: theme.palette.text.secondary,
     minWidth: 35,
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.75rem',
+      minWidth: 30,
+    },
   },
   '@keyframes pulse': {
     '0%': {
@@ -79,6 +113,10 @@ const useStyles = makeStyles((theme) => ({
   audioPlayer: {
     maxWidth: 200,
     height: 32,
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 150,
+      height: 28,
+    },
   },
   recordingIndicator: {
     display: 'flex',
@@ -87,22 +125,64 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     backgroundColor: 'rgba(244, 67, 54, 0.1)',
     borderRadius: theme.shape.borderRadius,
+    [theme.breakpoints.down('sm')]: {
+      gap: theme.spacing(0.5),
+      padding: theme.spacing(0, 0.5),
+    },
   },
   recordingText: {
     color: '#f44336',
     fontSize: '0.8rem',
     fontWeight: 'bold',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.7rem',
+    },
   },
   qualityIndicator: {
     fontSize: '0.7rem',
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing(0.5),
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.6rem',
+      marginLeft: theme.spacing(0.3),
+    },
   },
   optimized: {
     color: '#4caf50',
   },
   processing: {
     color: '#ff9800',
+  },
+  // Estilos específicos para mobile
+  mobileControlsContainer: {
+    display: 'none',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+    },
+  },
+  desktopControlsContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(0.5),
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  mobileAudioInfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    flex: 1,
+    marginRight: theme.spacing(1),
+    minWidth: 0, // Permite que o flex item encolha
+  },
+  mobileButtonGroup: {
+    display: 'flex',
+    gap: theme.spacing(0.5),
+    flexShrink: 0, // Impede que os botões encolham
   },
 }));
 
@@ -114,6 +194,9 @@ const AudioRecorder = ({
   autoOptimize = true
 }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [recordingTime, setRecordingTime] = useState(0);
@@ -360,58 +443,129 @@ const AudioRecorder = ({
 
   // Estado: gravação finalizada (mostrar player e controles)
   if (audioBlob) {
+    console.log('AudioRecorder - isMobile:', isMobile); // Debug
     return (
       <div className={`${classes.audioRecorderContainer} ${className}`}>
-        <audio controls className={classes.audioPlayer}>
-          <source src={URL.createObjectURL(audioBlob)} type={audioBlob.type} />
-        </audio>
-        <div>
-          <div className={classes.timeDisplay}>
-            {formatTime(recordingTime)}
+        {/* Layout Desktop */}
+        <div className={classes.desktopControlsContainer}>
+          <audio controls className={classes.audioPlayer}>
+            <source src={URL.createObjectURL(audioBlob)} type={audioBlob.type} />
+          </audio>
+          <div>
+            <div className={classes.timeDisplay}>
+              {formatTime(recordingTime)}
+            </div>
+            <div className={classes.qualityIndicator}>
+              {formatFileSize(audioBlob.size)}
+              {isProcessing && <span className={classes.processing}> • Processando...</span>}
+              {isOptimized && !isProcessing && <span className={classes.optimized}> • ✓ Otimizado</span>}
+            </div>
           </div>
-          <div className={classes.qualityIndicator}>
-            {formatFileSize(audioBlob.size)}
-            {isProcessing && <span className={classes.processing}> • Processando...</span>}
-            {isOptimized && !isProcessing && <span className={classes.optimized}> • ✓ Otimizado</span>}
-          </div>
-        </div>
-        
-        {!autoOptimize && !isOptimized && !isProcessing && (
-          <Tooltip title="Otimizar áudio">
+          
+          {!autoOptimize && !isOptimized && !isProcessing && (
+            <Tooltip title="Otimizar áudio">
+              <IconButton
+                className={classes.optimizeButton}
+                onClick={() => optimizeAudio()}
+                size="small"
+              >
+                <CloudUpload />
+              </IconButton>
+            </Tooltip>
+          )}
+          
+          {isProcessing && (
+            <CircularProgress size={20} />
+          )}
+          
+          <Tooltip title="Enviar áudio">
             <IconButton
-              className={classes.optimizeButton}
-              onClick={() => optimizeAudio()}
+              className={classes.sendButton}
+              onClick={sendAudio}
               size="small"
+              disabled={isProcessing}
+              style={{ 
+                backgroundColor: '#4caf50', 
+                color: 'white',
+                minWidth: 40,
+                minHeight: 40
+              }}
             >
-              <CloudUpload />
+              <Send />
             </IconButton>
           </Tooltip>
-        )}
-        
-        {isProcessing && (
-          <CircularProgress size={20} />
-        )}
-        
-        <Tooltip title="Enviar áudio">
-          <IconButton
-            className={classes.sendButton}
-            onClick={sendAudio}
-            size="small"
-            disabled={isProcessing}
-          >
-            <Send />
-          </IconButton>
-        </Tooltip>
-        
-        <Tooltip title="Descartar gravação">
-          <IconButton
-            className={classes.deleteButton}
-            onClick={deleteRecording}
-            size="small"
-          >
-            <Delete />
-          </IconButton>
-        </Tooltip>
+          
+          <Tooltip title="Descartar gravação">
+            <IconButton
+              className={classes.deleteButton}
+              onClick={deleteRecording}
+              size="small"
+            >
+              <Delete />
+            </IconButton>
+          </Tooltip>
+        </div>
+
+        {/* Layout Mobile */}
+        <div className={classes.mobileControlsContainer}>
+          <div className={classes.mobileAudioInfo}>
+            <audio controls className={classes.audioPlayer}>
+              <source src={URL.createObjectURL(audioBlob)} type={audioBlob.type} />
+            </audio>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
+              <span className={classes.timeDisplay}>
+                {formatTime(recordingTime)}
+              </span>
+              <span className={classes.qualityIndicator}>
+                {formatFileSize(audioBlob.size)}
+                {isProcessing && <span className={classes.processing}> • Processando...</span>}
+                {isOptimized && !isProcessing && <span className={classes.optimized}> • ✓ Otimizado</span>}
+              </span>
+            </div>
+          </div>
+          
+          <div className={classes.mobileButtonGroup}>
+            {!autoOptimize && !isOptimized && !isProcessing && (
+              <IconButton
+                className={classes.optimizeButton}
+                onClick={() => optimizeAudio()}
+                size="small"
+                aria-label="Otimizar áudio"
+              >
+                <CloudUpload />
+              </IconButton>
+            )}
+            
+            {isProcessing && (
+              <CircularProgress size={24} />
+            )}
+            
+            <IconButton
+              className={classes.sendButton}
+              onClick={sendAudio}
+              size="medium"
+              disabled={isProcessing}
+              aria-label="Enviar áudio"
+              style={{ 
+                backgroundColor: '#4caf50', 
+                color: 'white',
+                minWidth: 48,
+                minHeight: 48
+              }}
+            >
+              <Send />
+            </IconButton>
+            
+            <IconButton
+              className={classes.deleteButton}
+              onClick={deleteRecording}
+              size="small"
+              aria-label="Descartar gravação"
+            >
+              <Delete />
+            </IconButton>
+          </div>
+        </div>
       </div>
     );
   }
@@ -421,18 +575,19 @@ const AudioRecorder = ({
     return (
       <div className={`${classes.audioRecorderContainer} ${className}`}>
         <div className={classes.recordingIndicator}>
-          <VolumeUp style={{ fontSize: 16, color: '#f44336' }} />
+          <VolumeUp style={{ fontSize: isMobile ? 14 : 16, color: '#f44336' }} />
           <span className={classes.recordingText}>REC</span>
         </div>
         {renderWaveform()}
         <span className={classes.timeDisplay}>
           {formatTime(recordingTime)}
         </span>
-        <Tooltip title="Parar gravação">
+        <Tooltip title={isMobile ? "" : "Parar gravação"}>
           <IconButton
             className={classes.stopButton}
             onClick={stopRecording}
-            size="small"
+            size={isMobile ? "medium" : "small"}
+            aria-label="Parar gravação"
           >
             <Stop />
           </IconButton>
@@ -443,12 +598,13 @@ const AudioRecorder = ({
 
   // Estado: inicial (botão para iniciar gravação)
   return (
-    <Tooltip title="Gravar áudio">
+    <Tooltip title={isMobile ? "" : "Gravar áudio"}>
       <IconButton
         className={classes.recordButton}
         onClick={startRecording}
         disabled={disabled}
-        size="small"
+        size={isMobile ? "medium" : "small"}
+        aria-label="Gravar áudio"
       >
         <Mic />
       </IconButton>

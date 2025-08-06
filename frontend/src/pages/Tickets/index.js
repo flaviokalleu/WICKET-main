@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import TicketsManagerTabs from "../../components/TicketsManagerTabs";
 import Ticket from "../../components/Ticket";
+import logo from "../../assets/logo.png";
 
 import { i18n } from "../../translate/i18n";
 
@@ -86,6 +87,11 @@ const Chat = () => {
 							</>
 						) : (
 							<div className={classes.welcomeMsg}>
+								<img 
+									src={logo} 
+									alt="Logo" 
+									className={classes.logo}
+								/>
 								<Typography className={classes.welcomeText}>
 									{i18n.t("chat.noTicketMessage")}
 								</Typography>

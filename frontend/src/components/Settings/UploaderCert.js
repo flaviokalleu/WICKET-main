@@ -40,52 +40,62 @@ const useStyles = makeStyles((theme) => ({
   mainPaper: {
     width: "100%",
     flex: 1,
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #2a2a2a",
+    borderRadius: "16px",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
   },
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
   fixedHeightPaper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
     height: 240,
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #2a2a2a",
+    borderRadius: "16px",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
   },
   tab: {
-    background: "#f2f5f3",
-    borderRadius: 0,
+    backgroundColor: "#262626",
+    borderRadius: "12px",
     width: "100%",
     "& .MuiTab-wrapper": {
-      color: "#128c7e"
+      color: "#ffffff"
     },
     "& .MuiTabs-flexContainer": {
       justifyContent: "center"
     }
-
-
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     display: "flex",
     alignItems: "center",
     marginBottom: 12,
     width: "100%",
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #2a2a2a",
+    borderRadius: "16px",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
   },
   cardAvatar: {
     fontSize: "55px",
-    color: grey[500],
-    backgroundColor: "#ffffff",
+    color: "#ffffff",
+    backgroundColor: "#262626",
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
   cardTitle: {
     fontSize: "18px",
-    color: blue[700],
+    color: "#ffffff",
   },
   cardSubtitle: {
-    color: grey[600],
+    color: "#b3b3b3",
     fontSize: "14px",
   },
   alignRight: {
@@ -97,6 +107,32 @@ const useStyles = makeStyles((theme) => ({
   selectContainer: {
     width: "100%",
     textAlign: "left",
+    "& .MuiFormControl-root": {
+      backgroundColor: "#262626",
+      borderRadius: "12px",
+    },
+    "& .MuiOutlinedInput-root": {
+      backgroundColor: "#262626",
+      borderRadius: "12px",
+      "& fieldset": {
+        borderColor: "#404040",
+      },
+      "&:hover fieldset": {
+        borderColor: "#525252",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiSelect-select": {
+      color: "#ffffff",
+    },
   },
   buttonContainer: {
     textAlign: "right",
@@ -110,11 +146,18 @@ const useStyles = makeStyles((theme) => ({
   },
   fileInputLabel: {
     display: "inline-block",
-    backgroundColor: "#7c7c7c",
-    color: "#fff",
-    padding: "8px 16px",
-    borderRadius: "0",
+    backgroundColor: "#437db5",
+    color: "#ffffff",
+    padding: "12px 24px",
+    borderRadius: "12px",
     cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: "500",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      backgroundColor: "#3a6fa0",
+      transform: "translateY(-1px)",
+    },
     "& input": {
       display: "none",
     },
@@ -222,7 +265,32 @@ return (
               labelId="selectOption-label"
               value={selectedOption}
               onChange={handleOptionChange}
-              style={{ marginTop: 15, marginBottom: 15}}
+              style={{ 
+                marginTop: 15, 
+                marginBottom: 15,
+                "& .MuiOutlinedInput-root": {
+                  backgroundColor: "#262626",
+                  borderRadius: "12px",
+                  "& fieldset": {
+                    borderColor: "#404040",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#525252",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#437db5",
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: "#b3b3b3",
+                  "&.Mui-focused": {
+                    color: "#437db5",
+                  },
+                },
+                "& .MuiSelect-select": {
+                  color: "#ffffff",
+                },
+              }}
             >
               <MenuItem value="certificadoEfi">Certificado Efí p12 API PIX</MenuItem>
             </Select>
@@ -252,11 +320,17 @@ return (
              style={{
              marginTop: 15,
              marginBottom: 15,
-             color: "white",
-             backgroundColor: "#4ec24e",
-             boxShadow: "none",
-             borderRadius: "5px",
-              }}
+             color: "#ffffff",
+             backgroundColor: "#437db5",
+             borderRadius: "12px",
+             fontSize: "14px",
+             fontWeight: "500",
+             transition: "all 0.3s ease",
+             "&:hover": {
+               backgroundColor: "#3a6fa0",
+               transform: "translateY(-1px)",
+             }
+             }}
 
             variant="contained"
           >

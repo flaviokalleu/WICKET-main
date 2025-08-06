@@ -20,7 +20,9 @@ const useStyles = makeStyles((theme) => ({
         overflow: "hidden",
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
-        backgroundColor: "#1a1a1a",
+        backgroundColor: "#0f0f0f",
+        border: "1px solid #2a2a2a",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
     },
 
     ticketsList: {
@@ -28,49 +30,75 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "100%",
         overflowY: "scroll",
         ...theme.scrollbarStyles,
-        borderTop: "2px solid #333333",
-        backgroundColor: "#1a1a1a",
+        borderTop: "1px solid #2a2a2a",
+        backgroundColor: "#0f0f0f",
+        "&::-webkit-scrollbar": {
+            width: "6px",
+        },
+        "&::-webkit-scrollbar-track": {
+            backgroundColor: "#1a1a1a",
+        },
+        "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#404040",
+            borderRadius: "3px",
+            "&:hover": {
+                backgroundColor: "#525252",
+            },
+        },
     },
 
     ticketsListHeader: {
         color: "#ffffff",
         zIndex: 2,
-        backgroundColor: "#1e1e1e",
-        borderBottom: "1px solid #333333",
+        backgroundColor: "#1a1a1a",
+        borderBottom: "1px solid #2a2a2a",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: theme.spacing(1, 2),
+        padding: theme.spacing(2, 3),
+        borderRadius: "12px 12px 0 0",
+        background: "linear-gradient(135deg, #1a1a1a 0%, #262626 100%)",
     },
 
     ticketsCount: {
-        fontWeight: "normal",
-        color: "#a0a0a0",
-        marginLeft: "8px",
-        fontSize: "14px",
+        fontWeight: "500",
+        color: "#b3b3b3",
+        marginLeft: "12px",
+        fontSize: "13px",
+        backgroundColor: "#333333",
+        padding: "4px 12px",
+        borderRadius: "20px",
+        border: "1px solid #404040",
     },
 
     noTicketsText: {
         textAlign: "center",
-        color: "rgb(104, 121, 146)",
+        color: "#8a8a8a",
         fontSize: "14px",
-        lineHeight: "1.4",
+        lineHeight: "1.6",
+        marginTop: "8px",
     },
 
     noTicketsTitle: {
         textAlign: "center",
-        fontSize: "16px",
+        fontSize: "18px",
         fontWeight: "600",
         margin: "0px",
+        color: "#ffffff",
+        marginBottom: "8px",
     },
 
     noTicketsDiv: {
         display: "flex",
-        // height: "190px",
-        margin: 40,
+        margin: "60px 40px",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        padding: "40px 20px",
+        backgroundColor: "#1a1a1a",
+        borderRadius: "16px",
+        border: "1px solid #2a2a2a",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
     },
 }));
 
@@ -406,16 +434,32 @@ const TicketsListCustom = (props) => {
         ticketsList = ticketsList.filter(ticket => ticket.status === status)
     }
 
-    return (
-        <Paper className={classes.ticketsListWrapper} style={style}>
+        return (
+        <Paper 
+            className={classes.ticketsListWrapper} 
+            style={{
+                ...style,
+                background: "linear-gradient(145deg, #0f0f0f 0%, #1a1a1a 100%)",
+                backdropFilter: "blur(10px)",
+                border: "1px solid #2a2a2a",
+            }}
+        >
             <Paper
                 square
                 name="closed"
                 elevation={0}
                 className={classes.ticketsList}
                 onScroll={handleScroll}
+                style={{
+                    background: "transparent",
+                }}
             >
-                <List style={{ paddingTop: 0 }} >
+                <List 
+                    style={{ 
+                        paddingTop: 0,
+                        padding: "8px",
+                    }} 
+                >
                     {ticketsList.length === 0 && !loading ? (
                         <div className={classes.noTicketsDiv}>
                             <span className={classes.noTicketsTitle}>
@@ -427,19 +471,36 @@ const TicketsListCustom = (props) => {
                         </div>
                     ) : (
                         <>
-                            {ticketsList.map((ticket) => (
-                                // <List key={ticket.id}>
-                                //     {console.log(ticket)}
-                                <TicketListItem
-                                    ticket={ticket}
+                            {ticketsList.map((ticket, index) => (
+                                <div
                                     key={ticket.id}
-                                    setTabOpen={setTabOpen}
-                                />
-                                // </List>
+                                    style={{
+                                        marginBottom: "8px",
+                                        borderRadius: "12px",
+                                        overflow: "hidden",
+                                        backgroundColor: "#1a1a1a",
+                                        border: "1px solid #2a2a2a",
+                                        transition: "all 0.2s ease",
+                                        "&:hover": {
+                                            backgroundColor: "#262626",
+                                            transform: "translateY(-1px)",
+                                            boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
+                                        },
+                                    }}
+                                >
+                                    <TicketListItem
+                                        ticket={ticket}
+                                        setTabOpen={setTabOpen}
+                                    />
+                                </div>
                             ))}
                         </>
                     )}
-                    {loading && <TicketsListSkeleton />}
+                    {loading && (
+                        <div style={{ padding: "16px" }}>
+                            <TicketsListSkeleton />
+                        </div>
+                    )}
                 </List>
             </Paper>
         </Paper>

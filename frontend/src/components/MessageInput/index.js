@@ -107,6 +107,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     padding: "7px",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      padding: "8px 4px",
+      position: "relative",
+      zIndex: 1000,
+    },
   },
   messageInputWrapper: {
     padding: 6,
@@ -116,6 +121,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 20,
     flex: 1,
     position: "relative",
+    [theme.breakpoints.down("sm")]: {
+      marginRight: 4,
+      padding: 4,
+    },
   },
   messageInputWrapperPrivate: {
     padding: 6,
@@ -125,6 +134,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 20,
     flex: 1,
     position: "relative",
+    [theme.breakpoints.down("sm")]: {
+      marginRight: 4,
+      padding: 4,
+    },
   },
   messageInput: {
     paddingLeft: 10,
@@ -704,6 +717,7 @@ const MessageInput = ({ ticketId, ticketStatus, droppedFiles, contactId, ticketC
       formData.append("medias", audioBlob, fileName);
       formData.append("body", fileName);
       formData.append("fromMe", true);
+      formData.append("isRecord", "true"); // Marca como gravação para ptt: true
 
       if (isMounted.current) {
         await api.post(`/messages/${ticketId}`, formData);

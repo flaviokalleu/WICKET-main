@@ -48,12 +48,16 @@ const useStyles = makeStyles(theme => ({
   switchLabel: {
     marginTop: theme.spacing(1),
     fontSize: "0.875rem",
-    color: theme.palette.text.secondary,
+    color: "#ffffff",
   },
     mainPaper: {
         width: '100%',
         flex: 1,
-        padding: theme.spacing(2)
+        padding: theme.spacing(3),
+        backgroundColor: "#1a1a1a",
+        border: "1px solid #2a2a2a",
+        borderRadius: "16px",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
     },
     fullWidth: {
         width: '100%'
@@ -61,10 +65,33 @@ const useStyles = makeStyles(theme => ({
     tableContainer: {
         width: '100%',
         overflowX: "scroll",
+        backgroundColor: "#1a1a1a",
         ...theme.scrollbarStyles
     },
     textfield: {
-        width: '100%'
+        width: '100%',
+        "& .MuiOutlinedInput-root": {
+            backgroundColor: "#262626",
+            borderRadius: "12px",
+            "& fieldset": {
+                borderColor: "#404040",
+            },
+            "&:hover fieldset": {
+                borderColor: "#525252",
+            },
+            "&.Mui-focused fieldset": {
+                borderColor: "#437db5",
+            },
+        },
+        "& .MuiInputLabel-root": {
+            color: "#b3b3b3",
+            "&.Mui-focused": {
+                color: "#437db5",
+            },
+        },
+        "& .MuiOutlinedInput-input": {
+            color: "#ffffff",
+        },
     },
     textRight: {
         textAlign: 'right'
@@ -182,11 +209,8 @@ export function PlanManagerForm(props) {
       margin="dense"
       type="number"
       fullWidth
+      className={classes.textfield}
       InputLabelProps={{ style: { fontWeight: "bold" } }}
-      style={{
-        backgroundColor: "#ffffff",
-        borderRadius: "8px",
-      }}
     />
   </Grid>
 
@@ -200,11 +224,8 @@ export function PlanManagerForm(props) {
       margin="dense"
       type="number"
       fullWidth
+      className={classes.textfield}
       InputLabelProps={{ style: { fontWeight: "bold" } }}
-      style={{
-        backgroundColor: "#ffffff",
-        borderRadius: "8px",
-      }}
     />
   </Grid>
 
@@ -218,11 +239,8 @@ export function PlanManagerForm(props) {
       margin="dense"
       type="number"
       fullWidth
+      className={classes.textfield}
       InputLabelProps={{ style: { fontWeight: "bold" } }}
-      style={{
-        backgroundColor: "#ffffff",
-        borderRadius: "8px",
-      }}
     />
   </Grid>
 
@@ -236,12 +254,8 @@ export function PlanManagerForm(props) {
       margin="dense"
       type="text"
       fullWidth
+      className={classes.textfield}
       InputLabelProps={{ style: { fontWeight: "bold" } }}
-      style={{
-        backgroundColor: "#ffffff",
-        borderRadius: "8px",
-        fontWeight: "bold",
-      }}
     />
   </Grid>
 </Grid>
@@ -254,9 +268,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -269,6 +283,7 @@ export function PlanManagerForm(props) {
                     marginBottom: "8px",
                     fontWeight: "bold",
                     fontSize: "1rem",
+                    color: "#ffffff",
                 }}
             >
                 Whatsapp
@@ -287,7 +302,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -306,9 +321,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -321,6 +336,7 @@ export function PlanManagerForm(props) {
                     marginBottom: "8px",
                     fontWeight: "bold",
                     fontSize: "1rem",
+                    color: "#ffffff",
                 }}
             >
                 Facebook
@@ -338,7 +354,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -357,9 +373,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -372,6 +388,7 @@ export function PlanManagerForm(props) {
                     marginBottom: "8px",
                     fontWeight: "bold",
                     fontSize: "1rem",
+                    color: "#ffffff",
                 }}
             >
                 Instagram
@@ -389,7 +406,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -408,9 +425,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -423,6 +440,7 @@ export function PlanManagerForm(props) {
                     marginBottom: "8px",
                     fontWeight: "bold",
                     fontSize: "1rem",
+                    color: "#ffffff",
                 }}
             >
                 {i18n.t("plans.form.campaigns")}
@@ -440,7 +458,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -459,9 +477,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -474,6 +492,7 @@ export function PlanManagerForm(props) {
                     marginBottom: "8px",
                     fontWeight: "bold",
                     fontSize: "1rem",
+                    color: "#ffffff",
                 }}
             >
                 {i18n.t("plans.form.schedules")}
@@ -491,7 +510,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -510,9 +529,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -525,6 +544,7 @@ export function PlanManagerForm(props) {
                     marginBottom: "8px",
                     fontWeight: "bold",
                     fontSize: "1rem",
+                    color: "#ffffff",
                 }}
             >
                 Chat Interno
@@ -542,7 +562,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -561,9 +581,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -576,6 +596,7 @@ export function PlanManagerForm(props) {
                     marginBottom: "8px",
                     fontWeight: "bold",
                     fontSize: "1rem",
+                    color: "#ffffff",
                 }}
             >
                 API Externa
@@ -593,7 +614,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -612,9 +633,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -627,6 +648,7 @@ export function PlanManagerForm(props) {
                     marginBottom: "8px",
                     fontWeight: "bold",
                     fontSize: "1rem",
+                    color: "#ffffff",
                 }}
             >
                 CRM Kanban
@@ -644,7 +666,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -663,9 +685,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -677,6 +699,7 @@ export function PlanManagerForm(props) {
                     display: "block",
                     marginBottom: "8px",
                     fontWeight: "bold",
+                    color: "#ffffff",
                     fontSize: "1rem",
                 }}
             >
@@ -695,7 +718,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -714,9 +737,9 @@ export function PlanManagerForm(props) {
         variant="outlined"
         fullWidth
         style={{
-            backgroundColor: "#ffffff",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            backgroundColor: "#262626",
+            border: "1px solid #404040",
+            borderRadius: "12px",
             padding: "16px",
             textAlign: "center",
         }}
@@ -729,6 +752,7 @@ export function PlanManagerForm(props) {
                     marginBottom: "8px",
                     fontWeight: "bold",
                     fontSize: "1rem",
+                    color: "#ffffff",
                 }}
             >
                 Integrações
@@ -746,7 +770,7 @@ export function PlanManagerForm(props) {
                             style={{
                                 marginTop: "8px",
                                 fontSize: "0.875rem",
-                                color: "#555",
+                                color: "#ffffff",
                             }}
                         >
                             {i18n.t(field.value ? "plans.form.enabled" : "plans.form.disabled")}
@@ -766,11 +790,15 @@ export function PlanManagerForm(props) {
                             <ButtonWithSpinner
                               startIcon={<CancelIcon />}
                               style={{
-                              color: "white",
-                              backgroundColor: "#8A2BE2",
-                              boxShadow: "none",
-                              borderRadius: "5px",
+                              color: "#ffffff",
+                              backgroundColor: "#dc3545",
+                              borderRadius: "12px",
                               fontSize: "12px",
+                              transition: "all 0.2s ease",
+                              "&:hover": {
+                                backgroundColor: "#c82333",
+                                transform: "translateY(-1px)",
+                              }
                               }}
                               className={classes.fullWidth}
                               loading={loading}
@@ -788,11 +816,15 @@ export function PlanManagerForm(props) {
                                  loading={loading} onClick={() => onDelete(record)}
                                  variant="contained"
                                  style={{
-                                 color: "white",
-                                 backgroundColor: "#db6565",
-                                 boxShadow: "none",
-                                 borderRadius: "5px",
+                                 color: "#ffffff",
+                                 backgroundColor: "#dc3545",
+                                 borderRadius: "12px",
                                  fontSize: "12px",
+                                 transition: "all 0.2s ease",
+                                 "&:hover": {
+                                   backgroundColor: "#c82333",
+                                   transform: "translateY(-1px)",
+                                 }
                                  }}
                                    >
                                     {i18n.t("plans.form.delete")}
@@ -807,11 +839,15 @@ export function PlanManagerForm(props) {
                              type="submit" 
                              variant="contained"
                              style={{
-                             color: "white",
+                             color: "#ffffff",
                              backgroundColor: "#437db5",
-                             boxShadow: "none",
-                             borderRadius: "5px",
+                             borderRadius: "12px",
                              fontSize: "12px",
+                             transition: "all 0.2s ease",
+                             "&:hover": {
+                               backgroundColor: "#3a6fa0",
+                               transform: "translateY(-1px)",
+                             }
                              }}
                                >
                                 {i18n.t("plans.form.save")}

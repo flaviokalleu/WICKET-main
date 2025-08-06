@@ -451,7 +451,7 @@ const backToMainMenu = async (
       const filePath = path.resolve("public", `company${ticket.companyId}`, ticket.whatsapp.greetingMediaAttachment);
 
       const messagePath = ticket.whatsapp.greetingMediaAttachment
-      const optionsMsg = await getMessageOptions(messagePath, filePath, String(ticket.companyId), body);
+      const optionsMsg = await getMessageOptions(messagePath, filePath, String(ticket.companyId), body, false);
 
       const sentMessage = await wbot.sendMessage(`${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, { ...optionsMsg });
 

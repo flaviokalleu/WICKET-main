@@ -48,14 +48,16 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#2a2a2a",
     },
     queueTag: {
-        background: "#333333",
+        background: "linear-gradient(135deg, #374151, #1f2937)",
         color: "#ffffff",
         marginRight: 1,
-        padding: 1,
-        fontWeight: 'bold',
-        borderRadius: 3,
+        padding: "4px 8px",
+        fontWeight: '600',
+        borderRadius: 8,
         fontSize: "0.5em",
-        whiteSpace: "nowrap"
+        whiteSpace: "nowrap",
+        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
+        border: "1px solid #4b5563"
     },
     noTicketsDiv: {
         display: "flex",
@@ -83,13 +85,15 @@ const useStyles = makeStyles((theme) => ({
         lineHeight: "1.4",
     },
     connectionTag: {
-        background: "#00d4aa",
+        background: "linear-gradient(135deg, #00d4aa, #00b894)",
         color: "#ffffff",
         marginRight: 1,
-        padding: 1,
-        fontWeight: 'bold',
-        borderRadius: 3,
+        padding: "4px 8px",
+        fontWeight: '600',
+        borderRadius: 8,
         fontSize: "0.6em",
+        boxShadow: "0 2px 8px rgba(0, 212, 170, 0.3)",
+        border: "none"
     },
     noTicketsTitle: {
         textAlign: "center",
@@ -149,15 +153,26 @@ const useStyles = makeStyles((theme) => ({
     badgeStyle: {
         color: "white",
         backgroundColor: "#00d4aa",
+        borderRadius: "8px",
+        fontSize: "0.75rem",
+        fontWeight: "600",
+        boxShadow: "0 2px 8px rgba(0, 212, 170, 0.3)"
     },
 
     acceptButton: {
         position: "absolute",
         right: "1px",
-        backgroundColor: "#00d4aa",
+        background: "linear-gradient(135deg, #00d4aa, #00b894)",
         color: "#ffffff",
+        borderRadius: "12px",
+        fontWeight: "600",
+        textTransform: "none",
+        boxShadow: "0 4px 12px rgba(0, 212, 170, 0.3)",
+        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         "&:hover": {
-            backgroundColor: "#00b894",
+            background: "linear-gradient(135deg, #00b894, #009973)",
+            boxShadow: "0 6px 16px rgba(0, 212, 170, 0.4)",
+            transform: "translateY(-1px)"
         },
     },
 
@@ -567,9 +582,47 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
                                     <br />
                                 )}
                                 <span className={classes.secondaryContentSecond} >
-                                    {ticket?.whatsapp ? <Badge className={classes.connectionTag} style={{ backgroundColor: ticket.channel === "whatsapp" ? "#25D366" : ticket.channel === "facebook" ? "#4267B2" : "#E1306C" }}>{ticket.whatsapp?.name.toUpperCase()}</Badge> : <br></br>}
-                                    {<Badge style={{ backgroundColor: ticket.queue?.color || "#db6565" }} className={classes.connectionTag}>{ticket.queueId ? ticket.queue?.name.toUpperCase() : ticket.status === "lgpd" ? "LGPD" : "SEM FILA"}</Badge>}
-                                    {ticket?.user && (<Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticket.user?.name.toUpperCase()}</Badge>)}
+                                    {ticket?.whatsapp ? (
+                                        <Badge 
+                                            className={classes.connectionTag} 
+                                            style={{ 
+                                                background: ticket.channel === "whatsapp" 
+                                                    ? "linear-gradient(135deg, #25D366, #1DA851)" 
+                                                    : ticket.channel === "facebook" 
+                                                        ? "linear-gradient(135deg, #4267B2, #365899)" 
+                                                        : "linear-gradient(135deg, #E1306C, #C42D5C)",
+                                                boxShadow: `0 2px 8px ${ticket.channel === "whatsapp" 
+                                                    ? "rgba(37, 211, 102, 0.3)" 
+                                                    : ticket.channel === "facebook" 
+                                                        ? "rgba(66, 103, 178, 0.3)" 
+                                                        : "rgba(225, 48, 108, 0.3)"}`
+                                            }}
+                                        >
+                                            {ticket.whatsapp?.name.toUpperCase()}
+                                        </Badge>
+                                    ) : <br></br>}
+                                    {<Badge 
+                                        style={{ 
+                                            background: ticket.queue?.color 
+                                                ? `linear-gradient(135deg, ${ticket.queue.color}, ${ticket.queue.color}dd)` 
+                                                : "linear-gradient(135deg, #db6565, #c53030)",
+                                            boxShadow: `0 2px 8px ${ticket.queue?.color ? `${ticket.queue.color}40` : "rgba(219, 101, 101, 0.3)"}`
+                                        }} 
+                                        className={classes.connectionTag}
+                                    >
+                                        {ticket.queueId ? ticket.queue?.name.toUpperCase() : ticket.status === "lgpd" ? "LGPD" : "SEM FILA"}
+                                    </Badge>}
+                                    {ticket?.user && (
+                                        <Badge 
+                                            style={{ 
+                                                background: "linear-gradient(135deg, #1f2937, #111827)",
+                                                boxShadow: "0 2px 8px rgba(31, 41, 55, 0.3)"
+                                            }} 
+                                            className={classes.connectionTag}
+                                        >
+                                            {ticket.user?.name.toUpperCase()}
+                                        </Badge>
+                                    )}
                                 </span>
                                 <span className={classes.secondaryContentSecond} >
                                     {
@@ -618,25 +671,50 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
 
                 </ListItemSecondaryAction>
 <ListItemSecondaryAction>
-  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center" }}>
+  <div style={{ 
+    display: "flex", 
+    gap: "6px", 
+    flexWrap: "wrap", 
+    alignItems: "center",
+    padding: "8px 0",
+    '@media (max-width: 768px)': {
+      flexDirection: "column",
+      gap: "4px",
+      padding: "4px 0"
+    }
+  }}>
     {/* Botão de Aceitar Ticket Sem Fila */}
     {(ticket.status === "pending" && !ticket.queueId) && (
       <Tooltip title="Aceitar ticket sem fila" arrow placement="top">
         <ButtonWithSpinner
           variant="contained"
           style={{
-            backgroundColor: "#4ec24e",
-            color: "#fff",
-            padding: "8px",
-            borderRadius: "5px",
-            fontSize: "0.8rem",
-            boxShadow: "none",
+            background: "linear-gradient(135deg, #4ade80, #22c55e)",
+            color: "#ffffff",
+            padding: "10px 12px",
+            borderRadius: "12px",
+            fontSize: "0.75rem",
+            fontWeight: "600",
+            boxShadow: "0 4px 12px rgba(34, 197, 94, 0.3)",
+            border: "none",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            textTransform: "none",
+            minWidth: "36px",
+            height: "36px",
+            '&:hover': {
+              background: "linear-gradient(135deg, #22c55e, #16a34a)",
+              boxShadow: "0 6px 16px rgba(34, 197, 94, 0.4)",
+              transform: "translateY(-1px)"
+            },
+            '&:active': {
+              transform: "translateY(0)"
+            }
           }}
           size="small"
           loading={loading}
           onClick={handleOpenAcceptTicketWithouSelectQueue}
         >
-          <Done />
+          <Done style={{ fontSize: "18px" }} />
         </ButtonWithSpinner>
       </Tooltip>
     )}
@@ -647,18 +725,32 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
         <ButtonWithSpinner
           variant="contained"
           style={{
-            backgroundColor: "#ba8d1a",
-            color: "#fff",
-            padding: "8px",
-            borderRadius: "5px",
-            fontSize: "0.8rem",
-            boxShadow: "none",
+            background: "linear-gradient(135deg, #f59e0b, #d97706)",
+            color: "#ffffff",
+            padding: "10px 12px",
+            borderRadius: "12px",
+            fontSize: "0.75rem",
+            fontWeight: "600",
+            boxShadow: "0 4px 12px rgba(245, 158, 11, 0.3)",
+            border: "none",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            textTransform: "none",
+            minWidth: "36px",
+            height: "36px",
+            '&:hover': {
+              background: "linear-gradient(135deg, #d97706, #b45309)",
+              boxShadow: "0 6px 16px rgba(245, 158, 11, 0.4)",
+              transform: "translateY(-1px)"
+            },
+            '&:active': {
+              transform: "translateY(0)"
+            }
           }}
           size="small"
           loading={loading}
           onClick={() => handleAcepptTicket(ticket.id)}
         >
-          <Done />
+          <Done style={{ fontSize: "18px" }} />
         </ButtonWithSpinner>
       </Tooltip>
     )}
@@ -669,18 +761,32 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
         <ButtonWithSpinner
           variant="contained"
           style={{
-            backgroundColor: "#437db5",
-            color: "#fff",
-            padding: "8px",
-            borderRadius: "5px",
-            fontSize: "0.8rem",
-            boxShadow: "none",
+            background: "linear-gradient(135deg, #3b82f6, #2563eb)",
+            color: "#ffffff",
+            padding: "10px 12px",
+            borderRadius: "12px",
+            fontSize: "0.75rem",
+            fontWeight: "600",
+            boxShadow: "0 4px 12px rgba(59, 130, 246, 0.3)",
+            border: "none",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            textTransform: "none",
+            minWidth: "36px",
+            height: "36px",
+            '&:hover': {
+              background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+              boxShadow: "0 6px 16px rgba(59, 130, 246, 0.4)",
+              transform: "translateY(-1px)"
+            },
+            '&:active': {
+              transform: "translateY(0)"
+            }
           }}
           size="small"
           loading={loading}
           onClick={handleOpenTransferModal}
         >
-          <SwapHoriz />
+          <SwapHoriz style={{ fontSize: "18px" }} />
         </ButtonWithSpinner>
       </Tooltip>
     )}
@@ -691,18 +797,32 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
         <ButtonWithSpinner
           variant="contained"
           style={{
-            backgroundColor: "#db6565",
-            color: "#fff",
-            padding: "8px",
-            borderRadius: "5px",
-            fontSize: "0.8rem",
-            boxShadow: "none",
+            background: "linear-gradient(135deg, #ef4444, #dc2626)",
+            color: "#ffffff",
+            padding: "10px 12px",
+            borderRadius: "12px",
+            fontSize: "0.75rem",
+            fontWeight: "600",
+            boxShadow: "0 4px 12px rgba(239, 68, 68, 0.3)",
+            border: "none",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            textTransform: "none",
+            minWidth: "36px",
+            height: "36px",
+            '&:hover': {
+              background: "linear-gradient(135deg, #dc2626, #b91c1c)",
+              boxShadow: "0 6px 16px rgba(239, 68, 68, 0.4)",
+              transform: "translateY(-1px)"
+            },
+            '&:active': {
+              transform: "translateY(0)"
+            }
           }}
           size="small"
           loading={loading}
           onClick={() => handleCloseTicket(ticket.id)}
         >
-          <HighlightOff />
+          <HighlightOff style={{ fontSize: "18px" }} />
         </ButtonWithSpinner>
       </Tooltip>
     )}
@@ -713,18 +833,32 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
         <ButtonWithSpinner
           variant="contained"
           style={{
-            backgroundColor: "#db6565",
-            color: "#fff",
-            padding: "8px",
-            borderRadius: "5px",
-            fontSize: "0.8rem",
-            boxShadow: "none",
+            background: "linear-gradient(135deg, #6b7280, #4b5563)",
+            color: "#ffffff",
+            padding: "10px 12px",
+            borderRadius: "12px",
+            fontSize: "0.75rem",
+            fontWeight: "600",
+            boxShadow: "0 4px 12px rgba(107, 114, 128, 0.3)",
+            border: "none",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            textTransform: "none",
+            minWidth: "36px",
+            height: "36px",
+            '&:hover': {
+              background: "linear-gradient(135deg, #4b5563, #374151)",
+              boxShadow: "0 6px 16px rgba(107, 114, 128, 0.4)",
+              transform: "translateY(-1px)"
+            },
+            '&:active': {
+              transform: "translateY(0)"
+            }
           }}
           size="small"
           loading={loading}
           onClick={() => handleCloseIgnoreTicket(ticket.id)}
         >
-          <HighlightOff />
+          <HighlightOff style={{ fontSize: "18px" }} />
         </ButtonWithSpinner>
       </Tooltip>
     )}
@@ -735,18 +869,32 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
         <ButtonWithSpinner
           variant="contained"
           style={{
-            backgroundColor: "#0872B9",
-            color: "#fff",
-            padding: "8px",
-            borderRadius: "5px",
-            fontSize: "0.8rem",
-            boxShadow: "none",
+            background: "linear-gradient(135deg, #06b6d4, #0891b2)",
+            color: "#ffffff",
+            padding: "10px 12px",
+            borderRadius: "12px",
+            fontSize: "0.75rem",
+            fontWeight: "600",
+            boxShadow: "0 4px 12px rgba(6, 182, 212, 0.3)",
+            border: "none",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            textTransform: "none",
+            minWidth: "36px",
+            height: "36px",
+            '&:hover': {
+              background: "linear-gradient(135deg, #0891b2, #0e7490)",
+              boxShadow: "0 6px 16px rgba(6, 182, 212, 0.4)",
+              transform: "translateY(-1px)"
+            },
+            '&:active': {
+              transform: "translateY(0)"
+            }
           }}
           size="small"
           loading={loading}
           onClick={handleOpenAcceptTicketWithouSelectQueue}
         >
-          <Replay />
+          <Replay style={{ fontSize: "18px" }} />
         </ButtonWithSpinner>
       </Tooltip>
     )}
@@ -757,18 +905,32 @@ const TicketListItemCustom = ({ setTabOpen, ticket }) => {
         <ButtonWithSpinner
           variant="contained"
           style={{
-            backgroundColor: "#444394",
-            color: "#fff",
-            padding: "8px",
-            borderRadius: "5px",
-            fontSize: "0.8rem",
-            boxShadow: "none",
+            background: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
+            color: "#ffffff",
+            padding: "10px 12px",
+            borderRadius: "12px",
+            fontSize: "0.75rem",
+            fontWeight: "600",
+            boxShadow: "0 4px 12px rgba(139, 92, 246, 0.3)",
+            border: "none",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            textTransform: "none",
+            minWidth: "36px",
+            height: "36px",
+            '&:hover': {
+              background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
+              boxShadow: "0 6px 16px rgba(139, 92, 246, 0.4)",
+              transform: "translateY(-1px)"
+            },
+            '&:active': {
+              transform: "translateY(0)"
+            }
           }}
           size="small"
           loading={loading}
           onClick={() => handleAcepptTicket(ticket.id)}
         >
-          <Replay />
+          <Replay style={{ fontSize: "18px" }} />
         </ButtonWithSpinner>
       </Tooltip>
     )}

@@ -22,6 +22,7 @@ interface Request {
   body?: string;
   isPrivate?: boolean;
   isForwarded?: boolean;
+  isRecord?: boolean;
 }
 
 interface ProcessingMetrics {
@@ -1164,7 +1165,8 @@ export const getMessageOptions = async (
   fileName: string,
   pathMedia: string,
   companyId?: string,
-  body: string = " "
+  body: string = " ",
+  isRecord: boolean = false
 ): Promise<any> => {
   const mimeType = mime.lookup(pathMedia);
 
@@ -1212,7 +1214,7 @@ export const getMessageOptions = async (
         options = {
           audio: fs.readFileSync(convertedAudioPath),
           mimetype: "audio/mpeg",
-          ptt: true
+          ptt: isRecord
         };
         break;
       }
@@ -1257,7 +1259,8 @@ const SendWhatsAppMedia = async ({
   ticket,
   body = "",
   isPrivate = false,
-  isForwarded = false
+  isForwarded = false,
+  isRecord = false
 }: Request): Promise<WAMessage> => {
   let convertedAudioPath: string | null = null;
   const startTime = Date.now();
@@ -1346,7 +1349,7 @@ const SendWhatsAppMedia = async ({
         options = {
           audio: fs.readFileSync(convertedAudioPath),
           mimetype: "audio/mpeg",
-          ptt: true,
+          ptt: isRecord, // Use isRecord para determinar se é mensagem de voz
           caption: bodyMedia,
           contextInfo: { forwardingScore: isForwarded ? 2 : 0, isForwarded: isForwarded },
         };

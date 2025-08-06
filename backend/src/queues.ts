@@ -962,7 +962,7 @@ async function handleDispatchCampaign(job) {
             const publicFolder = path.resolve(__dirname, "..", "public");
             const filePath = path.join(publicFolder, `company${campaign.companyId}`, campaign.mediaPath);
 
-            const options = await getMessageOptions(campaign.mediaName, filePath, String(campaign.companyId), `\u200c ${campaignShipping.message}`);
+            const options = await getMessageOptions(campaign.mediaName, filePath, String(campaign.companyId), `\u200c ${campaignShipping.message}`, false);
             if (Object.keys(options).length) {
               if (options.mimetype === "audio/mp4") {
                 const audioMessage = await wbot.sendMessage(chatId, {
@@ -1014,7 +1014,7 @@ async function handleDispatchCampaign(job) {
           const publicFolder = path.resolve(__dirname, "..", "public");
           const filePath = path.join(publicFolder, `company${campaign.companyId}`, campaign.mediaPath);
 
-          const options = await getMessageOptions(campaign.mediaName, filePath, String(campaign.companyId), campaignShipping.message);
+          const options = await getMessageOptions(campaign.mediaName, filePath, String(campaign.companyId), campaignShipping.message, false);
           if (Object.keys(options).length) {
             if (options.mimetype === "audio/mp4") {
               await wbot.sendMessage(chatId, {

@@ -54,49 +54,92 @@ import { i18n } from "../../translate/i18n";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    padding: "2px",
+    padding: "16px",
+    backgroundColor: "#0a0a0a",
+    minHeight: "100vh",
+    borderRadius: "16px",
   },
   mainPaper: {
     width: "100%",
     flex: 1,
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #2a2a2a",
+    borderRadius: "16px",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
   },
   fullWidth: {
     width: "100%",
   },
   textfield: {
     width: "100%",
+    "& .MuiOutlinedInput-root": {
+      backgroundColor: "#262626",
+      borderRadius: "12px",
+      "& fieldset": {
+        borderColor: "#404040",
+      },
+      "&:hover fieldset": {
+        borderColor: "#525252",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#437db5",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "#b3b3b3",
+      "&.Mui-focused": {
+        color: "#437db5",
+      },
+    },
+    "& .MuiOutlinedInput-input": {
+      color: "#ffffff",
+    },
   },
   textRight: {
     textAlign: "right",
   },
   buttonContainer: {
     textAlign: "right",
+    padding: theme.spacing(2),
   },
   dialogTitle: {
-    backgroundColor: "#3f51b5",
-    color: "#fff",
+    backgroundColor: "#262626",
+    color: "#ffffff",
     cursor: "move",
+    borderBottom: "1px solid #404040",
   },
   dialogContent: {
     padding: theme.spacing(3),
+    backgroundColor: "#1a1a1a",
+    color: "#ffffff",
   },
   dialogActions: {
     padding: theme.spacing(2),
+    backgroundColor: "#1a1a1a",
+    borderTop: "1px solid #404040",
   },
   card: {
     minWidth: 150,
-    margin: theme.spacing(0.5),
-    backgroundColor: "#f5f5f5",
-    borderRadius: "10px",
-    boxShadow: "none",
+    margin: theme.spacing(1),
+    backgroundColor: "#262626",
+    borderRadius: "16px",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
+    border: "1px solid #404040",
+    transition: "all 0.2s ease",
+    "&:hover": {
+      backgroundColor: "#2a2a2a",
+      transform: "translateY(-2px)",
+      boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+    },
   },
   avatar: {
-    backgroundColor: "#3f51b5",
-    width: theme.spacing(3),
-    height: theme.spacing(3),
+    backgroundColor: "#437db5",
+    width: theme.spacing(4),
+    height: theme.spacing(4),
   },
   cardContent: {
-    padding: theme.spacing(0.5),
+    padding: theme.spacing(2),
+    color: "#ffffff",
   },
   cardActions: {
     justifyContent: "flex-end",
